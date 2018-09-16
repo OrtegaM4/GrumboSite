@@ -27,7 +27,7 @@ SECRET_KEY = '(s5a0jh6fsn+3d5)5y&!*=24ik(n$m9510n(^v+%y@#((qct$9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.grumbot.com','grumbot.com']
+ALLOWED_HOSTS = ['www.grumbot.com','grumbot.com','127.0.0.1']
 
 
 # Application definition

@@ -2,6 +2,9 @@
   height: 30%;
   width:49%;
 }
+#GrumBot{
+  
+}
 body{
   background-color: #292929
 }
@@ -10,7 +13,7 @@ body{
   font-size:
 }
 /* Targets navbar text */
-#mainnav li a {  
+#mainnav li a {
   color: white;
 }
 span  {

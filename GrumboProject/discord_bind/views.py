@@ -75,7 +75,7 @@ def get_url(request):
     if 'state' in url:
         code=query_def['code'][0]
         state= query_def['state'][0]
-        return HttpResponseRedirect('http://127.0.0.1:8000/discord/cb')
+        return HttpResponseRedirect('http://www.grumbot.com/discord/cb')
         # return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type='+code[0]+'&client_id=489248576434601995&scope=identify%20guilds.join' + state[0] + '&redirect_uri=https%3A%2F%2F127.0.0.1:8000/')
     else:
         data= {
@@ -83,7 +83,7 @@ def get_url(request):
         'client_secret':'69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S',
         'code':code,
         'grant_type':'client_credentials',
-        'redirect_uri':'http://127.0.0.1:8000/',
+        'redirect_uri':'http://www.grumbot.com/',
         'scope': 'identify connections',
         'state': state,
         }
@@ -97,7 +97,7 @@ def get_url(request):
         print(state)
         print(r.cookies)
         return render(request,'grumbo/stats.html',context={'token':token})
-        return HttpResponseRedirect('http://127.0.0.1:8000/')
+        return HttpResponseRedirect('http://www.grumbot.com/')
 
 # def get_token(request):
 #      url = ''
@@ -105,7 +105,7 @@ def get_url(request):
 #      r.cookies['access_token']
 #
 #      r.cookie("access_token", token)
-#      return HttpResponseRedirect('http://127.0.0.1:8000/')
+#      return HttpResponseRedirect('http://www.grumbot.com//')
 
 
 
@@ -119,7 +119,7 @@ def get_url(request):
 #     'client_secret':'69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S',
 #     'code':code,
 #     'grant_type':'authorization_code',
-#     'redirect_uri':'http://127.0.0.1:8000/',
+#     'redirect_uri':'http://www.grumbot.com//',
 #     'scope': 'identify connections',
 #     'state': state,
 #     }
@@ -128,7 +128,7 @@ def get_url(request):
 #     r = requests.post('%s/oauth2/token' % API_ENDPOINT, data=data, headers=headers)
 #     print(code)
 #     print(state)
-#     return HttpResponseRedirect('http://127.0.0.1:8000/')
+#     return HttpResponseRedirect('http://www.grumbot.com//')
     # return redirect('me')
 
 
@@ -136,7 +136,7 @@ def get_url(request):
     #     discord = make_session(token=code.get('oauth2_token'))
     #     user = discord.get(API_BASE_URL + '/users/@me').json()
     #     return jsonify(user=user,)
-    #     return HttpResponseRedirect('http://127.0.0.1:8000/')
+    #     return HttpResponseRedirect('http://www.grumbot.com//')
 
 def get_user(request):
     headers = {'Content-Type': 'application/x-www-form-urlencoded'

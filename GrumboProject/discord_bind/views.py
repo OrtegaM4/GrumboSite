@@ -85,7 +85,7 @@ def get_url(request):
         'grant_type':'client_credentials',
         'redirect_uri':'http://www.grumbot.com/',
         'scope': 'identify connections',
-        'state': state,
+        # 'state': state,
         }
         headers = {'Content-Type': 'application/x-www-form-urlencoded'
         }

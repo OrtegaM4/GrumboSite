@@ -1,26 +1,11 @@
 <!DOCTYPE html>
 {% extends "grumbo/base.html"%}
-{% block body_block %}
+{% block content %}
 
 
 <body>
-  <div class="container">
-    <div class="jumbotron">
-      <h2>Character Stats:</h2>
-      <br></br>
-      <h3><strong>HP</strong>: Max HP of 100. +5% battle chance boost at 100 HP. Chance decreases when below 45 HP, going down to -50% when at 0 HP.</h3>
-      <h3><strong>POW</strong>: Power. Affects battle chance. Chance is proportionate to enemy POW difference.</h3>
-      <h3><strong>WIS</strong>: Wisdom. Affects battle chance, but slightly less than POW. Chance is proportionate to enemy WIS difference.</h3>
-      <h3><strong>DEF</strong>: Defense. Lowers damage taken after a battle. Damage taken is proportionate to the difference between enemy POW and character DEF.</h3>
-      <h3><strong>RES</strong>: Resistance. % chance of avoiding negative enemy active effects.</h3>
-      <h3><strong>SPD</strong>: Speed. Each speed point above or below 10 increases or decreases the battle/challenge wait time by 1 minute.</h3>
-      <h3><strong>LUK</strong>: Luck. % extra gold gained in battle.</h3>
-      <br> </br>
-      <h4>Your character can also be affected by active effects through items, battle, etc. which affect the outcomes of battles, some being based on the stats above.</h4>
-      <br></br>
-    </div>
-  </div>
-
+<button type="button" name="button" onclick='btnprint()'>Click here for stats </button>
+<h1>Hi this better work {{token}}</h1>
 </body>
 </html>
 {% endblock %}

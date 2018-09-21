@@ -22,3 +22,10 @@ class AboutView(TemplateView):
 
 class BossView(TemplateView):
         template_name = 'grumbo/boss.html'
+
+class ThanksPage(TemplateView):
+    template_name= 'accounts/thanks.html'
+
+
+def btnprint():
+    print(db.characters_collection.count())

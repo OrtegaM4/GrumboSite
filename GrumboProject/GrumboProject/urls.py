@@ -14,18 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from . import urls
-from grumbo.views import IndexView, GuideView, CommandsView, ClassesView, StatsView, AboutView, BossView
-
+from grumbo.views import IndexView, GuideView, CommandsView, ClassesView, StatsView, AboutView, BossView, ThanksPage
+from django.conf import settings
 urlpatterns = [
-    path('', IndexView.as_view(), name = 'index'),
-    path('guide/',GuideView.as_view(),name='guide'),
-    path('commands/',CommandsView.as_view(),name='commands'),
-    path('classes/',ClassesView.as_view(),name='classes'),
-    path('stats/',StatsView.as_view(),name='stats'),
-    path('about/',AboutView.as_view(),name='about'),
-    path('boss/',BossView.as_view(),name='boss'),
+    path('', IndexView.as_view(), name = 'home'),
+    path('grumbo/', include('grumbo.urls')),
+    path('discord/', include('discord_bind.urls')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/profile/', IndexView.as_view()),
     path('admin/', admin.site.urls),
-    path('grumbo/', include('grumbo.urls'))
+    path('thanks/',ThanksPage.as_view(), name='thanks')
+
+
 ]

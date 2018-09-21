@@ -3,7 +3,7 @@
   width:49%;
 }
 #GrumBot{
-  
+
 }
 body{
   background-color: #292929
@@ -20,4 +20,19 @@ span  {
 }
 span.title{
   font-size: 50px;
+}
+#disc{
+        display: center;
+        width: 25%;
+        align-items: center;
+      justify-content: center;
+        background: #7289DA;
+        padding: 0 20px;
+        line-height: 35px;
+        color: #fff;
+        font-family: 'Helvetica', 'Arial', sans-sefir;
+        font-size: 20px;
+        display: block;
+        border-radius: 3px;
+
 }

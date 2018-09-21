@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% extends "grumbo/base.html"%}
-{% block body_block %}
+{% block content %}
 <body>
   <div class="container">
     <div class="jumbotron">
@@ -31,7 +31,7 @@
     <h2><u>Equips</u>:</h2>
     <h3>Equip items on your head, armor, bottom and weapon to make your character stronger (or weaker in some cases)</h3>
     <h3>Equips can have a level and class restriction, Equips can affect stats and can have active effects that are active indefinitely until you unequip it.</h3>
-  
+
     <h3>You can only equip one head/armor/bottom/weapon at a time and you can't have duplicate equips.</h3>
   </div>
   <div class="jumbotron">
@@ -39,7 +39,25 @@
     <h3>Currently, active effects are effects that take place during battle. They might increase the chance of victory or decrease it. Active effects can be helpful or troublesome. <br></br>Active effects can have a duration or remain indefinitely. An active effect has a max turn limit of 10 turns. Grumbos can also have active effects that change the outcome of the battle.</h3>
     <h4>!grumbo actives info < active_command> -d | See the info of a particular active effect.</h4>
   </div>
+  <div class="container">
+    <div class="jumbotron">
+      <h2>Character Stats:</h2>
+      <br></br>
+      <h3><strong>HP</strong>: Max HP of 100. +5% battle chance boost at 100 HP. Chance decreases when below 45 HP, going down to -50% when at 0 HP.</h3>
+      <h3><strong>POW</strong>: Power. Affects battle chance. Chance is proportionate to enemy POW difference.</h3>
+      <h3><strong>WIS</strong>: Wisdom. Affects battle chance, but slightly less than POW. Chance is proportionate to enemy WIS difference.</h3>
+      <h3><strong>DEF</strong>: Defense. Lowers damage taken after a battle. Damage taken is proportionate to the difference between enemy POW and character DEF.</h3>
+      <h3><strong>RES</strong>: Resistance. % chance of avoiding negative enemy active effects.</h3>
+      <h3><strong>SPD</strong>: Speed. Each speed point above or below 10 increases or decreases the battle/challenge wait time by 1 minute.</h3>
+      <h3><strong>LUK</strong>: Luck. % extra gold gained in battle.</h3>
+      <br> </br>
+      <h4>Your character can also be affected by active effects through items, battle, etc. which affect the outcomes of battles, some being based on the stats above.</h4>
+      <br></br>
+    </div>
+  </div>
 
+  </body>
+  </html>
 
   </div>
 </body>

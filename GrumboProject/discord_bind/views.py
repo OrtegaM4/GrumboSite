@@ -84,14 +84,16 @@ def get_url(request):
         'code':code,
         'grant_type':'authorization_code',
         'redirect_uri':'http://www.grumbot.com/',
-        'scope': 'identify connections',
+        'scope': 'identify email connections',
+        # 'state': state,
         }
         headers = {'Content-Type': 'application/x-www-form-urlencoded'
         }
-        r = requests.post('%s/oauth2/token' % API_ENDPOINT, data=data, headers=headers)
+        r = requests.post('%s/oauth2/token' % API_ENDPOINT, data, headers)
         token = (r.json()['access_token'])
         r.cookies
         # response = render_to_response('stats.html', context)
+        print(r.cookies)
         return render(request,'grumbo/stats.html',context={'token':token})
         return HttpResponseRedirect('http://www.grumbot.com/')
 

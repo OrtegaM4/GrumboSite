@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'grumbo',
     'discord_bind',
     'accounts',
-    'bootstrap4'
+    'bootstrap4',
+    'appconf',
 ]
 
 MIDDLEWARE = [

@@ -82,7 +82,7 @@ def get_url(request):
         'client_id':'489248576434601995',
         'client_secret':'69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S',
         'code':code,
-        'grant_type':'client_credentials',
+        'grant_type':'authorization_code',
         'redirect_uri':'http://www.grumbot.com/',
         'scope': 'identify connections',
         }

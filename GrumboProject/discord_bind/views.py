@@ -85,7 +85,6 @@ def get_url(request):
         'grant_type':'client_credentials',
         'redirect_uri':'http://www.grumbot.com/',
         'scope': 'identify connections',
-        # 'state': state,
         }
         headers = {'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -93,9 +92,6 @@ def get_url(request):
         token = (r.json()['access_token'])
         r.cookies
         # response = render_to_response('stats.html', context)
-        print(code)
-        print(state)
-        print(r.cookies)
         return render(request,'grumbo/stats.html',context={'token':token})
         return HttpResponseRedirect('http://www.grumbot.com/')
 

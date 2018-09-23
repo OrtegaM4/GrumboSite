@@ -92,7 +92,7 @@ def get_url(request):
     else:
         return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
 
-def callback(request):
+def tokencall(request):
     def token_assign(request):
         url = request.GET.urlencode()
         query_def= parse.parse_qs(url)

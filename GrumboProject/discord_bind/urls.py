@@ -37,6 +37,6 @@ app_name ='discord_bind'
 urlpatterns = [
     path('z', views.index, name='discord_bind_index'),
     path('cb', views.get_url, name='discord_bind_callback'),
-    path('cd',views.token_assign, name='token_assign')
+    path('cd',views.callback, name='token_assign')
 
 ]

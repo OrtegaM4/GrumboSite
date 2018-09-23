@@ -52,7 +52,7 @@ def oauth_session(request, state=None, token=None):
     else:
         redirect_uri = request.build_absolute_uri(
             reverse('discord_bind_callback'))
-    scope = (['email', 'guilds.join','identify',] if settings.DISCORD_EMAIL_SCOPE
+    scope = (['email','identify',] if settings.DISCORD_EMAIL_SCOPE
              else ['identity', 'guilds.join'])
     return OAuth2Session(settings.DISCORD_CLIENT_ID,
                          redirect_uri=redirect_uri,
@@ -75,7 +75,6 @@ def index(request):
     request.session['discord_bind_oauth_state'] = state
     return HttpResponseRedirect(url)
 
-# //WHERE I LEFT OFF THIS PART BELOW GAVE ACCESS DENIED
 
 
 def get_url(request):
@@ -92,78 +91,70 @@ def get_url(request):
         return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type=token&client_id='+CLIENT_ID+'&state='+state + '&scope=identify email')
     else:
         return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
-    #     # data= {'client_id':'489248576434601995','client_secret':'69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S','code':code,'grant_type':'authorization_code','scope': 'identify ',}
-    #     # headers = {'content-type': 'application/x-www-form-urlencoded'}
-    #     # querystring = {"data":"data","headers":"headers"}
-    #     # r = requests.request("POST",'%s/oauth2/token' % API_ENDPOINT, data=data, headers=headers, params=querystring)
-    #     # print(r.json())
-    #     print(code)
-    #     print(state)
-        # print(r.text)
-        # r.raise_for_status()
-        # r.cookies
-        # print(r.cookies)
-        # token = (r.json()['access_token'])
 
-        # return render(request,'grumbo/stats.html',context={'token':token})
-        # return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type=token&client_id='+CLIENT_ID+'&state='+state + '&scope=identify email')
+def callback(request):
+    def token_assign(request):
+        url = request.GET.urlencode()
+        query_def= parse.parse_qs(url)
+        realtoken=query_def['mytextbox'][0]
+        print(realtoken)
+        return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
 
-# def token_request(requests):
-#     if (requests.GET.get('mybtn')):
-#         token_one=mytextbox
-#
-#     return render(request,'grumbo/stats.html',context={'token_one':token_one})
-#     return HttpResponseRedirect('http://www.grumbot.com/discord/cd/')
-#
-def token_assign(request):
-    url = request.GET.urlencode()
-    query_def= parse.parse_qs(url)
-    realtoken=query_def['mytextbox'][0]
-    print(realtoken)
-    return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
+    def decompose_data(user, token):
+            """ Extract the important details """
+            data = {
+                'uid': user['id'],
+                'username': user['username'],
+                'discriminator': user['discriminator'],
+                'email': user.get('email', ''),
+                'avatar': user.get('avatar', ''),
+                'access_token': '',
+                'refresh_token': token.get('refresh_token', ''),
+                'scope': ' '.join(token.get('scope', '')),
+            }
+            for k in data:
+                if data[k] is None:
+                    data[k] = ''
+            try:
+                expiry = datetime.utcfromtimestamp(float(token['expires_at']))
+                if settings.USE_TZ:
+                    expiry = make_aware(expiry)
+                data['expiry'] = expiry
+            except KeyError:
+                pass
+            return data
+
+    def bind_user(request, data):
+        """ Create or update a DiscordUser instance """
+        uid = data.pop('uid')
+        count = DiscordUser.objects.filter(uid=uid).update(user=request.user,
+                                                               **data)
+        if count == 0:
+            DiscordUser.objects.create(uid=uid,
+                                       user=request.user,
+                                       **data)
+
+    response = request.build_absolute_uri()
+    state = request.session['discord_bind_oauth_state']
+    if 'state' not in request.GET or request.GET['state'] != state:
+        return HttpResponseForbidden()
+    oauth = oauth_session(request, state=state)
+    token = realtoken
+
+
+
+#Get Discord DATA
+    user = oauth.get(settings.DISCORD_BASE_URI + '/users/@me').json()
+    data = decompose_data(user, realtoken)
+    bind_user(request, data)
+
+    #Assigns Token
+
+        # token_assign(request)
+
+
+ # Clean up
+    del request.session['discord_bind_oauth_state']
+    del request.session['discord_bind_invite_uri']
+    del request.session['discord_bind_return_uri']
     return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
-
-# def get_token(request):
-#      url = ''
-#      r = requests.get(url)
-#      r.cookies['access_token']
-#
-#      r.cookie("access_token", token)
-#      return HttpResponseRedirect('http://www.grumbot.com//')
-
-
-
-# def bob(request):
-#     url = request.GET.urlencode()
-#     query_def= parse.parse_qs(url)
-#     code=query_def['code'][0]
-#     state= query_def['state'][0]
-#     data= {
-#     'client_id':'489248576434601995',
-#     'client_secret':'69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S',
-#     'code':code,
-#     'grant_type':'authorization_code',
-#     'redirect_uri':'http://www.grumbot.com//',
-#     'scope': 'identify connections',
-#     'state': state,
-#     }
-#     headers = {'Content-Type': 'application/x-www-form-urlencoded'
-#     }
-#     r = requests.post('%s/oauth2/token' % API_ENDPOINT, data=data, headers=headers)
-#     print(code)
-#     print(state)
-#     return HttpResponseRedirect('http://www.grumbot.com//')
-    # return redirect('me')
-
-
-    # def me(request):
-    #     discord = make_session(token=code.get('oauth2_token'))
-    #     user = discord.get(API_BASE_URL + '/users/@me').json()
-    #     return jsonify(user=user,)
-    #     return HttpResponseRedirect('http://www.grumbot.com//')
-
-def get_user(request):
-    headers = {'Content-Type': 'application/x-www-form-urlencoded'
-    }
-
-    request.get('https://discordapp.com/api/v6/users/@me',)

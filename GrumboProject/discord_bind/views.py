@@ -116,6 +116,8 @@ def token_request(requests):
     return HttpResponseRedirect('http://www.grumbot.com/discord/cd/')
 
 def token_assign(request):
+    url = request.GET.urlencode()
+    query_def= parse.parse_qs(url)
     realtoken=query_def['mytextbox'][0]
     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
     print(realtoken)

@@ -13,7 +13,7 @@
 <nav id=mainnav class = 'navbar navbar-default  navbar-static-top'>
   <div class="container">
     <ul class="nav navbar-nav">
-      {% if user.is_authenticated %}
+      <!-- {% if user.is_authenticated %} -->
         <li><a class="navbar-brand" href="{% url 'home' %}"><!--<img id="GrumBot"src='{% static "images/GrumbattleBot.png" %}'>-->Home</a></li>
         <li><a class="navbar-link" href="{% url 'guide' %}">Guide</a></li>
         <li><a class="navbar-link" href="{% url 'commands'%}">Commands</a></li>
@@ -24,17 +24,19 @@
         <li><a class="navbar-link" href="https://discordapp.com/channels/455501253653561366/485499823051636746">Discord</a></li>
         <li><a class="navbar-link" href="{% url 'about'%}">About</a></li>
         <li><a href="{% url 'accounts:logout' %}" class="btn btn-simple">Log out</a></li>
-      {% else %}
-        <li><a class="navbar-brand" href="{% url 'home' %}"><!--<img id="GrumBot"src='{% static "images/GrumbattleBot.png" %}'>-->Home</a></li>
-        <li><a class="navbar-link" href="{% url 'guide' %}">Guide</a></li>
-        <li><a class="navbar-link" href="{% url 'commands'%}">Commands</a></li>
-        <li><a class="navbar-link" href="{% url 'classes'%}">Classes</a></li>
-        <li><a class="navbar-link" href="{% url 'boss'%}">Bosses</a></li>
-        <li><a class="navbar-link" href="https://discordapp.com/oauth2/authorize?client_id=485285356598591509&scope=bot">Add To Server</a></li>
-        <li><a class="navbar-link" href="{% url 'about'%}">About</a></li>
         <li><a class="navbar-link" href="{% url 'login'%}">Login</a></li>
         <li><a href="{% url 'accounts:signup' %}" class="navbar-link">Sign up</a></li>
-      {% endif %}
+
+      <!-- {% else %} -->
+        <li><a class="navbar-brand" href="{% url 'home' %}"><!--<img id="GrumBot"src='{% static "images/GrumbattleBot.png" %}'>-->Home</a></li>
+        <li><a class="navbar-link" href="{% url 'guide' %}"></a></li>
+        <li><a class="navbar-link" href="{% url 'commands'%}"></a></li>
+        <li><a class="navbar-link" href="{% url 'classes'%}"></a></li>
+        <li><a class="navbar-link" href="{% url 'boss'%}"></a></li>
+        <li><a class="navbar-link" href="{% url 'about'%}"></a></li>
+        <li><a class="navbar-link" href="{% url 'login'%}"></a></li>
+        <li><a href="{% url 'accounts:signup' %}" class="navbar-link"></a></li>
+      <!-- {% endif %} -->
       <!-- <li><a class="navbar-link" href="https://cl1.widgetbot.io/channels/485499823051636746/489248576434601995">Discord</a></li> -->
       <!-- <a class="navbar-link" href="https://widgetbot.io/channels/485499823051636746/489248576434601995">Discord2</a></li>  -->
 

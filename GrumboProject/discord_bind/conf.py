@@ -24,7 +24,7 @@ class DiscordBindConf(AppConf):
     # URI settings
     REDIRECT_URI = 'http://www.grumbot.com/discord/cb'
     INVITE_URI = 'https://discordapp.com/channels/@me'
-    RETURN_URI = MYURL+ 'discord/cb'
+    RETURN_URI = 'http://www.grumbot.com/discord/cb'
     class Meta:
         proxy = True
         prefix = 'discord'

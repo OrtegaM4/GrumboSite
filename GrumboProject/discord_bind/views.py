@@ -92,7 +92,7 @@ def get_url(request):
         return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type=token&client_id='+CLIENT_ID+'&state='+state + '&scope=identify email')
         # return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type='+code[0]+'&client_id=489248576434601995&scope=identify%20guilds.join' + state[0] + '&redirect_uri=https%3A%2F%2F127.0.0.1:8000/')
     else:
-        return HttpResponseRedirect(MYURL+'grumbo/stats/')
+        return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
     #     # data= {'client_id':'489248576434601995','client_secret':'69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S','code':code,'grant_type':'authorization_code','scope': 'identify ',}
     #     # headers = {'content-type': 'application/x-www-form-urlencoded'}
     #     # querystring = {"data":"data","headers":"headers"}

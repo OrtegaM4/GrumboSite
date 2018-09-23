@@ -101,28 +101,28 @@ def tokencall(request):
         print(realtoken)
         return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
         return realtoken
-    def decompose_data(user, token):
-            """ Extract the important details """
-            data = {
-                'uid': '',
-                'username': '',
-                'discriminator': '',
-                'email': '',
-                'avatar': '',
-                'access_token': realtoken,
-                'scope': '',
-            }
-            for k in data:
-                if data[k] is None:
-                    data[k] = ''
-            try:
-                expiry = datetime.utcfromtimestamp(float(token['expires_at']))
-                if settings.USE_TZ:
-                    expiry = make_aware(expiry)
-                data['expiry'] = expiry
-            except KeyError:
-                pass
-            return data
+    # def decompose_data(user, token):
+    #         """ Extract the important details """
+    #         data = {
+    #             'uid': '',
+    #             'username': '',
+    #             'discriminator': '',
+    #             'email': '',
+    #             'avatar': '',
+    #             'access_token': realtoken,
+    #             'scope': '',
+    #         }
+    #         for k in data:
+    #             if data[k] is None:
+    #                 data[k] = ''
+    #         try:
+    #             expiry = datetime.utcfromtimestamp(float(token['expires_at']))
+    #             if settings.USE_TZ:
+    #                 expiry = make_aware(expiry)
+    #             data['expiry'] = expiry
+    #         except KeyError:
+    #             pass
+    #         return data
     def bind_user(request, data):
         """ Create or update a DiscordUser instance """
         uid = data.pop('uid')
@@ -142,7 +142,7 @@ def tokencall(request):
  ##STOPPED BELOW LAST THING I DID WAS COMMENT DATA AND BIND USER OUT
 #Get Discord DATA
     user = oauth.get(settings.DISCORD_BASE_URI + '/users/@me').json()
-    print(user.uid)
+    print(user.uid).json()
     # data = decompose_data(user, token)
     # bind_user(request, data)
 

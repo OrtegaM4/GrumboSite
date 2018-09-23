@@ -113,6 +113,8 @@ def token_request(requests):
         token_one=mytextbox
 
     return render(request,'grumbo/stats.html',context={'token_one':token_one})
+    realtoken=query_def['mytextbox'][0]
+    return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
 
 
 

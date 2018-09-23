@@ -76,7 +76,7 @@ def index(request):
     return HttpResponseRedirect(url)
 
 
-
+@login_required
 def get_url(request):
     url = request.GET.urlencode()
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -86,12 +86,13 @@ def get_url(request):
     if 'state' in url:
         code=query_def['code'][0]
         state= query_def['state'][0]
+        request.session['discord_bind_oauth_state'] = state
         print(code)
         print(state)
         return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type=token&client_id='+CLIENT_ID+'&state='+state + '&scope=identify email')
     else:
         return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
-
+@login_required
 def tokencall(request):
     def token_assign(request):
         url = request.GET.urlencode()
@@ -134,9 +135,7 @@ def tokencall(request):
                                        **data)
 
     response = request.build_absolute_uri()
-    state = request.session['discord_bind_oauth_state']
-    if 'state' not in request.GET or request.GET['state'] != state:
-        return HttpResponseForbidden()
+    state = state
     oauth = oauth_session(request, state=state)
     token = realtoken
 
@@ -153,7 +152,6 @@ def tokencall(request):
 
 
  # Clean up
-    del request.session['discord_bind_oauth_state']
     del request.session['discord_bind_invite_uri']
     del request.session['discord_bind_return_uri']
     return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')

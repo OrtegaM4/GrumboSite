@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 import os
 import urllib3
+import http.client
 import urllib.request
 from django.shortcuts import redirect, render
 import json
@@ -22,11 +23,28 @@ from django.db.models import Q
 from django.contrib import messages
 from requests_oauthlib import OAuth2Session
 from discord_bind.models import DiscordUser
-from discord_bind.conf import settings
+from discord_bind.conf import MYURL,settings
 
 import logging
 logger = logging.getLogger(__name__)
-
+BASE_URI = 'https://discordapp.com/api'
+AUTHZ_PATH = '/oauth2/authorize'
+TOKEN_PATH = '/oauth2/token'
+AUTHORIZATION_BASE_URL = BASE_URI + '/oauth2/authorize'
+TOKEN_URL = BASE_URI + '/oauth2/token'
+# OAuth2 application credentials
+CLIENT_ID = '489248576434601995'
+CLIENT_SECRET = '69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S'
+# URI settings
+REDIRECT_URI = MYURL +'discord/cb'
+INVITE_URI = 'https://discordapp.com/channels/@me'
+RETURN_URI = MYURL+ 'discord/cb'
+# OAuth2 scope
+EMAIL_SCOPE = True
+API_ENDPOINT = 'https://discordapp.com/api/'
+code=''
+state=''
+conn = http.client.HTTPSConnection('http://127.0.0.1/',8000)
 
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """
@@ -35,18 +53,13 @@ def oauth_session(request, state=None, token=None):
     else:
         redirect_uri = request.build_absolute_uri(
             reverse('discord_bind_callback'))
-    scope = (['email', 'guilds.join'] if settings.DISCORD_EMAIL_SCOPE
+    scope = (['email', 'guilds.join','identify','rpc.api'] if settings.DISCORD_EMAIL_SCOPE
              else ['identity', 'guilds.join'])
     return OAuth2Session(settings.DISCORD_CLIENT_ID,
                          redirect_uri=redirect_uri,
                          scope=scope,
                          token=token,
                          state=state)
-
-API_ENDPOINT = 'https://discordapp.com/api/v6'
-CLIENT_ID = '489248576434601995'
-CLIENT_SECRET = '69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S'
-code= ''
 @login_required
 def index(request):
 
@@ -65,7 +78,7 @@ def index(request):
 
 # //WHERE I LEFT OFF THIS PART BELOW GAVE ACCESS DENIED
 
-# @render(grumbo:stats.html,context=None, content_type=None, status=None, using=None)
+
 def get_url(request):
     url = request.GET.urlencode()
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -75,27 +88,27 @@ def get_url(request):
     if 'state' in url:
         code=query_def['code'][0]
         state= query_def['state'][0]
-        return HttpResponseRedirect('http://www.grumbot.com/discord/cb')
+        print(code)
+        print(state)
+        return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type=token&client_id='+CLIENT_ID+'&state='+state + '&scope=identify email')
         # return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type='+code[0]+'&client_id=489248576434601995&scope=identify%20guilds.join' + state[0] + '&redirect_uri=https%3A%2F%2F127.0.0.1:8000/')
     else:
-        data= {
-        'client_id':'489248576434601995',
-        'client_secret':'69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S',
-        'code':code,
-        'grant_type':'authorization_code',
-        'redirect_uri':'http://www.grumbot.com/',
-        'scope': 'identify email connections',
-        # 'state': state,
-        }
-        headers = {'Content-Type': 'application/x-www-form-urlencoded'
-        }
-        r = requests.post('%s/oauth2/token' % API_ENDPOINT, data, headers)
-        token = (r.json()['access_token'])
-        r.cookies
-        # response = render_to_response('stats.html', context)
-        print(r.cookies)
-        return render(request,'grumbo/stats.html',context={'token':token})
-        return HttpResponseRedirect('http://www.grumbot.com/')
+        return HttpResponseRedirect(MYURL+'grumbo/stats/')
+    #     # data= {'client_id':'489248576434601995','client_secret':'69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S','code':code,'grant_type':'authorization_code','scope': 'identify ',}
+    #     # headers = {'content-type': 'application/x-www-form-urlencoded'}
+    #     # querystring = {"data":"data","headers":"headers"}
+    #     # r = requests.request("POST",'%s/oauth2/token' % API_ENDPOINT, data=data, headers=headers, params=querystring)
+    #     # print(r.json())
+    #     print(code)
+    #     print(state)
+        # print(r.text)
+        # r.raise_for_status()
+        # r.cookies
+        # print(r.cookies)
+        # token = (r.json()['access_token'])
+
+        # return render(request,'grumbo/stats.html',context={'token':token})
+        # return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type=token&client_id='+CLIENT_ID+'&state='+state + '&scope=identify email')
 
 # def get_token(request):
 #      url = ''

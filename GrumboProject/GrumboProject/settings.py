@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'accounts',
     'bootstrap4',
     'appconf',
+    'oauth2_provider',
+    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
@@ -54,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'GrumboProject.urls'
@@ -127,9 +131,11 @@ USE_TZ = True
 STATICFILES_DIRS = (
     STATIC_DIR,
 )
+MYURL='http://127.0.0.1:8000/'
 #Media files
 MEDIA_URL='media/'
 MEDIA_ROOT=os.path.join(BASE_DIR, '/media/')
 STATIC_URL = '/static/'
 LOGOUT_REDIRECT_URL = "thanks"
-LOGIN_REDIRECT_URL ='http://www.grumbot.com/discord/z'
+LOGIN_REDIRECT_URL = MYURL+'discord/z'
+CORS_ORIGIN_ALLOW_ALL = True

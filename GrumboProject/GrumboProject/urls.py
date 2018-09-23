@@ -22,6 +22,7 @@ urlpatterns = [
     path('', IndexView.as_view(), name = 'home'),
     path('grumbo/', include('grumbo.urls')),
     path('discord/', include('discord_bind.urls')),
+    path('o/',include('oauth2_provider.urls', namespace='oauth2oauth2_provider')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/profile/', IndexView.as_view()),

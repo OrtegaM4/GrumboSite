@@ -102,27 +102,29 @@ def tokencall(request):
         return realtoken
     def decompose_data(user, token):
             """ Extract the important details """
-            data = {
-                'uid': user['id'],
-                'username': user['username'],
-                'discriminator': user['discriminator'],
-                'email': user.get('email', ''),
-                'avatar': user.get('avatar', ''),
-                'access_token': realtoken,
-                'scope': ' '.join(token.get('scope', '')),
-            }
-            for k in data:
-                if data[k] is None:
-                    data[k] = ''
-            try:
-                expiry = datetime.utcfromtimestamp(float(token['expires_at']))
-                if settings.USE_TZ:
-                    expiry = make_aware(expiry)
-                data['expiry'] = expiry
-            except KeyError:
+            if 'email' in data:
+                data = {
+                    'uid': user['id'],
+                    'username': user['username'],
+                    'discriminator': user['discriminator'],
+                    'email': user.get('email', ''),
+                    'avatar': user.get('avatar', ''),
+                    'access_token': realtoken,
+                    'scope': ' '.join(token.get('scope', '')),
+                }
+                for k in data:
+                    if data[k] is None:
+                        data[k] = ''
+                try:
+                    expiry = datetime.utcfromtimestamp(float(token['expires_at']))
+                    if settings.USE_TZ:
+                        expiry = make_aware(expiry)
+                    data['expiry'] = expiry
+                except KeyError:
+                    pass
+                return data
+            else:
                 pass
-            return data
-
     def bind_user(request, data):
         """ Create or update a DiscordUser instance """
         uid = data.pop('uid')

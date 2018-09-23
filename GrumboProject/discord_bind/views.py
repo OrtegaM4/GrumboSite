@@ -139,10 +139,10 @@ def tokencall(request):
     token = realtoken
 
 
-
+ ##STOPPED BELOW LAST THING I DID WAS COMMENT DATA AND BIND USER OUT
 #Get Discord DATA
     user = oauth.get(settings.DISCORD_BASE_URI + '/users/@me').json()
-    print(user.json())
+    print(user.uid)
     # data = decompose_data(user, token)
     # bind_user(request, data)
 

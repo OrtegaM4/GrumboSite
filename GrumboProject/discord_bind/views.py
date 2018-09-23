@@ -122,7 +122,7 @@ def token_assign(request):
     print(realtoken)
     print(mytextbox)
     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
-    return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
+    return HttpResponseRedirect('http://www.grumbot.com/grumbo/classes/')
 
 # def get_token(request):
 #      url = ''

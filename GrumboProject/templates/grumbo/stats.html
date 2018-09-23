@@ -6,14 +6,14 @@
 <body>
 <form class='tokenform' action="#" method="GET">
   {%csrf_token%}
-  <h2>Look at your Browser URL and find access_token='' and copy the code</h1>
+  <h2>Look at your Browser URL and find access_token='  ' and copy the code</h1>
   <h2>Enter your Access Token Below:</h1>
   <input type="text" name="mytextbox" value=""> <br></br>
   <input type="submit" name="mybtn" value="Get Stats!">
 
 </form>
 
-<h2>Your token is {{mytextbox}}</h1>
+<h2>Your token is {{mytextbox.text}}</h1>
 </body>
 </html>
 {% endblock %}

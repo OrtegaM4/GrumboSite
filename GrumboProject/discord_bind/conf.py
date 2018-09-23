@@ -22,7 +22,7 @@ class DiscordBindConf(AppConf):
     IDENTIFY_SCOPE=True
 
     # URI settings
-    REDIRECT_URI = MYURL +'discord/cb'
+    REDIRECT_URI = 'http://www.grumbot.com/discord/cb'
     INVITE_URI = 'https://discordapp.com/channels/@me'
     RETURN_URI = MYURL+ 'discord/cb'
     class Meta:

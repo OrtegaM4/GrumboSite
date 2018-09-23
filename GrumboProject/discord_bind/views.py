@@ -108,8 +108,7 @@ def tokencall(request):
                 'discriminator': user['discriminator'],
                 'email': user.get('email', ''),
                 'avatar': user.get('avatar', ''),
-                'access_token': '',
-                'refresh_token': token.get('refresh_token', ''),
+                'access_token': realtoken,
                 'scope': ' '.join(token.get('scope', '')),
             }
             for k in data:

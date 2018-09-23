@@ -12,6 +12,9 @@ body{
   background-color: #292929;
   font-size:
 }
+h1{
+  color:white;
+}
 /* Targets navbar text */
 #mainnav li a {
   color: white;

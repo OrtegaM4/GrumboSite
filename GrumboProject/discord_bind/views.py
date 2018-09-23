@@ -108,6 +108,14 @@ def get_url(request):
         # return render(request,'grumbo/stats.html',context={'token':token})
         # return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type=token&client_id='+CLIENT_ID+'&state='+state + '&scope=identify email')
 
+def token_request(requests):
+    if (requests.GET.get('mybtn')):
+        token_one=mytextbox
+
+    return render(request,'grumbo/stats.html',context={'token_one':token_one})
+
+
+
 # def get_token(request):
 #      url = ''
 #      r = requests.get(url)

@@ -4,7 +4,13 @@
 
 
 <body>
-<button type="button" name="button" onclick='btnprint()'>Click here for stats </button>
+<form  action="#" method="GET">
+  {%csrf_token%}
+  <input type="text" name="mytextbox" value="Enter Your Access Token Here">
+  <input type="submit" name="mybtn" value="Get Stats!">
+
+</form>
+
 <h1>Hi this better work {{token}}</h1>
 </body>
 </html>

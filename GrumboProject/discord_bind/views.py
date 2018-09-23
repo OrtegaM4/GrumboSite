@@ -118,6 +118,7 @@ def token_request(requests):
 def token_assign(request):
     realtoken=query_def['mytextbox'][0]
     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
+    print(realtoken)
     return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
 
 # def get_token(request):

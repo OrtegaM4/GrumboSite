@@ -142,7 +142,7 @@ def tokencall(request):
 
 #Get Discord DATA
     user = oauth.get(settings.DISCORD_BASE_URI + '/users/@me').json()
-    data = decompose_data(user, realtoken)
+    data = decompose_data(user, token)
     bind_user(request, data)
 
     #Assigns Token

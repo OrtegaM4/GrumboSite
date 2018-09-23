@@ -115,14 +115,14 @@ def get_url(request):
 #     return render(request,'grumbo/stats.html',context={'token_one':token_one})
 #     return HttpResponseRedirect('http://www.grumbot.com/discord/cd/')
 #
-# def token_assign(request):
-#     url = request.GET.urlencode()
-#     query_def= parse.parse_qs(url)
-#     realtoken=query_def['mytextbox'][0]
-#     print(realtoken)
-#     print(mytextbox)
-#     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
-#     return HttpResponseRedirect('http://www.grumbot.com/grumbo/classes/')
+def token_assign(request):
+    url = request.GET.urlencode()
+    query_def= parse.parse_qs(url)
+    realtoken=query_def['mytextbox'][0]
+    print(realtoken)
+    print(mytextbox)
+    return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
+    return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
 
 # def get_token(request):
 #      url = ''

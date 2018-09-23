@@ -113,11 +113,12 @@ def token_request(requests):
         token_one=mytextbox
 
     return render(request,'grumbo/stats.html',context={'token_one':token_one})
+    return HttpResponseRedirect('http://www.grumbot.com/discord/cd/')
+
+def token_assign(request):
     realtoken=query_def['mytextbox'][0]
     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
     return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
-
-
 
 # def get_token(request):
 #      url = ''

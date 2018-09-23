@@ -35,6 +35,6 @@ from django.urls import path, include
 urlpatterns = [
     path('z', views.index, name='discord_bind_index'),
     path('cb', views.get_url, name='discord_bind_callback'),
-    # path('cd',views.get_token, name='discord_save_token')
+    path('cd',views.token_assign, name='token_assign')
 
 ]

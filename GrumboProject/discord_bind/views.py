@@ -44,6 +44,7 @@ EMAIL_SCOPE = True
 API_ENDPOINT = 'https://discordapp.com/api/'
 code=''
 state=''
+realtoken=''
 
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """
@@ -108,7 +109,7 @@ def tokencall(request):
                 'discriminator': '',
                 'email': '',
                 'avatar': '',
-                'access_token': tokencall(request),
+                'access_token': realtoken,
                 'scope': '',
             }
             for k in data:
@@ -135,14 +136,15 @@ def tokencall(request):
     response = request.build_absolute_uri()
     state = request.session['discord_bind_oauth_state']
     oauth = oauth_session(request, state=state)
-    token = token_assign(request)
+    token = realtoken
 
 
 
 #Get Discord DATA
     user = oauth.get(settings.DISCORD_BASE_URI + '/users/@me').json()
-    data = decompose_data(user, token)
-    bind_user(request, data)
+    print(user.json())
+    # data = decompose_data(user, token)
+    # bind_user(request, data)
 
     #Assigns Token
 

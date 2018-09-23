@@ -108,21 +108,21 @@ def get_url(request):
         # return render(request,'grumbo/stats.html',context={'token':token})
         # return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type=token&client_id='+CLIENT_ID+'&state='+state + '&scope=identify email')
 
-def token_request(requests):
-    if (requests.GET.get('mybtn')):
-        token_one=mytextbox
-
-    return render(request,'grumbo/stats.html',context={'token_one':token_one})
-    return HttpResponseRedirect('http://www.grumbot.com/discord/cd/')
-
-def token_assign(request):
-    url = request.GET.urlencode()
-    query_def= parse.parse_qs(url)
-    realtoken=query_def['mytextbox'][0]
-    print(realtoken)
-    print(mytextbox)
-    return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
-    return HttpResponseRedirect('http://www.grumbot.com/grumbo/classes/')
+# def token_request(requests):
+#     if (requests.GET.get('mybtn')):
+#         token_one=mytextbox
+#
+#     return render(request,'grumbo/stats.html',context={'token_one':token_one})
+#     return HttpResponseRedirect('http://www.grumbot.com/discord/cd/')
+#
+# def token_assign(request):
+#     url = request.GET.urlencode()
+#     query_def= parse.parse_qs(url)
+#     realtoken=query_def['mytextbox'][0]
+#     print(realtoken)
+#     print(mytextbox)
+#     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
+#     return HttpResponseRedirect('http://www.grumbot.com/grumbo/classes/')
 
 # def get_token(request):
 #      url = ''

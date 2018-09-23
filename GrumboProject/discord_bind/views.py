@@ -48,11 +48,11 @@ state=''
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """
     if settings.DISCORD_REDIRECT_URI is not None:
-        redirect_uri = settings.DISCORD_REDIRECT_URI
+        redirect_uri = 'http://www.grumbot.com/discord/cb'
     else:
         redirect_uri = request.build_absolute_uri(
             reverse('discord_bind_callback'))
-    scope = (['email', 'guilds.join','identify','rpc.api'] if settings.DISCORD_EMAIL_SCOPE
+    scope = (['email', 'guilds.join','identify',] if settings.DISCORD_EMAIL_SCOPE
              else ['identity', 'guilds.join'])
     return OAuth2Session(settings.DISCORD_CLIENT_ID,
                          redirect_uri=redirect_uri,

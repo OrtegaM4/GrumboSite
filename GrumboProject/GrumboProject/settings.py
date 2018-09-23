@@ -137,5 +137,5 @@ MEDIA_URL='media/'
 MEDIA_ROOT=os.path.join(BASE_DIR, '/media/')
 STATIC_URL = '/static/'
 LOGOUT_REDIRECT_URL = "thanks"
-LOGIN_REDIRECT_URL = MYURL+'discord/z'
+LOGIN_REDIRECT_URL = 'http://www.grumbot.com/discord/z'
 CORS_ORIGIN_ALLOW_ALL = True

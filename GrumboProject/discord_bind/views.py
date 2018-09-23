@@ -136,7 +136,7 @@ def tokencall(request):
     response = request.build_absolute_uri()
     state = request.session['discord_bind_oauth_state']
     oauth = oauth_session(request, state=state)
-    token = token_assign()
+    token = token_assign(request)
 
 
 

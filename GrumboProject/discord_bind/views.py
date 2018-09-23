@@ -44,7 +44,6 @@ EMAIL_SCOPE = True
 API_ENDPOINT = 'https://discordapp.com/api/'
 code=''
 state=''
-conn = http.client.HTTPSConnection('http://127.0.0.1/',8000)
 
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """

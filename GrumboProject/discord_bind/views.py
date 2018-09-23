@@ -72,7 +72,6 @@ def index(request):
     oauth = oauth_session(request)
     url, state = oauth.authorization_url(settings.DISCORD_BASE_URI +
                                          settings.DISCORD_AUTHZ_PATH)
-    request.session['discord_bind_oauth_state'] = state
     return HttpResponseRedirect(url)
 
 
@@ -135,7 +134,7 @@ def tokencall(request):
                                        **data)
 
     response = request.build_absolute_uri()
-    state = state
+    state = request.session['discord_bind_oauth_state']
     oauth = oauth_session(request, state=state)
     token = realtoken
 

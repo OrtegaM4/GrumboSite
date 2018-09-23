@@ -133,10 +133,10 @@ def tokencall(request):
                                        user=request.user,
                                        **data)
 
-    response = request.build_absolute_uri()
-    state = request.session['discord_bind_oauth_state']
-    oauth = oauth_session(request, state=state)
-    token = realtoken
+        response = request.build_absolute_uri()
+        state = request.session['discord_bind_oauth_state']
+        oauth = oauth_session(request, state=state)
+        token = realtoken
 
 
 

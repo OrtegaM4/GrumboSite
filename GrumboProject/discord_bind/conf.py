@@ -16,7 +16,6 @@ class DiscordBindConf(AppConf):
     # OAuth2 application credentials
     CLIENT_ID = '489248576434601995'
     CLIENT_SECRET = '69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S'
-
     # OAuth2 scope
     EMAIL_SCOPE = True
     IDENTIFY_SCOPE=True

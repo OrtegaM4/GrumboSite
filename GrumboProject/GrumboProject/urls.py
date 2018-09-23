@@ -21,7 +21,7 @@ from django.conf import settings
 urlpatterns = [
     path('', IndexView.as_view(), name = 'home'),
     path('grumbo/', include('grumbo.urls')),
-    path('discord/', include('discord_bind.urls')),
+    path('discord/', include('discord_bind.urls', namespace='discord_bind')),
     path('o/',include('oauth2_provider.urls', namespace='oauth2oauth2_provider')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('accounts/', include('django.contrib.auth.urls')),

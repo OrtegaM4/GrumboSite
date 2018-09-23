@@ -32,6 +32,8 @@ from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 from . import views
 from django.urls import path, include
+app_name ='discord_bind'
+
 urlpatterns = [
     path('z', views.index, name='discord_bind_index'),
     path('cb', views.get_url, name='discord_bind_callback'),

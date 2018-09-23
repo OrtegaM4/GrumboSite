@@ -99,7 +99,7 @@ def tokencall(request):
         realtoken=query_def['mytextbox'][0]
         print(realtoken)
         return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
-    return realtoken
+        return realtoken
     def decompose_data(user, token):
             """ Extract the important details """
             data = {

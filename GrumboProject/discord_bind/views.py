@@ -146,8 +146,11 @@ def tokencall(request):
     def get_discord(request):
         headers = {'Authorization': 'Bearer '+realtoken}
         r = requests.get('http://discordapp.com/api/users/@me', headers)
-
+        email= r['email']
         print(r.json())
+        return render(request,'grumbo/stats.html',context={'email':email})
+        return render(request,'grumbo/stats.html',context={'r':r})
+
 
 
     # data = decompose_data(user, token)

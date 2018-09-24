@@ -151,7 +151,7 @@ def tokencall(request):
         r.text
         r.json()
         print(r.text)
-        print(res["id"])
+        print(res)
 
         # return data
         return render(request,'grumbo/stats.html',context={'res':res})

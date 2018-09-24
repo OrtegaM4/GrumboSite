@@ -145,10 +145,12 @@ def tokencall(request):
  ##STOPPED BELOW LAST THING I DID WAS COMMENT DATA AND BIND USER OUT
 #Get Discord DATA
     def get_discord(request):
-        # headers = {'Authorization': 'Bearer '+realtoken}
-        r = requests.get('http://discordapp.com/api/users/@me', auth=('Bearer '+realtoken))
-        # r = requests.get('http://discordapp.com/api/users/@me', headers)
-        res=r.json()
+        headers = {'Authorization': 'Bearer '+realtoken}
+        r = requests.get('http://discordapp.com/api/users/@me', headers)
+        r.status_code
+        r.text
+        r.json()
+        print(r.text)
         print(res["id"])
 
         # return data

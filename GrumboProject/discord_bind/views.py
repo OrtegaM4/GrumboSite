@@ -156,6 +156,5 @@ def tokencall(request):
 
         # token_assign(request)
 
-
- # Clean up
+    get_discord(request)
     return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')

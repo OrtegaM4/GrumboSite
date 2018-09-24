@@ -101,6 +101,8 @@ def tokencall(request):
         print(realtoken)
         return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
         return realtoken
+        get_discord(request)
+        return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
     # def decompose_data(user, token):
     #         """ Extract the important details """
     #         data = {
@@ -141,7 +143,12 @@ def tokencall(request):
 
  ##STOPPED BELOW LAST THING I DID WAS COMMENT DATA AND BIND USER OUT
 #Get Discord DATA
-    user = oauth.get(settings.DISCORD_BASE_URI + '/users/@me').json()
+    def get_discord(request):
+        r = request.get('http://discordapp.com/api/users/@me', headers)
+        headers = {'Authorization': 'Bearer '+realtoken}
+        print(r.json())
+
+
     print(user)
     # data = decompose_data(user, token)
     # bind_user(request, data)

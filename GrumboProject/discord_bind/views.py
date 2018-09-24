@@ -149,7 +149,6 @@ def tokencall(request):
         print(r.json())
 
 
-    print(user)
     # data = decompose_data(user, token)
     # bind_user(request, data)
 

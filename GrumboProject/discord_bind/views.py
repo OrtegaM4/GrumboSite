@@ -50,7 +50,7 @@ res=''
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """
     if settings.DISCORD_REDIRECT_URI is not None:
-        redirect_uri = 'http://www.grumbot.com/discord/cb'
+        redirect_uri = 'http://127.0.0.1:8000/discord/cb'
     else:
         redirect_uri = request.build_absolute_uri(
             reverse('discord_bind_callback'))
@@ -102,7 +102,6 @@ def token_assign(request):
     print(realtoken)
     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
     return realtoken
-    get_discord(request)
     return HttpResponseRedirect('http://www.grumbot.com/discord/tk/')
 
 
@@ -148,23 +147,19 @@ def bind_user(request, data):
  ##STOPPED BELOW LAST THING I DID WAS COMMENT DATA AND BIND USER OUT
 #Get Discord DATA
 def get_discord(request):
-    headers = {'Authorization': 'Bearer '+realtoken}
-    r = requests.get('http://discordapp.com/api/users/@me', headers)
-    r.status_code
+    headers = {'Authorization': 'Bearer RR8qHdOKctnxBeJgdOp4MwenChrZfu'}
+    r = requests.get('http://discordapp.com/api/users/@me', headers=headers)
     r.text
     r.json()
+    r.raise_for_status()
     res=r.json()
     print(r.text)
-    print(res)
-    return res
     return render(request,'grumbo/stats.html',context={'res':res})
+    return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
+
         # return render(request,'grumbo/stats.html',context={'data':data})
 
     # data = decompose_data(user, token)
     # bind_user(request, data)
 
     #Assigns Token
-
-        # token_assign(request)
-
-    return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')

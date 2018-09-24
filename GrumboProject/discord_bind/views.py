@@ -42,10 +42,8 @@ RETURN_URI = MYURL+ 'discord/cb'
 # OAuth2 scope
 EMAIL_SCOPE = True
 API_ENDPOINT = 'https://discordapp.com/api/'
-code=''
-state=''
 realtoken=''
-res=''
+hi=''
 
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """
@@ -90,6 +88,8 @@ def get_url(request):
         request.session['discord_bind_oauth_state'] = state
         print(code)
         print(state)
+        global hi
+        hi=state
         return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type=token&client_id='+CLIENT_ID+'&state='+state + '&scope=identify email')
     else:
         return HttpResponseRedirect(MYURL+'grumbo/stats/')
@@ -100,68 +100,63 @@ def token_assign(request):
     query_def= parse.parse_qs(url)
     global realtoken
     realtoken=query_def['mytextbox'][0]
-    print(realtoken)
     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
     return realtoken
     return HttpResponse(realtoken)
 
 
-    # def decompose_data(user, token):
-    #         """ Extract the important details """
-    #         data = {
-    #             'uid': '',
-    #             'username': '',
-    #             'discriminator': '',
-    #             'email': '',
-    #             'avatar': '',
-    #             'access_token': realtoken,
-    #             'scope': '',
-    #         }
-    #         for k in data:
-    #             if data[k] is None:
-    #                 data[k] = ''
-    #         try:
-    #             expiry = datetime.utcfromtimestamp(float(token['expires_at']))
-    #             if settings.USE_TZ:
-    #                 expiry = make_aware(expiry)
-    #             data['expiry'] = expiry
-    #         except KeyError:
-    #             pass
-    #         return data
-def bind_user(request, data):
-        """ Create or update a DiscordUser instance """
-        uid = data.pop('uid')
-        count = DiscordUser.objects.filter(uid=uid).update(user=request.user,
-                                                               **data)
-        if count == 0:
-            DiscordUser.objects.create(uid=uid,
-                                       user=request.user,
-                                       **data)
+    def bind_user(request, data=data):
+            """ Create or update a DiscordUser instance """
+            uid = data.pop('uid')
+            count = DiscordUser.objects.filter(uid=uid).update(user=request.user,
+                                                                   **data)
+            if count == 0:
+                DiscordUser.objects.create(uid=uid,
+                                           user=request.user,
+                                           **data)
 
-        response = request.build_absolute_uri()
-        state = request.session['discord_bind_oauth_state']
-        oauth = oauth_session(request, state=state)
-        token = realtoken
+            response = request.build_absolute_uri()
+            state = request.session['discord_bind_oauth_state']
+            oauth = oauth_session(request, state=state)
+            token = realtoken
 
-        return HttpResponseRedirect(MYURL+'/grumbo/stats/')
+            return HttpResponseRedirect(MYURL+'grumbo/stats/')
 
- ##STOPPED BELOW LAST THING I DID WAS COMMENT DATA AND BIND USER OUT
-#Get Discord DATA
+@login_required#Get Discord DATA
 def get_discord(request):
-    # token_assign(request)
     headers = {'Authorization': 'Bearer '+realtoken}
+    global r
     r = requests.get('http://discordapp.com/api/users/@me', headers=headers)
     r.text
     r.json()
     r.raise_for_status()
     res=r.json()
-    print(r.text)
-    return render(request,'grumbo/stats.html',context={'res':res})
-    return HttpResponseRedirect(MYURL+'grumbo/stats/')
 
-        # return render(request,'grumbo/stats.html',context={'data':data})
+    data = {'uid': res['id'],
+            'username': res['username'],
+            'discriminator': res['discriminator'],
+            'email': res['email'],
+            'avatar':res['avatar'],
+            'access_token': realtoken,
+        }
 
-    # data = decompose_data(user, token)
-    # bind_user(request, data)
+    uid = data.pop('uid')
+    count = DiscordUser.objects.filter(uid=uid).update(user=request.user,
+                                                       **data)
+    if count == 0:
+        DiscordUser.objects.create(uid=uid,
+                                      user=request.user,
+                                       **data)
+    response = request.build_absolute_uri()
+    print(hi)
+    if hi !=request.session['discord_bind_oauth_state']:
+         return HttpResponseForbidden()
+    oauth = oauth_session(request, state=state)
+    print(data)
+    del request.session['discord_bind_oauth_state']
+    del request.session['discord_bind_return_uri']
+    return render(request,'grumbo/stats.html',context={'data':data})
+    bind_user(request,data)
+    return redirect(MYURL+'discord/bind')
 
     #Assigns Token

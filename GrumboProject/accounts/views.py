@@ -6,5 +6,5 @@ from django.views.generic import CreateView
 # Create your views here.
 class SignUp(CreateView):
     form_class = forms.UserCreateForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('discord_bind:discord_bind_index')
     template_name = 'accounts/signup.html'

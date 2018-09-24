@@ -16,6 +16,9 @@ class ClassesView(TemplateView):
 
 class StatsView(TemplateView):
     template_name = 'grumbo/stats.html'
+class CheckView(TemplateView):
+    template_name = 'grumbo/check.html'
+
 
 class AboutView(TemplateView):
         template_name = 'grumbo/about.html'

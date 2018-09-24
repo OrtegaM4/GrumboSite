@@ -147,7 +147,7 @@ def bind_user(request, data):
  ##STOPPED BELOW LAST THING I DID WAS COMMENT DATA AND BIND USER OUT
 #Get Discord DATA
 def get_discord(request):
-    headers = {'Authorization': 'Bearer RR8qHdOKctnxBeJgdOp4MwenChrZfu'}
+    headers = {'Authorization': 'Bearer '+realtoken}
     r = requests.get('http://discordapp.com/api/users/@me', headers=headers)
     r.text
     r.json()

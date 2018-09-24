@@ -150,6 +150,7 @@ def tokencall(request):
         r.status_code
         r.text
         r.json()
+        res=r.json()
         print(r.text)
         print(res)
 

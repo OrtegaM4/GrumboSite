@@ -146,8 +146,10 @@ def tokencall(request):
     def get_discord(request):
         headers = {'Authorization': 'Bearer '+realtoken}
         r = requests.get('http://discordapp.com/api/users/@me', headers)
+        res=r.json()
+
         data={
-        'uid': r['uid'],
+        'uid': res['uid'],
 
         }
         print(r.json())

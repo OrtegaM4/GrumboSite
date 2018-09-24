@@ -125,6 +125,9 @@ def get_discord(request):
             'avatar':res['avatar'],
             'access_token': realtoken,
         }
+    for k in data:
+        if data[k] is None:
+            data[k] = ''
     uid = data.pop('uid')
     count = DiscordUser.objects.filter(uid=uid).update(user=request.user,
                                                        **data)

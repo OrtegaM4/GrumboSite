@@ -6,12 +6,16 @@
 <body>
 <form class='tokenform' action="{%url 'discord_bind:token_assign'%}" method="GET">
   {%csrf_token%}
-  <h2>Look at your Browser URL and find access_token='  ' and copy the code</h1>
+  <h2>Look at your Browser URL and find access_token='  ' to the first &and copy the code</h1>
   <h2>Enter your Access Token Below:</h1>
   <input type="text" name="mytextbox" value=""> <br></br>
   <input type="submit" name="mybtn" value="Save Token">
   <h2>Your token is {{realtoken}}</h1>
+    <h2>{{mybtn}}</h2>
+  <button type="button" name="button"><a href="{%url 'discord_bind:get_discord'%}">Get Data</a></button>
   <h2>Your Data {{res}}</h2>
+
+</form>
 </form>
 </body>
 </html>

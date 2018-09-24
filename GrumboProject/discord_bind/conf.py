@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 from appconf import AppConf
-MYURL='http://www.grumbot.com/'
+MYURL='http://www/grumbot.com/'
 
 class DiscordBindConf(AppConf):
     """ Application settings """
@@ -21,9 +21,9 @@ class DiscordBindConf(AppConf):
     IDENTIFY_SCOPE=True
 
     # URI settings
-    REDIRECT_URI = 'http://www.grumbot.com/discord/cb'
+    REDIRECT_URI = MYURL+'discord/cb'
     INVITE_URI = 'https://discordapp.com/channels/@me'
-    RETURN_URI = 'http://www.grumbot.com/discord/cb'
+    RETURN_URI = MYURL+'discord/cb'
     class Meta:
         proxy = True
         prefix = 'discord'

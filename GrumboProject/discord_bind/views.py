@@ -50,7 +50,7 @@ res=''
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """
     if settings.DISCORD_REDIRECT_URI is not None:
-        redirect_uri = 'http://www.grumbot.com/discord/cb'
+        redirect_uri = MYURL+'discord/cb'
     else:
         redirect_uri = request.build_absolute_uri(
             reverse('discord_bind_callback'))
@@ -92,17 +92,18 @@ def get_url(request):
         print(state)
         return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type=token&client_id='+CLIENT_ID+'&state='+state + '&scope=identify email')
     else:
-        return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
+        return HttpResponseRedirect(MYURL+'grumbo/stats/')
 
 @login_required
 def token_assign(request):
     url = request.GET.urlencode()
     query_def= parse.parse_qs(url)
+    global realtoken
     realtoken=query_def['mytextbox'][0]
     print(realtoken)
     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
     return realtoken
-    return HttpResponseRedirect('http://www.grumbot.com/discord/tk/')
+    return HttpResponse(realtoken)
 
 
     # def decompose_data(user, token):
@@ -142,11 +143,12 @@ def bind_user(request, data):
         oauth = oauth_session(request, state=state)
         token = realtoken
 
-        return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
+        return HttpResponseRedirect(MYURL+'/grumbo/stats/')
 
  ##STOPPED BELOW LAST THING I DID WAS COMMENT DATA AND BIND USER OUT
 #Get Discord DATA
 def get_discord(request):
+    # token_assign(request)
     headers = {'Authorization': 'Bearer '+realtoken}
     r = requests.get('http://discordapp.com/api/users/@me', headers=headers)
     r.text
@@ -155,7 +157,7 @@ def get_discord(request):
     res=r.json()
     print(r.text)
     return render(request,'grumbo/stats.html',context={'res':res})
-    return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
+    return HttpResponseRedirect(MYURL+'grumbo/stats/')
 
         # return render(request,'grumbo/stats.html',context={'data':data})
 

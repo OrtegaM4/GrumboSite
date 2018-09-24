@@ -149,7 +149,7 @@ def tokencall(request):
         res=r.json()
 
         data={
-        'uid': res['uid'],
+        'uid': res['id'],
 
         }
         print(r.json())

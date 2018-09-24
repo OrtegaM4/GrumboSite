@@ -149,5 +149,6 @@ def get_discord(request):
     data=''
     print(data)
     return data
+    return HttpResponseRedirect(MYURL+'grumbo/stats/')
 
     #Assigns Token

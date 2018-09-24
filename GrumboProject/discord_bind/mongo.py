@@ -5,9 +5,9 @@ from discord_bind.models import DiscordUser
     pwd: 'wellifitisntgrumbo',
     roles: [{ role: 'read', db:'grumbobattlebot'}]
 })
-##db ip 35.182.223.175
+##db ip 35.182.223.175:27017
 
-c = MongoClient()
+client = MongoClient('mongodb://grumbo_reader:wellifitisntgrumbo@35.182.223.175:27017/grumbobattlebot')
 dbs = c.database_names()
 for db in dbs:
     print db

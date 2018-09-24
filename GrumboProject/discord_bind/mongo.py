@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from discord_bind.models import DiscordUser
 ##db.createUser({
     user: 'grumbo_reader',
     pwd: 'wellifitisntgrumbo',

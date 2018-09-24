@@ -45,6 +45,7 @@ API_ENDPOINT = 'https://discordapp.com/api/'
 code=''
 state=''
 realtoken=''
+res=''
 
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """

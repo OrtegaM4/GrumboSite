@@ -158,6 +158,4 @@ def tokencall(request):
 
 
  # Clean up
-    del request.session['discord_bind_invite_uri']
-    del request.session['discord_bind_return_uri']
     return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')

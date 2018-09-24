@@ -50,7 +50,7 @@ res=''
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """
     if settings.DISCORD_REDIRECT_URI is not None:
-        redirect_uri = 'http://127.0.0.1:8000/discord/cb'
+        redirect_uri = 'http://www.grumbot.com/discord/cb'
     else:
         redirect_uri = request.build_absolute_uri(
             reverse('discord_bind_callback'))

@@ -93,17 +93,19 @@ def get_url(request):
         return HttpResponseRedirect('https://discordapp.com/api/oauth2/authorize?response_type=token&client_id='+CLIENT_ID+'&state='+state + '&scope=identify email')
     else:
         return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
+
 @login_required
-def tokencall(request):
-    def token_assign(request):
-        url = request.GET.urlencode()
-        query_def= parse.parse_qs(url)
-        realtoken=query_def['mytextbox'][0]
-        print(realtoken)
-        return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
-        return realtoken
-        get_discord(request)
-        return HttpResponseRedirect('http://www.grumbot.com/discord/tk/')
+def token_assign(request):
+    url = request.GET.urlencode()
+    query_def= parse.parse_qs(url)
+    realtoken=query_def['mytextbox'][0]
+    print(realtoken)
+    return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
+    return realtoken
+    get_discord(request)
+    return HttpResponseRedirect('http://www.grumbot.com/discord/tk/')
+
+
     # def decompose_data(user, token):
     #         """ Extract the important details """
     #         data = {

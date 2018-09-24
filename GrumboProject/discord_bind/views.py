@@ -17,6 +17,7 @@ try:
 except ImportError:
     from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from .models import DiscordUser
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.timezone import make_aware
 from django.db.models import Q
@@ -44,6 +45,7 @@ EMAIL_SCOPE = True
 API_ENDPOINT = 'https://discordapp.com/api/'
 realtoken=''
 hi=''
+data=''
 
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """
@@ -101,45 +103,28 @@ def token_assign(request):
     global realtoken
     realtoken=query_def['mytextbox'][0]
     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
-    return realtoken
     return HttpResponse(realtoken)
+    return realtoken
 
 
-    def bind_user(request, data=data):
-            """ Create or update a DiscordUser instance """
-            uid = data.pop('uid')
-            count = DiscordUser.objects.filter(uid=uid).update(user=request.user,
-                                                                   **data)
-            if count == 0:
-                DiscordUser.objects.create(uid=uid,
-                                           user=request.user,
-                                           **data)
-
-            response = request.build_absolute_uri()
-            state = request.session['discord_bind_oauth_state']
-            oauth = oauth_session(request, state=state)
-            token = realtoken
-
-            return HttpResponseRedirect(MYURL+'grumbo/stats/')
 
 @login_required#Get Discord DATA
 def get_discord(request):
     headers = {'Authorization': 'Bearer '+realtoken}
-    global r
     r = requests.get('http://discordapp.com/api/users/@me', headers=headers)
     r.text
     r.json()
     r.raise_for_status()
     res=r.json()
-
-    data = {'uid': res['id'],
+    global data
+    data = {
+            'uid': res['id'],
             'username': res['username'],
             'discriminator': res['discriminator'],
             'email': res['email'],
             'avatar':res['avatar'],
             'access_token': realtoken,
         }
-
     uid = data.pop('uid')
     count = DiscordUser.objects.filter(uid=uid).update(user=request.user,
                                                        **data)
@@ -148,17 +133,18 @@ def get_discord(request):
                                       user=request.user,
                                        **data)
     response = request.build_absolute_uri()
+    print(uid)
     print(hi)
     if hi !=request.session['discord_bind_oauth_state']:
          return HttpResponseForbidden()
     oauth = oauth_session(request, state=state)
+    # if data['uid'] == res['id']:
     print(data)
+    return render(request,'grumbo/stats.html',context={'data':data,'uid':uid})
     del request.session['discord_bind_oauth_state']
     del request.session['discord_bind_return_uri']
-    return render(request,'grumbo/stats.html',context={'data':data})
-    bind_user(request,data)
-    return redirect(MYURL+'discord/bind')
-    del request.session['discord_bind_oauth_state']
-    del request.session['discord_bind_return_uri']
+    data=''
+    print(data)
+    return data
 
     #Assigns Token

@@ -158,5 +158,7 @@ def get_discord(request):
     return render(request,'grumbo/stats.html',context={'data':data})
     bind_user(request,data)
     return redirect(MYURL+'discord/bind')
+    del request.session['discord_bind_oauth_state']
+    del request.session['discord_bind_return_uri']
 
     #Assigns Token

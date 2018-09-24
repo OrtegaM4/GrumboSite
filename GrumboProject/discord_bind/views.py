@@ -126,7 +126,7 @@ def tokencall(request):
     #         except KeyError:
     #             pass
     #         return data
-    def bind_user(request, data):
+def bind_user(request, data):
         """ Create or update a DiscordUser instance """
         uid = data.pop('uid')
         count = DiscordUser.objects.filter(uid=uid).update(user=request.user,
@@ -136,11 +136,12 @@ def tokencall(request):
                                        user=request.user,
                                        **data)
 
-    response = request.build_absolute_uri()
-    state = request.session['discord_bind_oauth_state']
-    oauth = oauth_session(request, state=state)
-    token = realtoken
+        response = request.build_absolute_uri()
+        state = request.session['discord_bind_oauth_state']
+        oauth = oauth_session(request, state=state)
+        token = realtoken
 
+        return HttpResponseRedirect('http://www.grumbot.com/grumbo/stats/')
 
  ##STOPPED BELOW LAST THING I DID WAS COMMENT DATA AND BIND USER OUT
 #Get Discord DATA

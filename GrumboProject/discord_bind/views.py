@@ -156,7 +156,7 @@ def get_discord(request):
     res=r.json()
     print(r.text)
     print(res)
-        # return data
+    return res
     return render(request,'grumbo/stats.html',context={'res':res})
         # return render(request,'grumbo/stats.html',context={'data':data})
 

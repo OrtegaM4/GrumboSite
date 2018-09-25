@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 from appconf import AppConf
-MYURL='http://http://127.0.0.1:8000/'
+MYURL='http://http://www.grumbot.com/'
 
 class DiscordBindConf(AppConf):
     """ Application settings """

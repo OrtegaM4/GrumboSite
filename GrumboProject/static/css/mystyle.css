@@ -15,6 +15,9 @@ body{
 .container .tokenform h2{
   color:white;
 }
+.container h2{
+  color:white;
+}
 /* Targets navbar text */
 #mainnav li a {
   color: white;

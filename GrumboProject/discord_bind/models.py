@@ -48,7 +48,7 @@ class DiscordUser(models.Model):
     expiry = models.DateTimeField(null=True)
 
     def __str__(self):
-        return self.username + '.' + self.discriminator
+        return self.uid 
 
 
 # class DiscordInvite(models.Model):

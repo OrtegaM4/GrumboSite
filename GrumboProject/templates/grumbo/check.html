@@ -2,6 +2,7 @@
 {% extends "grumbo/base.html"%}
 {% block content %}
 {{DiscordUser}}
-
-
+<button type="button" name="button"><a href="{%url 'discord_bind:statsget'%}">Get Stats</a></button>
+<h2>{{x}}</h2>
+<h1>{{yo}}</h1>
 {% endblock %}

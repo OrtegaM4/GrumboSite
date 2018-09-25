@@ -17,7 +17,6 @@ try:
 except ImportError:
     from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from .models import DiscordUser
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.timezone import make_aware
 from django.db.models import Q
@@ -25,7 +24,10 @@ from django.contrib import messages
 from requests_oauthlib import OAuth2Session
 from discord_bind.models import DiscordUser
 from discord_bind.conf import MYURL,settings
-
+from django.db import models
+from django.contrib.auth.models import User
+from pymongo import MongoClient
+from .admin import DiscordUserAdmin
 import logging
 logger = logging.getLogger(__name__)
 BASE_URI = 'https://discordapp.com/api'
@@ -46,6 +48,8 @@ API_ENDPOINT = 'https://discordapp.com/api/'
 realtoken=''
 hi=''
 data=''
+uid=''
+me= ''
 
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """
@@ -129,6 +133,8 @@ def get_discord(request):
         if data[k] is None:
             data[k] = ''
     uid = data.pop('uid')
+    me= data['discriminator']
+    return me
     count = DiscordUser.objects.filter(uid=uid).update(user=request.user,
                                                        **data)
     if count == 0:
@@ -143,6 +149,7 @@ def get_discord(request):
     oauth = oauth_session(request, state=state)
     # if data['uid'] == res['id']:
     print(data)
+    return me
     return render(request,'grumbo/stats.html',context={'data':data,'uid':uid})
     del request.session['discord_bind_oauth_state']
     del request.session['discord_bind_return_uri']
@@ -151,4 +158,24 @@ def get_discord(request):
     return data
     return HttpResponseRedirect(MYURL+'grumbo/stats/')
 
+client = MongoClient('mongodb://35.182.223.175:27017/grumbobattlebot')
+db = client.grumbobattlebot
+collection=db.characters
+
+def statsget(request):
+    y=''
+    x=''
+    for p in DiscordUser.objects.raw('SELECT* From discord_bind_discorduser'):
+        print (p)
+    lol=p
+    lul=str(lol)
+    myquery= {"_id":lul}
+    mydoc=collection.find(myquery)
+    for x in mydoc:
+        print(x)
+    yo= x['level']
+    print(lul)
+    print(me)
+    print(yo)
+    return render(request,'grumbo/check.html',context={"x":x,"yo":yo})
     #Assigns Token

@@ -209,6 +209,7 @@ def statsget(request):
     cwins=values['challengeWins']
     closses=values['challengeLosses']
     cwinrate=values['challengeWinrate']
+    challengesLeft=values['challengesLeft']
 
     print(SplitString)
     print (DiscordName)

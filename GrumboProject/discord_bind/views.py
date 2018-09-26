@@ -267,7 +267,7 @@ def statsget(request):
                                                         "preresults":preresults,
                                                         "postresults":postresults,
                                                         "items":items,
-                                                        "shoprot":shoprot
+                                                        # "shoprot":shoprot
 
 
                                                         })

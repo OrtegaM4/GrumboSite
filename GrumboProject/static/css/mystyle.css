@@ -18,6 +18,9 @@ body{
 .container h2{
   color:white;
 }
+.container .jumbotron h2{
+  color:black;
+}
 /* Targets navbar text */
 #mainnav li a {
   color: white;

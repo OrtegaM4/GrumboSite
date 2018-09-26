@@ -131,7 +131,7 @@ USE_TZ = True
 STATICFILES_DIRS = (
     STATIC_DIR,
 )
-MYURL='http://www.grumbot.com/'
+MYURL='http://www.grumtest.com/'
 #Media files
 MEDIA_URL='media/'
 MEDIA_ROOT=os.path.join(BASE_DIR, '/media/')

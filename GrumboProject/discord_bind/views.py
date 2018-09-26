@@ -29,6 +29,7 @@ from django.contrib.auth.models import User
 from pymongo import MongoClient
 from .admin import DiscordUserAdmin
 import logging
+import django.contrib.admin
 logger = logging.getLogger(__name__)
 BASE_URI = 'https://discordapp.com/api'
 AUTHZ_PATH = '/oauth2/authorize'
@@ -49,7 +50,7 @@ realtoken=''
 hi=''
 data=''
 uid=''
-me= ''
+
 
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """
@@ -163,19 +164,23 @@ db = client.grumbobattlebot
 collection=db.characters
 
 def statsget(request):
+    username = request.user.username
     y=''
     x=''
-    for p in DiscordUser.objects.raw('SELECT* From discord_bind_discorduser'):
+    for p in DiscordUser.objects.filter(user=request.user):
         print (p)
     lol=p
-    lul=str(lol)
-    myquery= {"_id":lul}
+    DiscordID= str(lol)
+    # lol= DiscordUser.objects.raw('SELECT* From discord_bind_discorduser ')
+
+    # lul=str(lol)
+    myquery= {"_id":DiscordID}
     mydoc=collection.find(myquery)
     for x in mydoc:
         print(x)
-    yo= x['level']
-    print(lul)
-    print(me)
-    print(yo)
-    return render(request,'grumbo/check.html',context={"x":x,"yo":yo})
+    level= x['level']
+    print (username)
+    print(DiscordID)
+    # print(yo)
+    return render(request,'grumbo/check.html',context={"x":x,"level":level})
     #Assigns Token

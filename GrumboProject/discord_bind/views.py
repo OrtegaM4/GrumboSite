@@ -168,7 +168,7 @@ def statsget(request):
     DiscordID = SplitString[0]
     DiscordName= SplitString[1]
     myquery= {"_id":DiscordID}
-    mydoc=collection.find()
+    mydoc=collection.find(myquery)
     for values in mydoc:
         print(values)
 ##Query Values:
@@ -181,7 +181,8 @@ def statsget(request):
     print (DiscordName)
     print(DiscordID)
     # print(yo)
-    return render(request,'grumbo/check.html',context={"name":name,
+    return render(request,'grumbo/check.html',context={ "values":values,
+                                                        "name":name,
                                                         "level":level,
                                                         "xp":xp,
                                                         "gold":gold

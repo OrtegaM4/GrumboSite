@@ -5,6 +5,31 @@
 <h2>Click the button below to grab your stats from the Grumbo Server!</h2>
 <br></br>
 <button type="button" name="button"><a href="{%url 'discord_bind:statsget'%}">Get Stats</a></button>
-<h2>Data:<br></br>{{values}}</h2>
+<br></br>
 <h2>{{name}} Lv{{level}} with {{xp}} EXP | {{gold}} Gold</h2>
+<h2>{{clasId}} Lv{{classLevel}} with {{classEXP}} EXP</h2>
+<h2>HP{{hp}}/100</h2>
+<h2>POW {{pow}} | WIS {{wis}} | DEF {{def}}</h2>
+<h2>RES {{res}} | SPD {{spd}} | LUK {{luk}}</h2>
+<h2>Your Equipment:</h2>
+<h2>Head: {{head}}</h2>
+<h2>Armour: {{armour}}</h2>
+<h2>Bottoms: {{bottom}}</h2>
+<h2>Weapon: {{weapon}}</h2>
+<br></br>
+<h2>Your Battle Record/Info:</h2>
+<h2>Wins {{wins}}  | Losses {{losses}}  |Win % {{winrate}}</h2>
+<h2>You have {{battlesLeft}}/5 left</h2>
+<h2>You will gain another battle chance in</h2>
+
+
+<h2>Your Challenge Record:</h2>
+<h2>Wins {{cwins}} | Losses {{closses}} |Win % {{cwrinrate}}</h2>
+<h2>You have {{challengesLeft}}/3 left</h2>
+<h2>You will gain another challenge chance in</h2>
+
+
+
+
+
 {% endblock %}

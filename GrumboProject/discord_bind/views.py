@@ -107,6 +107,7 @@ def token_assign(request):
     query_def= parse.parse_qs(url)
     global realtoken
     realtoken=query_def['mytextbox'][0]
+    return realtoken
     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
     return HttpResponse(realtoken)
     return realtoken
@@ -133,6 +134,8 @@ def get_discord(request):
     for k in data:
         if data[k] is None:
             data[k] = ''
+
+
     uid = data.pop('uid')
     count = DiscordUser.objects.filter(uid=uid).update(user=request.user,
                                                        **data)
@@ -144,20 +147,23 @@ def get_discord(request):
     if hi !=request.session['discord_bind_oauth_state']:
          return HttpResponseForbidden()
     oauth = oauth_session(request, state=state)
-    # if data['uid'] == res['id']:
     print(data)
+    data=''
     return render(request,'grumbo/stats.html',context={'data':data,'uid':uid})
     del request.session['discord_bind_oauth_state']
     del request.session['discord_bind_return_uri']
-    data=''
     print(data)
     return data
     return HttpResponseRedirect(MYURL+'grumbo/stats/')
 
+
+##Mongo DB Connection
 client = MongoClient('mongodb://35.182.223.175:27017/grumbobattlebot')
 db = client.grumbobattlebot
 collection=db.characters
 
+
+@login_required
 def statsget(request):
     values=''
     for p in DiscordUser.objects.filter(user=request.user):
@@ -176,6 +182,33 @@ def statsget(request):
     level= values['level']
     xp= values['experience']
     gold= values['gold']
+##Class Values:
+    classId  =  values['classId']
+    classLevel= values['classLevel']
+    classEXP = values['classEXP']
+    classTime =values['classTime']
+##Stats Values:
+    hp= values['hp']
+    pow=values['pow']
+    wis=values['wis']
+    def=values['def']
+    res=values['res']
+    spd=values['spd']
+    luk=values['luk']
+##Equipment:
+    head=values['head']
+    armour=values['armour']
+    bottom=values['bottom']
+    weapon=values['weapon']
+##Battle Info:
+    wins=values['wins']
+    losses=values['losses']
+    winrate=values['winrate']
+    battlesLeft=values['battlesLeft']
+##Challenge Info:
+    cwins=values['challengeWins']
+    closses=values['challengeLosses']
+    cwinrate=values['challengeWinrate']
 
     print(SplitString)
     print (DiscordName)
@@ -185,5 +218,26 @@ def statsget(request):
                                                         "name":name,
                                                         "level":level,
                                                         "xp":xp,
-                                                        "gold":gold
+                                                        "gold":gold,
+                                                        "hp":hp,
+                                                        "pow":pow,
+                                                        "wis":wis,
+                                                        "def":def,
+                                                        "res":res,
+                                                        "spd":spd,
+                                                        "luk":luk,
+                                                        "head":head,
+                                                        "armour":armour,
+                                                        "bottom":bottom,
+                                                        "weapon":weapon,
+                                                        "wins":wins,
+                                                        "losses":losses,
+                                                        "winrate":winrate,
+                                                        "battlesLeft":battlesLeft,
+                                                        "cwins":cwins,
+                                                        "closses":closses,
+                                                        "cwinrate":cwinrate,
+                                                        "challengesLeft":challengesLeft
+
+
                                                         })

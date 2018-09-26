@@ -181,5 +181,8 @@ def statsget(request):
     print (DiscordName)
     print(DiscordID)
     # print(yo)
-    return render(request,'grumbo/check.html',context={"name":name,"level":level})
-    #Assigns Token
+    return render(request,'grumbo/check.html',context={"name":name,
+                                                        "level":level,
+                                                        "xp":xp,
+                                                        "gold":gold
+                                                        })

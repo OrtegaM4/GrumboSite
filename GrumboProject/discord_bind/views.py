@@ -186,7 +186,7 @@ def statsget(request):
     mychara=collection.find(myquery)
     for values in mychara:
         print(values)
-    myshop=shop.all()
+    myshop=shop.find()
     for shopvalues in myshop:
         print(shopvalues)
     shoprot=shopvalues

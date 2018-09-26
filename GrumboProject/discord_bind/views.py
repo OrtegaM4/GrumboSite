@@ -187,9 +187,9 @@ def statsget(request):
     for values in mychara:
         print(values)
     myshop=shop.find()
-    for shopvalues in myshop:
-        print(shopvalues)
-    shoprot=shopvalues
+    # for shopvalues in myshop:
+    #     print(shopvalues)
+    shoprot=myshop
 ##Query Values:
     name= DiscordName
     level= values['level']

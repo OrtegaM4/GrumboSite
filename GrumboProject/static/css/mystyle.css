@@ -31,6 +31,10 @@ body{
 .container .jumbotron h3{
   color:black;
 }
+.container .jumbotron h4{
+  color:black;
+}
+
 /* Targets navbar text */
 #mainnav li a {
   color: white;
@@ -63,7 +67,7 @@ span.title{
   padding-left: -15%;
   padding-right: -5%;
   margin-right: -3%;
-  
+
 }
 #pow{
   height: 8%;

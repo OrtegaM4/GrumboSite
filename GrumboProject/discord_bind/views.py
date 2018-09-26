@@ -159,8 +159,11 @@ def get_discord(request):
 ##Mongo DB Connection
 client = MongoClient('mongodb://35.182.223.175:27017/grumbobattlebot')
 db = client.grumbobattlebot
+#Collections
 collection=db.characters
 shop=db.shop_rotation
+shopequip=db.shop_equip
+shopspecial=db.shop_special
 
 # def shopget(request):
 #     myshop=shop.find()

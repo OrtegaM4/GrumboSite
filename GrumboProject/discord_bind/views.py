@@ -185,7 +185,7 @@ def statsget(request):
 ##Class Values:
     classId  =  values['classId']
     classLevel= values['classLevel']
-    classEXP = values['classEXP']
+    classEXP = values['classExp']
     classTime =values['classTime']
 ##Stats Values:
     hp= values['hp']

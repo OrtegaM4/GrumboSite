@@ -156,11 +156,20 @@ def get_discord(request):
     return data
     return HttpResponseRedirect(MYURL+'grumbo/stats/')
 
-
 ##Mongo DB Connection
 client = MongoClient('mongodb://35.182.223.175:27017/grumbobattlebot')
 db = client.grumbobattlebot
 collection=db.characters
+shop=db.shop_rotation
+
+# def shopget(request):
+#     myshop=shop.find()
+#     for shopvalues in myshop:
+#         print(shopvalues)
+#     shoprot=shopvalues
+#     return render(request,'grumbo/check.html',context={ "values":values,
+
+
 
 
 @login_required
@@ -174,9 +183,13 @@ def statsget(request):
     DiscordID = SplitString[0]
     DiscordName= SplitString[1]
     myquery= {"_id":DiscordID}
-    mydoc=collection.find(myquery)
-    for values in mydoc:
+    mychara=collection.find(myquery)
+    for values in mychara:
         print(values)
+    myshop=shop.find()
+    for shopvalues in myshop:
+        print(shopvalues)
+    shoprot=shopvalues
 ##Query Values:
     name= DiscordName
     level= values['level']
@@ -253,6 +266,7 @@ def statsget(request):
                                                         "preresults":preresults,
                                                         "postresults":postresults,
                                                         "items":items
+                                                        "shoprot":shoprot
 
 
                                                         })

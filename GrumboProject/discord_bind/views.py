@@ -134,8 +134,6 @@ def get_discord(request):
         if data[k] is None:
             data[k] = ''
     uid = data.pop('uid')
-    me= data['discriminator']
-    return me
     count = DiscordUser.objects.filter(uid=uid).update(user=request.user,
                                                        **data)
     if count == 0:
@@ -143,14 +141,11 @@ def get_discord(request):
                                       user=request.user,
                                        **data)
     response = request.build_absolute_uri()
-    print(uid)
-    print(hi)
     if hi !=request.session['discord_bind_oauth_state']:
          return HttpResponseForbidden()
     oauth = oauth_session(request, state=state)
     # if data['uid'] == res['id']:
     print(data)
-    return me
     return render(request,'grumbo/stats.html',context={'data':data,'uid':uid})
     del request.session['discord_bind_oauth_state']
     del request.session['discord_bind_return_uri']
@@ -171,9 +166,6 @@ def statsget(request):
         print (p)
     lol=p
     DiscordID= str(lol)
-    # lol= DiscordUser.objects.raw('SELECT* From discord_bind_discorduser ')
-
-    # lul=str(lol)
     myquery= {"_id":DiscordID}
     mydoc=collection.find(myquery)
     for x in mydoc:

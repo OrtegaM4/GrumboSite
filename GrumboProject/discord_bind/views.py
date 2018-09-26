@@ -197,7 +197,7 @@ def statsget(request):
     luk=values['luk']
 ##Equipment:
     head=values['head']
-    armour=values['armour']
+    armour=values['armor']
     bottom=values['bottom']
     weapon=values['weapon']
 ##Battle Info:

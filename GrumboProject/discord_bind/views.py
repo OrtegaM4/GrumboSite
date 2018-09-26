@@ -159,20 +159,27 @@ db = client.grumbobattlebot
 collection=db.characters
 
 def statsget(request):
-    username = request.user.username
-    y=''
-    x=''
+    values=''
     for p in DiscordUser.objects.filter(user=request.user):
         print (p)
-    lol=p
-    DiscordID= str(lol)
+    response=p
+    DiscordUserString= str(response)
+    SplitString=DiscordUserString.split(".")
+    DiscordID = SplitString[0]
+    DiscordName= SplitString[1]
     myquery= {"_id":DiscordID}
-    mydoc=collection.find(myquery)
-    for x in mydoc:
-        print(x)
-    level= x['level']
-    print (username)
+    mydoc=collection.find()
+    for values in mydoc:
+        print(values)
+##Query Values:
+    name= DiscordName
+    level= values['level']
+    xp= values['experience']
+    gold= values['gold']
+
+    print(SplitString)
+    print (DiscordName)
     print(DiscordID)
     # print(yo)
-    return render(request,'grumbo/check.html',context={"x":x,"level":level})
+    return render(request,'grumbo/check.html',context={"name":name,"level":level})
     #Assigns Token

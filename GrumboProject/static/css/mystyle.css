@@ -5,6 +5,10 @@
 #GrumBot{
 
 }
+
+h3{
+  color:white;
+}
 body{
   background-color: #292929
 }
@@ -15,7 +19,7 @@ body{
 .container .tokenform h2{
   color:white;
 }
-.container h3{
+.container h3 {
   color:white;
 }
 .container .jumbotron h2{

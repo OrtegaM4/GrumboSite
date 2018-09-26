@@ -265,7 +265,7 @@ def statsget(request):
                                                         "prebattle":prebattle,
                                                         "preresults":preresults,
                                                         "postresults":postresults,
-                                                        "items":items
+                                                        "items":items,
                                                         "shoprot":shoprot
 
 

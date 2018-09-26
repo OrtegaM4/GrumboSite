@@ -5,10 +5,10 @@
 #GrumBot{
 
 }
-h2{
+h3{
   color:white;
 }
-h3{
+h4{
   color:white;
 }
 body{
@@ -21,14 +21,14 @@ body{
 .container .tokenform h2{
   color:white;
 }
+.container h4  {
+  color:white;
+}
 .container h3  {
   color:white;
 }
-.container h2  {
-  color:white;
-}
 
-.container .jumbotron h2{
+.container .jumbotron h3{
   color:black;
 }
 /* Targets navbar text */

@@ -182,6 +182,10 @@ def statsget(request):
     level= values['level']
     xp= values['experience']
     gold= values['gold']
+##Actives:
+    prebattle=values['prebattle']
+    preresults=values['preresults']
+    postresults=values['postresults']
 ##Class Values:
     classId  =  values['classId']
     classLevel= values['classLevel']
@@ -195,6 +199,8 @@ def statsget(request):
     res=values['res']
     spd=values['spd']
     luk=values['luk']
+    waitTime= spd *60000
+    time=str(datetime.now().time())
 ##Equipment:
     head=values['head']
     armour=values['armor']
@@ -241,7 +247,10 @@ def statsget(request):
                                                         "cwins":cwins,
                                                         "closses":closses,
                                                         "cwinrate":cwinrate,
-                                                        "challengesLeft":challengesLeft
+                                                        "challengesLeft":challengesLeft,
+                                                        "prebattle":prebattle,
+                                                        "preresults":preresults,
+                                                        "postresults":postresults
 
 
                                                         })

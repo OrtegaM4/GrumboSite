@@ -191,7 +191,7 @@ def statsget(request):
     hp= values['hp']
     pow=values['pow']
     wis=values['wis']
-    def=values['def']
+    df=values['def']
     res=values['res']
     spd=values['spd']
     luk=values['luk']
@@ -222,7 +222,7 @@ def statsget(request):
                                                         "hp":hp,
                                                         "pow":pow,
                                                         "wis":wis,
-                                                        "def":def,
+                                                        "df":df,
                                                         "res":res,
                                                         "spd":spd,
                                                         "luk":luk,

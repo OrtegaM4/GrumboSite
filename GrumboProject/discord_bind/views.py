@@ -182,6 +182,7 @@ def statsget(request):
     level= values['level']
     xp= values['experience']
     gold= values['gold']
+    items=values['items']
 ##Actives:
     prebattle=values['prebattle']
     preresults=values['preresults']
@@ -250,7 +251,8 @@ def statsget(request):
                                                         "challengesLeft":challengesLeft,
                                                         "prebattle":prebattle,
                                                         "preresults":preresults,
-                                                        "postresults":postresults
+                                                        "postresults":postresults,
+                                                        "items":items
 
 
                                                         })

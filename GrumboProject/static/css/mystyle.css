@@ -55,3 +55,61 @@ span.title{
         border-radius: 3px;
 
 }
+/* Icons */
+#hp{
+  height: 8%;
+  width:8%;
+  margin-left: -3%;
+  padding-left: -15%;
+  padding-right: -5%;
+  margin-right: -3%;
+  
+}
+#pow{
+  height: 8%;
+  width:8%;
+  margin-left: -3%;
+  padding-left: -15%;
+  padding-right: -5%;
+  margin-right: -3%;
+}
+#wis{
+  height: 8%;
+  width:8%;
+  margin-left: -3%;
+  padding-left: -15%;
+  padding-right: -5%;
+  margin-right: -3%;
+}
+#def{
+  height: 8%;
+  width:8%;
+  margin-left: -3%;
+  padding-left: -15%;
+  padding-right: -5%;
+  margin-right: -3%;
+}
+#res{
+  height: 8%;
+  width:8%;
+  margin-left: -3%;
+  padding-left: -15%;
+  padding-right: -5%;
+  margin-right: -3%;
+}
+#spd{
+  height: 8%;
+  width:8%;
+  margin-left: -3%;
+  padding-left: -15%;
+  padding-right: -5%;
+  margin-right: -3%;
+}
+#luk{
+  height: 8%;
+  width:8%;
+  margin-left: -3%;
+  padding-left: -15%;
+  padding-right: -5%;
+  margin-right: -3%;
+}

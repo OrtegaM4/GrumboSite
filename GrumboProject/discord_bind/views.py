@@ -186,11 +186,11 @@ def statsget(request):
     mychara=collection.find(myquery)
     for values in mychara:
         print(values)
-    shoptest={}
-    myshop=shop.find(shoptest)
-    for shopvalues in myshop:
-        print(shopvalues)
-    shoprot=shopvalues
+    # shoptest={}
+    # myshop=shop.find(shoptest)
+    # for shopvalues in myshop:
+    #     print(shopvalues)
+    # shoprot=shopvalues
 ##Query Values:
     name= DiscordName
     level= values['level']

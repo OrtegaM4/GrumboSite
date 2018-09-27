@@ -224,20 +224,25 @@ def statsget(request):
     wins=values['wins']
     losses=values['losses']
     winrate=values['winrate']
-    battlesLeft=values['battlesLeft']
-    battletime=values['battletime']
+    battlesLeft=values['battlesLeft'].int()
+    battletime=values['battletime'].int()
 ##Challenge Info:
     cwins=values['challengeWins']
     closses=values['challengeLosses']
     cwinrate=values['challengeWinrate']
-    challengesLeft=values['challengesLeft']
-    challengetime=values['challengetime']
+    challengesLeft=values['challengesLeft'].int()
+    challengetime=values['challengetime'].int()
 ##Time Values:
     basewaittime =4200000
     waitTime= basewaittime-(spd *60000)
     mytime=time.time() *1000
     timeUntilNextBattleInMinutes=math.ceil((battletime+waitTime-mytime)/60000)
     timeUntilNextChallengeInMinutes=math.ceil((challengetime+waitTime-mytime)/60000)
+    ##Stop Timer
+    if challengesLeft == 3:
+        timeUntilNextChallengeInMinutes= 0
+    if battlesLeft == 5:
+        timeUntilNextBattleInMinutes = 0
     print (mytime)
     print(battletime, challengetime)
     return render(request,'grumbo/check.html',context={ "values":values,

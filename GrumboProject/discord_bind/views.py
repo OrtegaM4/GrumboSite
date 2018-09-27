@@ -105,8 +105,8 @@ def get_url(request):
 
 @login_required
 def token_assign(request):
-    # url = request.GET.urlencode()
-    # query_def= parse.parse_qs(url)
+    url = request.urlencode()
+    query_def= parse.parse_qs(url)
     global realtoken
     realtoken=query_def['mytextbox'][0]
     return realtoken

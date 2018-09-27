@@ -251,12 +251,14 @@ def statsget(request):
         timeUntilNextChallengeInMinutes= 0
     if battlesLeft == 5:
         timeUntilNextBattleInMinutes = 0
-    if timeUntilNextBattleInMinutes  < 0:
-          battlesLeft+1
-          timeUntilNextBattleInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextBattleInMinutes))
+  ## Timer Fix
     if timeUntilNextBattleInMinutes  < -60:
           battlesLeft+2
           timeUntilNextBattleInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextBattleInMinutes - 60))
+    if timeUntilNextBattleInMinutes  < 0:
+          battlesLeft+1
+          timeUntilNextBattleInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextBattleInMinutes))
+
     print (mytime)
     print(battletime, challengetime)
     return render(request,'grumbo/check.html',context={ "values":values,

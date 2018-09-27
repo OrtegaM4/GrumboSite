@@ -147,6 +147,7 @@ def get_discord(request):
                                        **data)
     response = request.build_absolute_uri()
     if hi !=request.session['discord_bind_oauth_state']:
+         del request.session['discord_bind_oauth_state']
          return HttpResponseForbidden()
     oauth = oauth_session(request, state=state)
     print(data)

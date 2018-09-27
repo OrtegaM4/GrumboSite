@@ -29,6 +29,8 @@ from django.contrib.auth.models import User
 from pymongo import MongoClient
 from .admin import DiscordUserAdmin
 import logging
+import time
+import math
 import django.contrib.admin
 logger = logging.getLogger(__name__)
 BASE_URI = 'https://discordapp.com/api'
@@ -189,11 +191,6 @@ def statsget(request):
     mychara=collection.find(myquery)
     for values in mychara:
         print(values)
-    # shoptest={}
-    # myshop=shop.find(shoptest)
-    # for shopvalues in myshop:
-    #     print(shopvalues)
-    # shoprot=shopvalues
 ##Query Values:
     name= DiscordName
     level= values['level']
@@ -217,9 +214,7 @@ def statsget(request):
     res=values['res']
     spd=values['spd']
     luk=values['luk']
-    waitTime= spd *60000
-    time=str(datetime.now().time())
-##Equipment:
+    ##Equipment:
     head=values['head']
     armour=values['armor']
     bottom=values['bottom']
@@ -229,16 +224,21 @@ def statsget(request):
     losses=values['losses']
     winrate=values['winrate']
     battlesLeft=values['battlesLeft']
+    battletime=values['battletime']
 ##Challenge Info:
     cwins=values['challengeWins']
     closses=values['challengeLosses']
     cwinrate=values['challengeWinrate']
     challengesLeft=values['challengesLeft']
-
-    print(SplitString)
-    print (DiscordName)
-    print(DiscordID)
-    # print(yo)
+    challengetime=values['challengetime']
+##Time Values:
+    basewaittime =4200000
+    waitTime= basewaittime-(spd *60000)
+    mytime=time.time() *1000
+    timeUntilNextBattleInMinutes=math.ceil((battletime+waitTime-mytime)/60000)
+    timeUntilNextChallengeInMinutes=math.ceil((challengetime+waitTime-mytime)/60000)
+    print (mytime)
+    print(battletime, challengetime)
     return render(request,'grumbo/check.html',context={ "values":values,
                                                         "name":name,
                                                         "level":level,
@@ -270,6 +270,9 @@ def statsget(request):
                                                         "preresults":preresults,
                                                         "postresults":postresults,
                                                         "items":items,
+                                                        "timeUntilNextBattleInMinutes":timeUntilNextBattleInMinutes,
+                                                        "timeUntilNextChallengeInMinutes":timeUntilNextChallengeInMinutes
+
                                                         # "shoprot":shoprot
 
 

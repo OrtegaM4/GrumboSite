@@ -6,16 +6,20 @@
 <body>
 <form class='tokenform' action="{%url 'discord_bind:token_assign'%}" method="GET">
   {%csrf_token%}
+  <h2>Thank you for authorizing, follow the steps below to finalize the Discord Link</h2>
+<br></br>
   <h2>Look at your Browser URL and find access_token='  ' to the first &and copy the code</h1>
-  <h2>Enter your Access Token Below:</h1>
+  <!-- <h2>Your URL {{request.get_full_path}}</h2> -->
+  <h2>Enter your Access Token Below and Click 'Save Token":</h1>
   <input type="text" name="mytextbox" value=""> <br></br>
   <input type="submit" name="mybtn" value="Save Token">
-  <h2>Your token is {{realtoken}}</h1>
-    <h2>{{mybtn}}</h2>
-  <button type="button" name="button"><a href="{%url 'discord_bind:get_discord'%}">Save Data</a></button>
-  <h2>Your Data {{data}}</h2>
-  <h2>{{uid}}</h2>
-  <button type="button" name="button"><a href="{%url 'discord_bind:statsget'%}">Get Stats</a></button>
+  <!-- <button type="button" name="button"><a href="{%url 'discord_bind:token_assign'%}">Bind Token</a></button> -->
+  <h2>Your token is: {{realtoken}}</h1> <br></br>
+  <h2>Next click on the "Link Data" button to link your Discord and current User<br></br>{{mybtn}}</h2>
+  <button type="button" name="button"><a href="{%url 'discord_bind:get_discord'%}">Link Data</a></button>
+
+  <!-- <h2>Your Data {{data}}</h2> -->
+  <!-- <button type="button" name="button"><a href="{%url 'discord_bind:statsget'%}">Get Stats</a></button> -->
   <h2>{{bince}}</h2>
 </form>
 </form>

@@ -11,7 +11,7 @@ from datetime import datetime
 from django.urls import resolve
 from urllib import parse
 from requests_oauthlib import OAuth2Session
-from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponseRedirect, HttpResponseForbidden, HttpResponse
 try:
     from django.urls import reverse
 except ImportError:
@@ -105,13 +105,14 @@ def get_url(request):
 
 @login_required
 def token_assign(request):
-    url = request.urlencode()
+    url = request.GET.urlencode()
     query_def= parse.parse_qs(url)
     global realtoken
     realtoken=query_def['mytextbox'][0]
-    return realtoken
+    print(url)
+    print(realtoken)
     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
-    return HttpResponse(realtoken)
+
 
 
 
@@ -155,7 +156,7 @@ def get_discord(request):
     del request.session['discord_bind_return_uri']
     print(data)
     return data
-    return HttpResponseRedirect(MYURL+'grumbo/stats/')
+    return redirect(MYURL+'grumbo/stats/')
 
 ##Mongo DB Connection
 client = MongoClient('mongodb://35.182.223.175:27017/grumbobattlebot')

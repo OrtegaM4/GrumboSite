@@ -176,6 +176,14 @@ shopspecial=db.shop_special
 #     return render(request,'grumbo/check.html',context={ "values":values,
 
 
+## Opening Remote File
+# from StringIO import StringIO
+
+# r = requests.get(file_url)
+# f = StringIO(r.content)
+
+# f.read()
+
 
 
 @login_required
@@ -243,6 +251,10 @@ def statsget(request):
         timeUntilNextChallengeInMinutes= 0
     if battlesLeft == 5:
         timeUntilNextBattleInMinutes = 0
+    if timeUntilNextBattleInMinutes  < 0:
+        (waitTime/60000) - (timeUntilNextBattleInMinutes * -1)
+
+
     print (mytime)
     print(battletime, challengetime)
     return render(request,'grumbo/check.html',context={ "values":values,

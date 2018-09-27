@@ -224,14 +224,14 @@ def statsget(request):
     wins=values['wins']
     losses=values['losses']
     winrate=values['winrate']
-    battlesLeft=values['battlesLeft'].int()
-    battletime=values['battletime'].int()
+    battlesLeft=values['battlesLeft']
+    battletime=values['battletime']
 ##Challenge Info:
     cwins=values['challengeWins']
     closses=values['challengeLosses']
     cwinrate=values['challengeWinrate']
-    challengesLeft=values['challengesLeft'].int()
-    challengetime=values['challengetime'].int()
+    challengesLeft=values['challengesLeft']
+    challengetime=values['challengetime']
 ##Time Values:
     basewaittime =4200000
     waitTime= basewaittime-(spd *60000)

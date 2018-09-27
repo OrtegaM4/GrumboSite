@@ -105,14 +105,13 @@ def get_url(request):
 
 @login_required
 def token_assign(request):
-    url = request.GET.urlencode()
-    query_def= parse.parse_qs(url)
+    # url = request.GET.urlencode()
+    # query_def= parse.parse_qs(url)
     global realtoken
     realtoken=query_def['mytextbox'][0]
     return realtoken
     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
     return HttpResponse(realtoken)
-    return realtoken
 
 
 

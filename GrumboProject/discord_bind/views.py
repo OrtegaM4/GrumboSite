@@ -185,7 +185,7 @@ shopspecial=db.shop_special
 # f.read()
 
 
-
+##Gets Discord User Stats From MongoDB
 @login_required
 def statsget(request):
     values=''
@@ -246,7 +246,7 @@ def statsget(request):
     mytime=time.time() *1000
     timeUntilNextBattleInMinutes=math.ceil((battletime+waitTime-mytime)/60000)
     timeUntilNextChallengeInMinutes=math.ceil((challengetime+waitTime-mytime)/60000)
-    ##Stop Timer
+    ##Stop Timer if full
     if challengesLeft == 3:
         timeUntilNextChallengeInMinutes= 0
     if battlesLeft == 5:
@@ -254,19 +254,23 @@ def statsget(request):
   ## Timer Fix
 
     if timeUntilNextBattleInMinutes  < -240:
-          battlesLeft+5
+          battlesLeft=battlesLeft+5
           timeUntilNextBattleInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextBattleInMinutes - 240))
+
     elif timeUntilNextBattleInMinutes  < -180:
-          battlesLeft+4
+          battlesLeft=battlesLeft+4
           timeUntilNextBattleInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextBattleInMinutes - 180))
+
     elif timeUntilNextBattleInMinutes  < -120:
-          battlesLeft+3
+          battlesLeft=battlesLeft+3
           timeUntilNextBattleInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextBattleInMinutes - 120))
+
     elif timeUntilNextBattleInMinutes  < -60:
-          battlesLeft+2
+          battlesLeft=battlesLeft+2
           timeUntilNextBattleInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextBattleInMinutes - 60))
+
     elif timeUntilNextBattleInMinutes  < 0:
-          battlesLeft+1
+          battlesLeft=battlesLeft+1
           timeUntilNextBattleInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextBattleInMinutes))
 
     print (mytime)

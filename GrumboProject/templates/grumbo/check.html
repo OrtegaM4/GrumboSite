@@ -17,10 +17,10 @@
 <h4><img id="res"src='{% static "images/res.png" %}'>RES {{res}} |<img id="spd"src='{% static "images/spd.png" %}'> SPD {{spd}} |<img id="luk"src='{% static "images/luk.png" %}'> LUK {{luk}}</h4>
 
 <h3><u>Your Equipment</u>:</h3>
-<h4>Head: {{head}}</h4>
-<h4>Armour: {{armour}}</h4>
-<h4>Bottoms: {{bottom}}</h4>
-<h4>Weapon: {{weapon}}</h4>
+<h4>Head: {{head|capfirst}}</h4>
+<h4>Armour: {{armour|capfirst}}</h4>
+<h4>Bottoms: {{bottom|capfirst}}</h4>
+<h4>Weapon: {{weapon|capfirst}}</h4>
 
 <h3><u>Your Actives:</u></h3>
 <h4>{{prebattle}},{{preresults}},{{postresults}}</h4>

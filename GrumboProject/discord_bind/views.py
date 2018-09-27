@@ -252,7 +252,7 @@ def statsget(request):
     if battlesLeft == 5:
         timeUntilNextBattleInMinutes = 0
     if timeUntilNextBattleInMinutes  < 0:
-        (waitTime/60000) - (timeUntilNextBattleInMinutes * -1)
+        waitTime - (timeUntilNextBattleInMinutes * -1)
 
 
     print (mytime)

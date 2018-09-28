@@ -176,13 +176,12 @@ shopspecial=db.shop_special
 #     return render(request,'grumbo/check.html',context={ "values":values,
 
 def get_item(request):
-    url='http://35.182.223.175:5000/api/items'
+    # url='http://35.182.223.175:5000/api/items'
+    r = requests.get('http://35.182.223.175:5000/api/items').json()
+    print(r)
+    return render(request,'grumbo/item.html',context={"r":r})
 
-    r = requests.get(url=url)
-    f=r.json()
-    print(f)
 
-    HttpResponseRedirect(MYURL+'grumbo/stats/')
 
 ## Opening Remote File
 # from StringIO import StringIO

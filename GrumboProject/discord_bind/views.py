@@ -260,7 +260,7 @@ def statsget(request):
     # if timeSinceLastBoss  < 0:
     #     bosshours = math.floor((bosswaittime - abs(timeSinceLastBoss/3600000)))
     #     bossminutes= math.ceil((bosswaittime - abs(timeSinceLastBoss % 3600000)) / 60000)
-    elif timeSinceLastBoss/bosswaittime <1:
+    if timeSinceLastBoss/bosswaittime <1:
         bosshours = math.floor((bosswaittime - timeSinceLastBoss/3600000))
         bossminutes= math.ceil((bosswaittime - timeSinceLastBoss % 3600000) / 60000)
   ## Battle Timer Fix

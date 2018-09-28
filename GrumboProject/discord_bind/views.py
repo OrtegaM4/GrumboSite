@@ -178,12 +178,20 @@ shopspecial=db.shop_special
 def get_item(request):
     # url='http://35.182.223.175:5000/api/items'
     r = requests.get('http://35.182.223.175:5000/api/items').json()
-    
+    filteritem = r.filter()
+
 
     print(r)
-    return render(request,'grumbo/item.html',context={"r":r})
+    return render(request,'grumbo/item.html',context={"filteritem":filteritem})
+
+def get_equip(request):
+    # url='http://35.182.223.175:5000/api/items'
+    r = requests.get('http://35.182.223.175:5000/api/equip').json()
+    filteritem = r.filter()
 
 
+    print(r)
+    return render(request,'grumbo/item.html',context={"filteritem":filteritem})
 
 ## Opening Remote File
 # from StringIO import StringIO

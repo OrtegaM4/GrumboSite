@@ -280,25 +280,21 @@ def statsget(request):
           battlesLeft=battlesLeft+5
 
     elif timeUntilNextBattleInMinutes  < -180:
-          battlesLeft=0
           battlesLeft=battlesLeft+4
           timefix= timeUntilNextBattleInMinutes
           timeUntilNextBattleInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime*4)/60000))
 
     elif timeUntilNextBattleInMinutes  < -120:
-          battlesLeft=0
           battlesLeft=battlesLeft+3
           timefix= timeUntilNextBattleInMinutes
           timeUntilNextBattleInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime*3)/60000))
 
     elif timeUntilNextBattleInMinutes  < -60:
-          battlesLeft=0
           battlesLeft=battlesLeft+2
           timefix= timeUntilNextBattleInMinutes ##-88
           timeUntilNextBattleInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime*2)/60000))
 
     elif timeUntilNextBattleInMinutes  < 0:
-          battlesLeft=0
           battlesLeft=battlesLeft+1
           timefix= timeUntilNextBattleInMinutes ##-16
           timeUntilNextBattleInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime)/60000))
@@ -323,9 +319,11 @@ def statsget(request):
           timeUntilNextChallengeInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix)  + (timefix+(waitTime)/60000))
 
     ##Stop Timer if full
-    if challengesLeft == 3:
+    if challengesLeft == 3 or challengesLeft > 3:
+        challengesLeft = 3
         timeUntilNextChallengeInMinutes= 0
-    if battlesLeft == 5:
+    if battlesLeft == 5 or battlesLeft > 5:
+        battlesLeft= 5
         timeUntilNextBattleInMinutes = 0
     print (mytime)
     print(battletime, challengetime)

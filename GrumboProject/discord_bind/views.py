@@ -258,11 +258,11 @@ def statsget(request):
     timeSinceLastBoss= mytime-bosstime
     bosswaittime=14400000
     if timeSinceLastBoss  < 0:
-        bosshours = math.floor((bosswaittime - abs(timeSinceLastBoss)/3600000))
-        bossminutes= math.ceil(((bosswaittime - abs(timeSinceLastBoss) % 3600000)) / 60000)
-    if timeSinceLastBoss/bosswaittime <1:
         bosshours = math.floor((bosswaittime - abs(timeSinceLastBoss/3600000)))
-        bossminutes= math.ceil(((bosswaittime - abs(timeSinceLastBoss % 3600000))) / 60000)
+        bossminutes= math.ceil((bosswaittime - abs(timeSinceLastBoss % 3600000)) / 60000)
+    elif timeSinceLastBoss/bosswaittime <1:
+        bosshours = math.floor((bosswaittime - abs(timeSinceLastBoss/3600000)))
+        bossminutes= math.ceil((bosswaittime - abs(timeSinceLastBoss % 3600000)) / 60000)
   ## Battle Timer Fix
     if timeUntilNextBattleInMinutes  < -240:
           battlesLeft=battlesLeft+5
@@ -284,12 +284,12 @@ def statsget(request):
           battlesLeft=battlesLeft+1
           timeUntilNextBattleInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextBattleInMinutes))
 ##Challenge Timer Fix
-    if timeUntilNextChallengeInMinutes  < -120:
+     timeUntilNextChallengeInMinutes < -120:
           challengesLeft= 0
           challengesLeft=challengesLeft+3
           timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes - 120))
 
-    elif timeUntilNextBattleInMinutes  < -60:
+    elif timeUntilNextBattleInMinutes < -60:
           challengesLeft= 0
           challengesLeft=challengesLeft+2
           timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes - 60))
@@ -298,6 +298,7 @@ def statsget(request):
           challengesLeft= 0
           challengesLeft=challengesLeft+1
           timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes))
+
     ##Stop Timer if full
     if challengesLeft == 3:
         timeUntilNextChallengeInMinutes= 0

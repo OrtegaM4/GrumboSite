@@ -257,6 +257,8 @@ def statsget(request):
     bosstime=values['bosstime']
     timeSinceLastBoss= mytime-bosstime
     bosswaittime=14400000
+    bosshours=0
+    bossminutes=0
     # if timeSinceLastBoss  < 0:
     #     bosshours = math.floor((bosswaittime - abs(timeSinceLastBoss/3600000)))
     #     bossminutes= math.ceil((bosswaittime - abs(timeSinceLastBoss % 3600000)) / 60000)

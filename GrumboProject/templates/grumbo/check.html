@@ -11,11 +11,14 @@
 <br></br>
 <h3><u>{{name}} Here Are Your Stats:</u></h3>
 <h4>Lv{{level}} with {{xp}} EXP | {{gold}} Gold</h4>
-<h4>{{classId|capfirst}} Lv{{classLevel}} with {{classEXP}} EXP</h4>
 <h4><img id="hp"src='{% static "images/hp.png" %}'>HP {{hp}}/100</h4>
 <h4><img id="pow"src='{% static "images/pow.png" %}'>POW {{pow}} |<img id="wis" src='{% static "images/wis.png" %}'>WIS {{wis}} |<img id="def"src='{% static "images/def.png" %}'> DEF {{df}}</h4>
 <h4><img id="res"src='{% static "images/res.png" %}'>RES {{res}} |<img id="spd"src='{% static "images/spd.png" %}'> SPD {{spd}} |<img id="luk"src='{% static "images/luk.png" %}'> LUK {{luk}}</h4>
+<h4>{{classId|capfirst}} Lv{{classLevel}} with {{classEXP}} EXP</h4>
+<h4>You can class change again in{{classhours}}hours {{classminutes}}minutes</h4>
+<h4>You can boss again in {{classhours}}hours {{classminutes}}minutes</h4>
 
+<br></br>
 <h3><u>Your Equipment</u>:</h3>
 <h4>Head: {{head|capfirst}}</h4>
 <h4>Armour: {{armour|capfirst}}</h4>

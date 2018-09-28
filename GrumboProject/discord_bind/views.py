@@ -246,13 +246,26 @@ def statsget(request):
     mytime=time.time() *1000
     timeUntilNextBattleInMinutes=math.ceil((battletime+waitTime-mytime)/60000)
     timeUntilNextChallengeInMinutes=math.ceil((challengetime+waitTime-mytime)/60000)
+##Class Time Values:
+    classTime= values['classTime']
+    classchangewaittime=43200000
+    timeSinceLastChange= mytime - classTime
+    if timeSinceLastChange/classchangewaittime:
+        classhours = math.floor((classchangewaittime-timeSinceLastChange)/3600000)
+        classminutes= math.floor((classchangewaittime-timeSinceLastChange) % 3600000/60000)
+##Boss Time Values:
+    bosstime=values['bosstime']
+    timeSinceLastBoss= mytime-bosstime
+    bosswaittime=14400000
+    if timeSinceLastBoss/bosswaittime <1:
+        bosshours = math.floor((bosswaittime - timeSinceLastBoss)/3600000)
+        bossminutes= math.ceil(((bosswaittime - timeSinceLastBoss) % 3600000) / 60000)
     ##Stop Timer if full
     if challengesLeft == 3:
         timeUntilNextChallengeInMinutes= 0
     if battlesLeft == 5:
         timeUntilNextBattleInMinutes = 0
-  ## Timer Fix
-
+  ## Battle Timer Fix
     if timeUntilNextBattleInMinutes  < -240:
           battlesLeft=battlesLeft+5
           timeUntilNextBattleInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextBattleInMinutes - 240))
@@ -272,6 +285,18 @@ def statsget(request):
     elif timeUntilNextBattleInMinutes  < 0:
           battlesLeft=battlesLeft+1
           timeUntilNextBattleInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextBattleInMinutes))
+##Challenge Timer Fix
+    if timeUntilNextChallengeInMinutes  < -120:
+          challengesLeft=challengesLeft+3
+          timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes - 120))
+
+    elif timeUntilNextBattleInMinutes  < -60:
+          challengesLeft=challengesLeft+2
+          timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes - 60))
+
+    elif timeUntilNextBattleInMinutes  < 0:
+          challengesLeft=challengesLeft+1
+          timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes))
 
     print (mytime)
     print(battletime, challengetime)
@@ -307,7 +332,10 @@ def statsget(request):
                                                         "postresults":postresults,
                                                         "items":items,
                                                         "timeUntilNextBattleInMinutes":timeUntilNextBattleInMinutes,
-                                                        "timeUntilNextChallengeInMinutes":timeUntilNextChallengeInMinutes
+                                                        "timeUntilNextChallengeInMinutes":timeUntilNextChallengeInMinutes,
+                                                        "classhours":classhours,
+                                                        "classminutes":classminutes
+
 
                                                         # "shoprot":shoprot
 

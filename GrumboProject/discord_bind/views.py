@@ -252,7 +252,7 @@ def statsget(request):
     timeSinceLastChange= mytime - classTime
     classhours= 0
     classminutes= 0
-    if timeSinceLastChange/classchangewaittime < 0:
+    if timeSinceLastChange/classchangewaittime < 1:
         classhours = math.floor(abs((classchangewaittime-timeSinceLastChange)/3600000)-19)
         classminutes= math.floor((classchangewaittime-timeSinceLastChange) % 3600000/60000-40)
 ##Boss Time Values:

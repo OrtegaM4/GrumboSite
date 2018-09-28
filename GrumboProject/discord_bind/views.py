@@ -284,7 +284,7 @@ def statsget(request):
           battlesLeft=battlesLeft+1
           timeUntilNextBattleInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextBattleInMinutes))
 ##Challenge Timer Fix
-      if  timeUntilNextChallengeInMinutes < -120:
+    if    timeUntilNextChallengeInMinutes < -120:
           challengesLeft= 0
           challengesLeft=challengesLeft+3
           timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes - 120))

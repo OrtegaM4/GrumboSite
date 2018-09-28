@@ -257,12 +257,12 @@ def statsget(request):
     bosstime=values['bosstime']
     timeSinceLastBoss= mytime-bosstime
     bosswaittime=14400000
-    if timeSinceLastBoss  < 0:
-        bosshours = math.floor((bosswaittime - abs(timeSinceLastBoss/3600000)))
-        bossminutes= math.ceil((bosswaittime - abs(timeSinceLastBoss % 3600000)) / 60000)
+    # if timeSinceLastBoss  < 0:
+    #     bosshours = math.floor((bosswaittime - abs(timeSinceLastBoss/3600000)))
+    #     bossminutes= math.ceil((bosswaittime - abs(timeSinceLastBoss % 3600000)) / 60000)
     elif timeSinceLastBoss/bosswaittime <1:
-        bosshours = math.floor((bosswaittime - abs(timeSinceLastBoss/3600000)))
-        bossminutes= math.ceil((bosswaittime - abs(timeSinceLastBoss % 3600000)) / 60000)
+        bosshours = math.floor((bosswaittime - timeSinceLastBoss/3600000))
+        bossminutes= math.ceil((bosswaittime - timeSinceLastBoss % 3600000) / 60000)
   ## Battle Timer Fix
     if timeUntilNextBattleInMinutes  < -240:
           battlesLeft=battlesLeft+5

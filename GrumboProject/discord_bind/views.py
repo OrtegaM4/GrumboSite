@@ -176,10 +176,10 @@ shopspecial=db.shop_special
 #     return render(request,'grumbo/check.html',context={ "values":values,
 
 def get_item(request):
-    url='http://172.31.29.22/GrumboBattleBot/values/items.json'
+    url='http://35.182.223.175:5000/api/items'
 
     r = requests.get(url=url)
-    f=r.content
+    f=r.json()
     print(f)
 
     HttpResponseRedirect(MYURL+'grumbo/stats/')

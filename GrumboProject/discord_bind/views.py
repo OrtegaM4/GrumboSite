@@ -248,7 +248,7 @@ def statsget(request):
     timeUntilNextChallengeInMinutes=math.ceil((challengetime+waitTime-mytime)/60000)
 ##Class Time Values:
     classTime= values['classTime']
-    classchangewaittime=43200000
+    classchangewaittime=43200000 ## 12 Hours
     timeSinceLastChange= mytime - classTime
     classhours= 0
     classminutes= 0
@@ -258,7 +258,7 @@ def statsget(request):
 ##Boss Time Values:
     bosstime=values['bosstime']
     timeSinceLastBoss= mytime-bosstime
-    bosswaittime=43200000
+    bosswaittime=7200000 ## 4 hours
     bosshours=0
     bossminutes=0
     # if timeSinceLastBoss  < 0:

@@ -175,14 +175,14 @@ shopspecial=db.shop_special
 #     shoprot=shopvalues
 #     return render(request,'grumbo/check.html',context={ "values":values,
 
-# def get_item(request):
-#     url='http://172.31.29.22/GrumboBattleBot/values/items.json'
-#
-#     r = requests.get(url=url)
-#     f=r.content
-#     print(f)
-#
-#     HttpResponseRedirect(MYURL+'grumbo/stats/')
+def get_item(request):
+    url='http://172.31.29.22/GrumboBattleBot/values/items.json'
+
+    r = requests.get(url=url)
+    f=r.content
+    print(f)
+
+    HttpResponseRedirect(MYURL+'grumbo/stats/')
 
 ## Opening Remote File
 # from StringIO import StringIO

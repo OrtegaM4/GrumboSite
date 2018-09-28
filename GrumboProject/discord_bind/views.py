@@ -250,6 +250,8 @@ def statsget(request):
     classTime= values['classTime']
     classchangewaittime=43200000
     timeSinceLastChange= mytime - classTime
+    classhours= 0
+    classminutes= 0
     if timeSinceLastChange/classchangewaittime:
         classhours = math.floor((classchangewaittime-timeSinceLastChange)/3600000)
         classminutes= math.floor((classchangewaittime-timeSinceLastChange) % 3600000/60000)

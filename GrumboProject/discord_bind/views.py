@@ -285,7 +285,7 @@ def statsget(request):
     if timeUntilNextBattleInMinutes  < 0  and timeUntilNextBattleInMinutes  > -60:
           battlesLeft=battlesLeft+1
           timefix= timeUntilNextBattleInMinutes ##-16
-          timeUntilNextBattleInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime)/60000))
+          timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime)/60000))
 
     if  timeUntilNextBattleInMinutes < -60  and timeUntilNextBattleInMinutes > -120:
           battlesLeft=battlesLeft+2

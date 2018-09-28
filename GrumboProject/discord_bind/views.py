@@ -214,14 +214,14 @@ def statsget(request):
     xp= values['experience']
     gold= values['gold']
     items=values['items']
-    items= ''.join(items)
+    items= ', '.join(items)
 ##Actives:
     prebattle=values['prebattle']
-    prebattle= ''.join(prebattle)
+    prebattle= ', '.join(prebattle)
     preresults=values['preresults']
-    preresults= ''.join(preresults)
+    preresults= ', '.join(preresults)
     postresults=values['postresults']
-    postresults= ''.join(postresults)
+    postresults= ', '.join(postresults)
 ##Class Values:
     classId  =  values['classId']
     classLevel= values['classLevel']

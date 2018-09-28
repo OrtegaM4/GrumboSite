@@ -178,8 +178,10 @@ shopspecial=db.shop_special
 def get_item(request):
     # url='http://35.182.223.175:5000/api/items'
     r = requests.get('http://35.182.223.175:5000/api/items').json()
+    itemsort= r.sort()
+
     print(r)
-    return render(request,'grumbo/item.html',context={"r":r})
+    return render(request,'grumbo/item.html',context={"itemsort":itemsort})
 
 
 

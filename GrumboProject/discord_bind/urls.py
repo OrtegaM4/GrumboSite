@@ -39,6 +39,7 @@ urlpatterns = [
     path('cb', views.get_url, name='discord_bind_callback'),
     path('cd',views.token_assign, name='token_assign'),
     path('tk',views.get_discord, name='get_discord'),
-    path('statsget',views.statsget, name='statsget')
+    path('statsget',views.statsget, name='statsget'),
+    path('it',views.get_item, name='itemget')
 
 ]

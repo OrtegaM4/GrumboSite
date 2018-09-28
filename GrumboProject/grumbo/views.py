@@ -16,9 +16,9 @@ class ClassesView(TemplateView):
 
 class StatsView(TemplateView):
     template_name = 'grumbo/stats.html'
+
 class CheckView(TemplateView):
     template_name = 'grumbo/check.html'
-
 
 class AboutView(TemplateView):
         template_name = 'grumbo/about.html'
@@ -28,6 +28,10 @@ class BossView(TemplateView):
 
 class ThanksPage(TemplateView):
     template_name= 'accounts/thanks.html'
+
+class ItemView(TemplateView):
+    template_name= 'grumbo/item.html'
+
 
 
 def btnprint():

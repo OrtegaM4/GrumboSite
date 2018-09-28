@@ -175,12 +175,20 @@ shopspecial=db.shop_special
 #     shoprot=shopvalues
 #     return render(request,'grumbo/check.html',context={ "values":values,
 
+# def get_item(request):
+#     url='http://172.31.29.22/GrumboBattleBot/values/items.json'
+#
+#     r = requests.get(url=url)
+#     f=r.content
+#     print(f)
+#
+#     HttpResponseRedirect(MYURL+'grumbo/stats/')
 
 ## Opening Remote File
 # from StringIO import StringIO
 
-# r = requests.get(file_url)
 # f = StringIO(r.content)
+# itemList = JSON.parse(fs.readFileSync("http://35.182.223.175:27017/GrumboBattleBot/values/items.json")); From james
 
 # f.read()
 
@@ -261,9 +269,6 @@ def statsget(request):
     bosswaittime=14400000 ## 4 hours
     bosshours=0
     bossminutes=0
-    # if timeSinceLastBoss  < 0:
-    #     bosshours = math.floor((bosswaittime - abs(timeSinceLastBoss/3600000)))
-    #     bossminutes= math.ceil((bosswaittime - abs(timeSinceLastBoss % 3600000)) / 60000)
     if timeSinceLastBoss/bosswaittime <1:
         bosshours = math.floor((bosswaittime - timeSinceLastBoss)/3600000)
         bossminutes= math.ceil(((bosswaittime - timeSinceLastBoss) % 3600000) / 60000)

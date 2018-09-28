@@ -257,9 +257,12 @@ def statsget(request):
     bosstime=values['bosstime']
     timeSinceLastBoss= mytime-bosstime
     bosswaittime=14400000
+    if timeSinceLastBoss  < 0:
+        bosshours = math.floor((bosswaittime - abs(timeSinceLastBoss)/3600000))
+        bossminutes= math.ceil(((bosswaittime - abs(timeSinceLastBoss) % 3600000)) / 60000)
     if timeSinceLastBoss/bosswaittime <1:
-        bosshours = math.floor((bosswaittime - timeSinceLastBoss)/3600000)
-        bossminutes= math.ceil(((bosswaittime - timeSinceLastBoss) % 3600000) / 60000)
+        bosshours = math.floor((bosswaittime - abs(timeSinceLastBoss/3600000)))
+        bossminutes= math.ceil(((bosswaittime - abs(timeSinceLastBoss % 3600000))) / 60000)
   ## Battle Timer Fix
     if timeUntilNextBattleInMinutes  < -240:
           battlesLeft=battlesLeft+5
@@ -300,6 +303,7 @@ def statsget(request):
         timeUntilNextChallengeInMinutes= 0
     if battlesLeft == 5:
         timeUntilNextBattleInMinutes = 0
+    if
     print (mytime)
     print(battletime, challengetime)
     return render(request,'grumbo/check.html',context={ "values":values,

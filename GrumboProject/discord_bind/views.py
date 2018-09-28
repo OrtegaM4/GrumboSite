@@ -267,53 +267,53 @@ def statsget(request):
     bosstime=values['bosstime']
     timeSinceLastBoss= mytime-bosstime
     bosswaittime=14400000 ## 4 hours
-    bosshours=0
-    bossminutes=0
-    if timeSinceLastBoss/bosswaittime <1:
-        bosshours = math.floor((bosswaittime - timeSinceLastBoss)/3600000)
-        bossminutes= math.ceil(((bosswaittime - timeSinceLastBoss) % 3600000) / 60000)
-  ## Battle Timer Fix
-    if timeUntilNextBattleInMinutes  < -240:
-          battlesLeft=0
-          battlesLeft=battlesLeft+5
-
-    elif timeUntilNextBattleInMinutes  < -180:
-          battlesLeft=0
-          battlesLeft=battlesLeft+4
-          timefix= timeUntilNextBattleInMinutes##-190
-          timeUntilNextBattleInMinutes= timeUntilNextBattleInMinutes - timefix + (timefix+240)
-
-    elif timeUntilNextBattleInMinutes  < -120:
-          battlesLeft=0
-          battlesLeft=battlesLeft+3
-          timefix= timeUntilNextBattleInMinutes##-190
-          timeUntilNextBattleInMinutes= timeUntilNextBattleInMinutes - timefix + (timefix+180)
-    elif timeUntilNextBattleInMinutes  < -60:
-          battlesLeft=0
-          battlesLeft=battlesLeft+2
-          timefix= timeUntilNextBattleInMinutes##-190
-          timeUntilNextBattleInMinutes= timeUntilNextBattleInMinutes - timefix + (timefix+120)
-    elif timeUntilNextBattleInMinutes  < 0:
-          battlesLeft=0
-          battlesLeft=battlesLeft+1
-          timefix= timeUntilNextBattleInMinutes##-190
-          timeUntilNextBattleInMinutes= timeUntilNextBattleInMinutes - timefix + (timefix+60)
+  #   bosshours=0
+  #   bossminutes=0
+  #   if timeSinceLastBoss/bosswaittime <1:
+  #       bosshours = math.floor((bosswaittime - timeSinceLastBoss)/3600000)
+  #       bossminutes= math.ceil(((bosswaittime - timeSinceLastBoss) % 3600000) / 60000)
+  # ## Battle Timer Fix
+  #   if timeUntilNextBattleInMinutes  < -240:
+  #         battlesLeft=0
+  #         battlesLeft=battlesLeft+5
+  #
+  #   elif timeUntilNextBattleInMinutes  < -180:
+  #         battlesLeft=0
+  #         battlesLeft=battlesLeft+4
+  #         timefix= timeUntilNextBattleInMinutes
+  #         timeUntilNextBattleInMinutes= timeUntilNextBattleInMinutes - timefix + (timefix+240)
+  #
+  #   elif timeUntilNextBattleInMinutes  < -120:
+  #         battlesLeft=0
+  #         battlesLeft=battlesLeft+3
+  #         timefix= timeUntilNextBattleInMinutes
+  #         timeUntilNextBattleInMinutes= timeUntilNextBattleInMinutes - timefix + (timefix+180)
+  #   elif timeUntilNextBattleInMinutes  < -60:
+  #         battlesLeft=0
+  #         battlesLeft=battlesLeft+2
+  #         timefix= timeUntilNextBattleInMinutes
+  #         timeUntilNextBattleInMinutes= timeUntilNextBattleInMinutes - timefix + (timefix+120)
+  #   elif timeUntilNextBattleInMinutes  < 0:
+  #         battlesLeft=0
+  #         battlesLeft=battlesLeft+1
+  #         timefix= timeUntilNextBattleInMinutes
+  #         timeUntilNextBattleInMinutes= timeUntilNextBattleInMinutes - timefix + (timefix+60)
 
 ##Challenge Timer Fix
-    if    timeUntilNextChallengeInMinutes < -120:
-          challengesLeft= 0
-          challengesLeft=challengesLeft+3
-          timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes - 120))
-
-    elif timeUntilNextChallengeInMinutes < -60:
-          challengesLeft= 0
-          challengesLeft=challengesLeft+2
-          timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes - 60))
-
-    elif timeUntilNextChallengeInMinutes  < 0:
-          challengesLeft= 0
-          challengesLeft=challengesLeft+1
-          timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes))
+    # if    timeUntilNextChallengeInMinutes < -120:
+    #       challengesLeft= 0
+    #       challengesLeft=challengesLeft+3
+    #       timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes - 120))
+    #
+    # elif timeUntilNextChallengeInMinutes < -60:
+    #       challengesLeft= 0
+    #       challengesLeft=challengesLeft+2
+    #       timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes - 60))
+    #
+    # elif timeUntilNextChallengeInMinutes  < 0:
+    #       challengesLeft= 0
+    #       challengesLeft=challengesLeft+1
+    #       timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes))
 
     ##Stop Timer if full
     if challengesLeft == 3:

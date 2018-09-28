@@ -282,11 +282,11 @@ def statsget(request):
 
 
   ## Battle Timer Fix
-    # if timeUntilNextBattleInMinutes  < 0  and timeUntilNextBattleInMinutes  > -60:
-    #       battlesLeft=battlesLeft+1
-    #       timefix= timeUntilNextBattleInMinutes ##-16
-    #       timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime)/60000))
-    #
+    if timeUntilNextBattleInMinutes  < 0  and timeUntilNextBattleInMinutes  > -60:
+           battlesLeft=battlesLeft+1
+           timefix= timeUntilNextBattleInMinutes ##-16
+           timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime)/60000))
+     
     # if  timeUntilNextBattleInMinutes < -60  and timeUntilNextBattleInMinutes > -120:
     #       battlesLeft=battlesLeft+2
     #       timefix= timeUntilNextBattleInMinutes ##-88

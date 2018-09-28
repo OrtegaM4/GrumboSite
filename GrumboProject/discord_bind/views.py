@@ -283,44 +283,44 @@ def statsget(request):
           battlesLeft=0
           battlesLeft=battlesLeft+4
           timefix= timeUntilNextBattleInMinutes
-          timeUntilNextBattleInMinutes= timeUntilNextBattleInMinutes - timefix + (timefix+waitTime*4)
+          timeUntilNextBattleInMinutes= (timeUntilNextBattleInMinutes - timefix) + (timefix+waitTime*4)
 
     elif timeUntilNextBattleInMinutes  < -120:
           battlesLeft=0
           battlesLeft=battlesLeft+3
           timefix= timeUntilNextBattleInMinutes
-          timeUntilNextBattleInMinutes= timeUntilNextBattleInMinutes - timefix + (timefix+(waitTime*3))
+          timeUntilNextBattleInMinutes= (timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime*3))
 
     elif timeUntilNextBattleInMinutes  < -60:
           battlesLeft=0
           battlesLeft=battlesLeft+2
           timefix= timeUntilNextBattleInMinutes ##-88
-          timeUntilNextBattleInMinutes= timeUntilNextBattleInMinutes - timefix + (timefix+(waitTime*2))
+          timeUntilNextBattleInMinutes= (timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime*2))
 
     elif timeUntilNextBattleInMinutes  < 0:
           battlesLeft=0
           battlesLeft=battlesLeft+1
           timefix= timeUntilNextBattleInMinutes ##-16
-          timeUntilNextBattleInMinutes= timeUntilNextBattleInMinutes - timefix + (timefix+waitTime)
+          timeUntilNextBattleInMinutes= (timeUntilNextBattleInMinutes - timefix) + (timefix+waitTime)
 
 ##Challenge Timer Fix
     if    timeUntilNextChallengeInMinutes  < -120:
           challengesLeft=0
           challengesLeft=challengesLeft+3
           timefix= timeUntilNextChallengeInMinutes
-          timeUntilNextChallengeInMinutes= timeUntilNextChallengeInMinutes - timefix + (timefix+(waitTime*3))
+          timeUntilNextChallengeInMinutes= (timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime*3))
 
     elif timeUntilNextChallengeInMinutes  < -60:
           challengesLeft=0
           challengesLeft=challengesLeft+2
           timefix= timeUntilNextChallengeInMinutes ##-88
-          timeUntilNextChallengeInMinutes= timeUntilNextChallengeInMinutes - timefix + (timefix+(waitTime*2))
+          timeUntilNextChallengeInMinutes= (timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime*2))
 
     elif timeUntilNextChallengeInMinutes  < 0:
           challengesLeft=0
           challengesLeft=challengesLeft+1
           timefix= timeUntilNextChallengeInMinutes ##-16
-          timeUntilNextChallengeInMinutes= timeUntilNextChallengeInMinutes - timefix + (timefix+waitTime)
+          timeUntilNextChallengeInMinutes= (timeUntilNextBattleInMinutes - timefix)  + (timefix+waitTime)
 
     ##Stop Timer if full
     if challengesLeft == 3:

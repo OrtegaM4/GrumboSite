@@ -308,19 +308,19 @@ def statsget(request):
           challengesLeft=0
           challengesLeft=challengesLeft+3
           timefix= timeUntilNextChallengeInMinutes
-          timeUntilNextChallengeInMinutes= (timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime*3))
+          timeUntilNextChallengeInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime*3)/60000))
 
     elif timeUntilNextChallengeInMinutes  < -60:
           challengesLeft=0
           challengesLeft=challengesLeft+2
           timefix= timeUntilNextChallengeInMinutes ##-88
-          timeUntilNextChallengeInMinutes= (timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime*2))
+          timeUntilNextChallengeInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime*2)/60000))
 
     elif timeUntilNextChallengeInMinutes  < 0:
           challengesLeft=0
           challengesLeft=challengesLeft+1
           timefix= timeUntilNextChallengeInMinutes ##-16
-          timeUntilNextChallengeInMinutes= (timeUntilNextBattleInMinutes - timefix)  + (timefix+waitTime)
+          timeUntilNextChallengeInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix)  + (timefix+(waitTime)/60000))
 
     ##Stop Timer if full
     if challengesLeft == 3:

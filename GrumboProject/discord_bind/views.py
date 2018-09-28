@@ -249,7 +249,7 @@ def statsget(request):
     challengesLeft=values['challengesLeft']
     challengetime=values['challengetime']
 ##Time Values:
-    basewaittime =3600000
+    basewaittime =4200000 ##1Hour
     waitTime= basewaittime-(spd *60000)
     mytime=time.time() *1000
     timeUntilNextBattleInMinutes=math.ceil((battletime+waitTime-mytime)/60000)

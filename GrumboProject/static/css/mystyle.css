@@ -61,14 +61,15 @@ span.title{
 }
 /* Icons */
 h4.firstrow  {
-  border-bottom: -15%;
   margin-bottom: -6%;
 }
 h4.secondrow  {
-  border-bottom: -15%;
   margin-bottom: -6%;
 }
-
+h4.thirdrow  {
+  border-bottom: -15%;
+  margin-bottom: -2%;
+}
 #hp{
   height: 8%;
   width:8%;

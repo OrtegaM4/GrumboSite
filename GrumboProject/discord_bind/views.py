@@ -289,12 +289,12 @@ def statsget(request):
           challengesLeft=challengesLeft+3
           timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes - 120))
 
-    elif timeUntilNextBattleInMinutes < -60:
+    elif timeUntilNextChallengeInMinutes < -60:
           challengesLeft= 0
           challengesLeft=challengesLeft+2
           timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes - 60))
 
-    elif timeUntilNextBattleInMinutes  < 0:
+    elif timeUntilNextChallengeInMinutes  < 0:
           challengesLeft= 0
           challengesLeft=challengesLeft+1
           timeUntilNextChallengeInMinutes= math.ceil((waitTime/60000) - abs(timeUntilNextChallengeInMinutes))

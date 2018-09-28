@@ -258,7 +258,7 @@ def statsget(request):
 ##Boss Time Values:
     bosstime=values['bosstime']
     timeSinceLastBoss= mytime-bosstime
-    bosswaittime=14400000
+    bosswaittime=43200000
     bosshours=0
     bossminutes=0
     # if timeSinceLastBoss  < 0:

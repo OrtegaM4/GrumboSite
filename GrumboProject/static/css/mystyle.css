@@ -60,6 +60,15 @@ span.title{
 
 }
 /* Icons */
+h4.firstrow  {
+  border-bottom: -15%;
+  margin-bottom: -4%;
+}
+h4.secondrow  {
+  border-bottom: -15%;
+  margin-bottom: -4%;
+}
+
 #hp{
   height: 8%;
   width:8%;
@@ -67,7 +76,7 @@ span.title{
   padding-left: -15%;
   padding-right: -5%;
   margin-right: -3%;
-
+  box-sizing: 10%;
 }
 #pow{
   height: 8%;

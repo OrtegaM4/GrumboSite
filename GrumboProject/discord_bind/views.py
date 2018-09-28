@@ -214,10 +214,14 @@ def statsget(request):
     xp= values['experience']
     gold= values['gold']
     items=values['items']
+    items= ''.join(items)
 ##Actives:
     prebattle=values['prebattle']
+    prebattle= ''.join(prebattle)
     preresults=values['preresults']
+    preresults= ''.join(preresults)
     postresults=values['postresults']
+    postresults= ''.join(postresults)
 ##Class Values:
     classId  =  values['classId']
     classLevel= values['classLevel']
@@ -248,12 +252,14 @@ def statsget(request):
     cwinrate=values['challengeWinrate']
     challengesLeft=values['challengesLeft']
     challengetime=values['challengetime']
-##Time Values:
+
+##Battle/Challengeime Values:
     basewaittime =4200000 ##1Hour
     waitTime= basewaittime-(spd *60000) ##1500000
     mytime=time.time() *1000
     timeUntilNextBattleInMinutes=math.ceil((battletime+waitTime-mytime)/60000)
     timeUntilNextChallengeInMinutes=math.ceil((challengetime+waitTime-mytime)/60000)
+
 ##Class Time Values:
     classTime= values['classTime']
     classchangewaittime=43200000 ## 12 Hours
@@ -263,6 +269,7 @@ def statsget(request):
     if timeSinceLastChange/classchangewaittime < 1:
         classhours = math.floor((classchangewaittime-timeSinceLastChange)/3600000)
         classminutes= math.floor(((classchangewaittime-timeSinceLastChange) % 3600000) /60000)
+
 ##Boss Time Values:
     bosstime=values['bosstime']
     timeSinceLastBoss= mytime-bosstime

@@ -303,7 +303,6 @@ def statsget(request):
         timeUntilNextChallengeInMinutes= 0
     if battlesLeft == 5:
         timeUntilNextBattleInMinutes = 0
-    if
     print (mytime)
     print(battletime, challengetime)
     return render(request,'grumbo/check.html',context={ "values":values,

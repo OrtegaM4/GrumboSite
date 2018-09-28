@@ -340,7 +340,9 @@ def statsget(request):
                                                         "timeUntilNextBattleInMinutes":timeUntilNextBattleInMinutes,
                                                         "timeUntilNextChallengeInMinutes":timeUntilNextChallengeInMinutes,
                                                         "classhours":classhours,
-                                                        "classminutes":classminutes
+                                                        "classminutes":classminutes,
+                                                        "bosshours":bosshours,
+                                                        "bossminutes":bossminutes
 
 
                                                         # "shoprot":shoprot

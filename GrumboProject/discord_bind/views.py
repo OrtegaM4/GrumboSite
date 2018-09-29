@@ -303,7 +303,7 @@ def statsget(request):
            timefix= timeUntilNextBattleInMinutes ##-88
            timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime*2)/60000))
 
-    if timeUntilNextBattleInMinutes < -120 + spdfix2 and timeUntilNextBattleInMinutes > -180 spdfix3:
+    if timeUntilNextBattleInMinutes < -120 + spdfix2 and timeUntilNextBattleInMinutes > -180 + spdfix3:
           battlesLeft=battlesLeft+3
           timefix= timeUntilNextBattleInMinutes
           timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime*3)/60000))

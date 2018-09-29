@@ -300,20 +300,20 @@ def statsget(request):
            timefix= timeUntilNextBattleInMinutes ##-88
            timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime*2)/60000))
 
-    if timeUntilNextBattleInMinutes < -120 + spdfix *2 and timeUntilNextBattleInMinutes > -180 spdfix *3:
+    if timeUntilNextBattleInMinutes < -120 + (spdfix *2) and timeUntilNextBattleInMinutes > -180 spdfix *3:
           battlesLeft=battlesLeft+3
           timefix= timeUntilNextBattleInMinutes
           timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime*3)/60000))
 
-    if timeUntilNextBattleInMinutes < -180 + spdfix *3 and timeUntilNextBattleInMinutes > -240 + spdfix * 4:
+    if timeUntilNextBattleInMinutes < -180 + (spdfix *3) and timeUntilNextBattleInMinutes > -240 + spdfix * 4:
           battlesLeft=battlesLeft+4
           timefix= timeUntilNextBattleInMinutes
           timeUntilNextBattleInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime)/60000))
 
-    elif timeUntilNextBattleInMinutes  < -240 + spdfix * 4:
+    elif timeUntilNextBattleInMinutes  < -240 + (spdfix * 4):
           battlesLeft=0
           battlesLeft=battlesLeft+5
-    
+
 ##Challenge Timer Fix
 
     if timeUntilNextChallengeInMinutes  < 0  and timeUntilNextChallengeInMinutes  > -60:

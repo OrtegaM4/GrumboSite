@@ -179,7 +179,7 @@ def get_item(request):
     # url='http://35.182.223.175:5000/api/items'
     r = requests.get('http://35.182.223.175:5000/api/items').json()
     filteritem = dict.items(r)
-
+    filteritem= filteritem.filter('potion')
     print(r)
     return render(request,'grumbo/item.html',context={"filteritem":filteritem})
 
@@ -187,7 +187,7 @@ def get_equip(request):
     # url='http://35.182.223.175:5000/api/items'
     r = requests.get('http://35.182.223.175:5000/api/equips').json()
     filterequip = dict.items(r)
-
+    filterequip = filterequip.filter('warrior')
 
 
     print(r)

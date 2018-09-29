@@ -319,20 +319,20 @@ def statsget(request):
 
 ##Challenge Timer Fix
 
-    if timeUntilNextChallengeInMinutes  < 0  and timeUntilNextChallengeInMinutes  > -60:
+    if timeUntilNextChallengeInMinutes  < 0  and timeUntilNextChallengeInMinutes  > -60 + spdfix:
           challengesLeft=challengesLeft+1
           timefix= timeUntilNextChallengeInMinutes ##-16
           timeUntilNextChallengeInMinutes= math.ceil((timeUntilNextChallengeInMinutes - timefix)  + (timefix+(waitTime)/60000))
 
-    elif  timeUntilNextChallengeInMinutes < -45  and timeUntilNextChallengeInMinutes > -120:
+    if  timeUntilNextChallengeInMinutes < -60 + spdfix  and timeUntilNextChallengeInMinutes > -120 + spdfix2:
           challengesLeft=challengesLeft+2
           timefix= timeUntilNextChallengeInMinutes
-          timeUntilNextChallengeInMinutes= math.ceil((timeUntilNextChallengeInMinutes - timefix) + (timefix+(waitTime)/60000))
+          timeUntilNextChallengeInMinutes= math.ceil((timeUntilNextChallengeInMinutes - timefix) + (timefix+(waitTime*2)/60000))
 
-    elif timeUntilNextChallengeInMinutes < -120 and timeUntilNextChallengeInMinutes > -180:
+    if timeUntilNextChallengeInMinutes < -120 + spdfix2 and timeUntilNextChallengeInMinutes > -180 + spdfix3:
           challengesLeft=challengesLeft+3
           timefix= timeUntilNextChallengeInMinutes ##-88
-          timeUntilNextChallengeInMinutes= math.ceil((timeUntilNextChallengeInMinutes - timefix) + (timefix+(waitTime)/60000))
+          timeUntilNextChallengeInMinutes= math.ceil((timeUntilNextChallengeInMinutes - timefix) + (timefix+(waitTime*3)/60000))
 
 
     ##Stop Timer if full

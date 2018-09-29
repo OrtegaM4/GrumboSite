@@ -289,20 +289,20 @@ def statsget(request):
 
 
   ## Battle Timer Fix
-    if timeUntilNextBattleInMinutes  < 0  and timeUntilNextBattleInMinutes  > -60:
-           battlesLeft=battlesLeft+1
-           timefix= timeUntilNextBattleInMinutes ##-16
-           timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime)/60000))
-
-    if  timeUntilNextBattleInMinutes < -60  and timeUntilNextBattleInMinutes > -120:
-           battlesLeft=battlesLeft+2
-           timefix= timeUntilNextBattleInMinutes ##-88
-           timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime*2)/60000))
-
-    if timeUntilNextBattleInMinutes < -120 and timeUntilNextBattleInMinutes > -180:
-          battlesLeft=battlesLeft+3
-          timefix= timeUntilNextBattleInMinutes
-          timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime*3)/60000))
+    # if timeUntilNextBattleInMinutes  < 0  and timeUntilNextBattleInMinutes  > -60:
+    #        battlesLeft=battlesLeft+1
+    #        timefix= timeUntilNextBattleInMinutes ##-16
+    #        timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime)/60000))
+    #
+    # if  timeUntilNextBattleInMinutes < -60  and timeUntilNextBattleInMinutes > -120:
+    #        battlesLeft=battlesLeft+2
+    #        timefix= timeUntilNextBattleInMinutes ##-88
+    #        timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime*2)/60000))
+    #
+    # if timeUntilNextBattleInMinutes < -120 and timeUntilNextBattleInMinutes > -180:
+    #       battlesLeft=battlesLeft+3
+    #       timefix= timeUntilNextBattleInMinutes
+    #       timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime*3)/60000))
 
     # if timeUntilNextBattleInMinutes < -180 and timeUntilNextBattleInMinutes > -240:
     #       battlesLeft=battlesLeft+4
@@ -335,9 +335,9 @@ def statsget(request):
     if challengesLeft == 3 or challengesLeft > 3:
         challengesLeft = 3
         timeUntilNextChallengeInMinutes= 0
-    if battlesLeft == 5 or battlesLeft > 5:
-        battlesLeft= 5
-        timeUntilNextBattleInMinutes = 0
+    # if battlesLeft == 5 or battlesLeft > 5:
+    #     battlesLeft= 5
+    #     timeUntilNextBattleInMinutes = 0
     print (mytime)
     print(battletime, challengetime)
     return render(request,'grumbo/check.html',context={ "values":values,

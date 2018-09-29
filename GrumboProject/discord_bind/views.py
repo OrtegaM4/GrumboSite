@@ -288,12 +288,12 @@ def statsget(request):
         bossminutes= math.ceil(((bosswaittime - timeSinceLastBoss) % 3600000) / 60000)
 
 
-  ## Battle Timer Fix
-    # if timeUntilNextBattleInMinutes  < 0  and timeUntilNextBattleInMinutes  > -60:
-    #        battlesLeft=battlesLeft+1
-    #        timefix= timeUntilNextBattleInMinutes ##-16
-    #        timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime)/60000))
-    #
+  # Battle Timer Fix
+    if timeUntilNextBattleInMinutes  < 0  and timeUntilNextBattleInMinutes  > -60:
+           battlesLeft=battlesLeft+1
+           timefix= timeUntilNextBattleInMinutes ##-16
+           timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime)/60000))
+
     # if  timeUntilNextBattleInMinutes < -60  and timeUntilNextBattleInMinutes > -120:
     #        battlesLeft=battlesLeft+2
     #        timefix= timeUntilNextBattleInMinutes ##-88
@@ -335,7 +335,7 @@ def statsget(request):
     if challengesLeft == 3 or challengesLeft > 3:
         challengesLeft = 3
         timeUntilNextChallengeInMinutes= 0
-    # if battlesLeft == 5 or battlesLeft > 5:
+    # if battlesLeft == 5 or battlesLeft > 5:          ## If battle was 6:29pm shows -52min
     #     battlesLeft= 5
     #     timeUntilNextBattleInMinutes = 0
     print (mytime)

@@ -267,6 +267,9 @@ def statsget(request):
     timeUntilNextBattleInMinutes=math.ceil((battletime+waitTime-mytime)/60000)
     timeUntilNextChallengeInMinutes=math.ceil((challengetime+waitTime-mytime)/60000)
     spdfix= spd - 10
+    spdfix2= spdfix *2
+    spdfix3= spdfix *3
+    spdfix4= spdfix*4
 
 ##Class Time Values:
     classTime= values['classTime']
@@ -295,24 +298,24 @@ def statsget(request):
            timefix= timeUntilNextBattleInMinutes ##-16
            timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime)/60000))
 
-    if  timeUntilNextBattleInMinutes < -60 + spdfix and timeUntilNextBattleInMinutes > -120 + spdfix *2:
+    if  timeUntilNextBattleInMinutes < -60 + spdfix and timeUntilNextBattleInMinutes > -120 + spdfix2:
            battlesLeft=battlesLeft+2
            timefix= timeUntilNextBattleInMinutes ##-88
            timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime*2)/60000))
 
-    # if timeUntilNextBattleInMinutes < -120 + (spdfix *2) and timeUntilNextBattleInMinutes > -180 spdfix *3:
-    #       battlesLeft=battlesLeft+3
-    #       timefix= timeUntilNextBattleInMinutes
-    #       timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime*3)/60000))
-    #
-    # if timeUntilNextBattleInMinutes < -180 + (spdfix *3) and timeUntilNextBattleInMinutes > -240 + spdfix * 4:
-    #       battlesLeft=battlesLeft+4
-    #       timefix= timeUntilNextBattleInMinutes
-    #       timeUntilNextBattleInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime)/60000))
-    #
-    # elif timeUntilNextBattleInMinutes  < -240 + (spdfix * 4):
-    #       battlesLeft=0
-    #       battlesLeft=battlesLeft+5
+    if timeUntilNextBattleInMinutes < -120 + spdfix2 and timeUntilNextBattleInMinutes > -180 spdfix3:
+          battlesLeft=battlesLeft+3
+          timefix= timeUntilNextBattleInMinutes
+          timeUntilNextBattleInMinutes= math.ceil((timefix+(waitTime*3)/60000))
+
+    if timeUntilNextBattleInMinutes < -180 + spdfix3 and timeUntilNextBattleInMinutes > -240 + spdfix4:
+          battlesLeft=battlesLeft+4
+          timefix= timeUntilNextBattleInMinutes
+          timeUntilNextBattleInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime)/60000))
+
+    elif timeUntilNextBattleInMinutes  < -240 + spdfix4:
+          battlesLeft=0
+          battlesLeft=battlesLeft+5
 
 ##Challenge Timer Fix
 

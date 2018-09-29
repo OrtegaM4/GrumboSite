@@ -186,11 +186,11 @@ def get_item(request):
 def get_equip(request):
     # url='http://35.182.223.175:5000/api/items'
     r = requests.get('http://35.182.223.175:5000/api/equip').json()
-    filteritem = r.filter()
+    filterequip = r.filter()
 
 
     print(r)
-    return render(request,'grumbo/item.html',context={"filteritem":filteritem})
+    return render(request,'grumbo/item.html',context={"filterequip":filterequip})
 
 ## Opening Remote File
 # from StringIO import StringIO

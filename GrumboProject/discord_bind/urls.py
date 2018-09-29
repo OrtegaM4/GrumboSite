@@ -15,6 +15,7 @@ urlpatterns = [
     path('cd',views.token_assign, name='token_assign'),
     path('tk',views.get_discord, name='get_discord'),
     path('statsget',views.statsget, name='statsget'),
-    path('it',views.get_item, name='itemget')
+    path('it',views.get_item, name='itemget'),
+    path('ie',views.get_equip, name='equipget')
 
 ]

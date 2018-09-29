@@ -178,7 +178,7 @@ shopspecial=db.shop_special
 def get_item(request):
     # url='http://35.182.223.175:5000/api/items'
     r = requests.get('http://35.182.223.175:5000/api/items').json()
-    filteritem = r
+    filteritem = r.filter('warrior')
 
     print(r)
     return render(request,'grumbo/item.html',context={"filteritem":filteritem})

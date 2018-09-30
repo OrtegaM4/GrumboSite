@@ -190,7 +190,7 @@ def get_equip(request):
     d= dict()
 
     for k,v in equiplist.items():
-        if v = null
+        if v == null:
             pass
         else:
             d[v['classId']] = d.get(v['classId'],[]).append(k)

@@ -176,20 +176,39 @@ shopspecial=db.shop_special
 #     return render(request,'grumbo/check.html',context={ "values":values,
 
 def get_item(request):
-    # url='http://35.182.223.175:5000/api/items'
     r = requests.get('http://35.182.223.175:5000/api/items').json()
     filteritem = r
     print(r)
     return render(request,'grumbo/item.html',context={"filteritem":filteritem})
 
 def get_equip(request):
-    # url='http://35.182.223.175:5000/api/items'
     r = requests.get('http://35.182.223.175:5000/api/equips').json()
     filterequip = r
+    equiplist= JSON.parse(r)
 
+d= dict()
+
+    for i in equiplist:
+            d[equiplist.classID].append(i)
+
+
+# "name": "Rusty Grumblade",
+# 		"command": "!grumbo equip rusty_grumblade",
+# 		"type": "weapon",
+#     "classId": "warrior",
+#     "level": 1,
+#     "pow": 8,
+#     "wis": 0,
+#     "def": 0,
+#     "res": 0,
+#     "spd": 0,
+#     "luk": 0,
+#     "active": null,
+# 		"description"
+#         "price": 420,
 
     print(r)
-    return render(request,'grumbo/item.html',context={"filterequip":filterequip})
+    return render(request,'grumbo/item.html',context={"filterequip":filterequip, "d":d})
 
 ## Opening Remote File
 # from StringIO import StringIO

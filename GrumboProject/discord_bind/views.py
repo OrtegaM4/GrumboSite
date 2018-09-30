@@ -186,10 +186,10 @@ def get_equip(request):
     filterequip = r
     equiplist= JSON.parse(r)
 
-d= dict()
+    d= dict()
 
     for i in equiplist:
-            d[equiplist.classID].append(i)
+        d[equiplist.classID].append(i)
 
 
 # "name": "Rusty Grumblade",

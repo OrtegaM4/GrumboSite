@@ -182,9 +182,9 @@ def get_item(request):
     return render(request,'grumbo/item.html',context={"filteritem":filteritem})
 
 def get_equip(request):
-    r = requests.get('http://35.182.223.175:5000/api/equips').json()
+    r = requests.get('http://35.182.223.175:5000/api/equips')
     filterequip = r
-    equiplist  = load(r)
+    equiplist  = json.load(r)
 
     d= dict()
 

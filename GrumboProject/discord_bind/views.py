@@ -184,12 +184,12 @@ def get_item(request):
 def get_equip(request):
     r = requests.get('http://35.182.223.175:5000/api/equips').json()
     filterequip = r
-    equiplist= json.load(r)
+    equiplist= json.parse(r)
 
     d= dict()
 
     for i in equiplist:
-        d[equiplist.classID].append(i)
+        d[equiplist['classID']].append(i)
 
 
 # "name": "Rusty Grumblade",

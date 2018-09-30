@@ -186,10 +186,10 @@ def get_equip(request):
     filterequip = r
     equiplist  = r
 
-    d= dict()
-
-    for i in equiplist:
-        d[equiplist['classId']].append(i)
+    # d= dict()
+    #
+    # for i in equiplist:
+    #     d[equiplist['classId']].append(i)
 
 
 # "name": "Rusty Grumblade",
@@ -208,7 +208,7 @@ def get_equip(request):
 #         "price": 420,
 
     print(r)
-    return render(request,'grumbo/item.html',context={"filterequip":filterequip, "d":d})
+    return render(request,'grumbo/item.html',context={"filterequip":filterequip})
 
 ## Opening Remote File
 # from StringIO import StringIO

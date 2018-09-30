@@ -190,9 +190,9 @@ def get_equip(request):
     d= dict()
 
     for k,v in equiplist.items():
-        d[v['classId']] = d.get(v['classId'],[]).append(k)
-
-
+        # d[v['classId']] = d.get(v['classId'],[]).append(k)
+        print(k)
+        print(v)
 # "name": "Rusty Grumblade",
 # 		"command": "!grumbo equip rusty_grumblade",
 # 		"type": "weapon",

@@ -189,7 +189,7 @@ def get_equip(request):
     d= dict()
 
     for i in equiplist:
-        d[equiplist['classID']].append(i)
+        d[equiplist['classId']].append(i)
 
 
 # "name": "Rusty Grumblade",

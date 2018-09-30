@@ -247,13 +247,13 @@ def statsget(request):
     armour=values['armor']
     bottom=values['bottom']
     weapon=values['weapon']
-##Battle Info:
+##Battle Values:
     wins=values['wins']
     losses=values['losses']
     winrate=values['winrate']
     battlesLeft=values['battlesLeft']
     battletime=values['battletime']
-##Challenge Info:
+##Challenge Values:
     cwins=values['challengeWins']
     closses=values['challengeLosses']
     cwinrate=values['challengeWinrate']
@@ -277,6 +277,7 @@ def statsget(request):
     timeSinceLastChange= mytime - classTime
     classhours= 0
     classminutes= 0
+    ## Display Current Class Timer
     if timeSinceLastChange/classchangewaittime < 1:
         classhours = math.floor((classchangewaittime-timeSinceLastChange)/3600000)
         classminutes= math.floor(((classchangewaittime-timeSinceLastChange) % 3600000) /60000)
@@ -287,6 +288,7 @@ def statsget(request):
     bosswaittime=14400000 ## 4 hours
     bosshours=0
     bossminutes=0
+    #Display Current Boss Timer
     if timeSinceLastBoss/bosswaittime <1:
         bosshours = math.floor((bosswaittime - timeSinceLastBoss)/3600000)
         bossminutes= math.ceil(((bosswaittime - timeSinceLastBoss) % 3600000) / 60000)

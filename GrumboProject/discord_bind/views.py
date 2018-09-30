@@ -184,7 +184,7 @@ def get_item(request):
 def get_equip(request):
     r = requests.get('http://35.182.223.175:5000/api/equips').json()
     filterequip = r
-    equiplist= JSON.parse(r)
+    equiplist= json.load(r)
 
     d= dict()
 

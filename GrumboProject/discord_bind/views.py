@@ -11,6 +11,7 @@ from datetime import datetime
 from django.urls import resolve
 from urllib import parse
 from requests_oauthlib import OAuth2Session
+
 from django.http import HttpResponseRedirect, HttpResponseForbidden, HttpResponse
 try:
     from django.urls import reverse
@@ -38,6 +39,7 @@ AUTHZ_PATH = '/oauth2/authorize'
 TOKEN_PATH = '/oauth2/token'
 AUTHORIZATION_BASE_URL = BASE_URI + '/oauth2/authorize'
 TOKEN_URL = BASE_URI + '/oauth2/token'
+
 # OAuth2 application credentials
 CLIENT_ID = '489248576434601995'
 CLIENT_SECRET = '69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S'
@@ -45,6 +47,7 @@ CLIENT_SECRET = '69vl_Jv0vdPX5a-10YgW4o-dukbA1Q1S'
 REDIRECT_URI = MYURL +'discord/cb'
 INVITE_URI = 'https://discordapp.com/channels/@me'
 RETURN_URI = MYURL+ 'discord/cb'
+
 # OAuth2 scope
 EMAIL_SCOPE = True
 API_ENDPOINT = 'https://discordapp.com/api/'
@@ -53,7 +56,7 @@ hi=''
 data=''
 uid=''
 
-
+##Create Oauth2 session
 def oauth_session(request, state=None, token=None):
     """ Constructs the OAuth2 session object. """
     if settings.DISCORD_REDIRECT_URI is not None:
@@ -68,6 +71,7 @@ def oauth_session(request, state=None, token=None):
                          scope=scope,
                          token=token,
                          state=state)
+##Redirects to Discord for Authorization
 @login_required
 def index(request):
 
@@ -162,6 +166,7 @@ def get_discord(request):
 ##Mongo DB Connection
 client = MongoClient('mongodb://35.182.223.175:27017/grumbobattlebot')
 db = client.grumbobattlebot
+
 #Collections
 collection=db.characters
 shop=db.shop_rotation
@@ -214,13 +219,6 @@ def get_equip(request):
     print(r)
     return render(request,'grumbo/item.html',context={"filterequip":filterequip})
 
-## Opening Remote File
-# from StringIO import StringIO
-
-# f = StringIO(r.content)
-# itemList = JSON.parse(fs.readFileSync("http://35.182.223.175:27017/GrumboBattleBot/values/items.json")); From james
-
-# f.read()
 
 
 ##Gets Discord User Stats From MongoDB
@@ -238,6 +236,7 @@ def statsget(request):
     mychara=collection.find(myquery)
     for values in mychara:
         print(values)
+
 ##Query Values:
     name= DiscordName
     level= values['level']

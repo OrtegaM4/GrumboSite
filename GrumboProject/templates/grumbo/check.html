@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 {% extends "grumbo/base.html"%}
 {% block content %}
-<meta http-equiv="refresh" content="60">
-
+<!-- <meta http-equiv="refresh" content="60"> -->
+{% if user.is_authenticated %}
+ <meta http-equiv="REFRESH" content="60;url={%url 'discord_bind:statsget'%}">
+{%else%}
+<h2>You are not Authorized To See This Page!</h2>
+<h2>Please Login To Gain Access.</h2>
+{% endif %}
 <head>
   {% load staticfiles %}
 </head>
-{{DiscordUser}}
-<h3>Click the button below to grab your stats from the Grumbo Server!</h3>
-<br></br>
-<button type="button" name="button"><a href="{%url 'discord_bind:statsget'%}">Get Stats</a></button>
-<br></br>
 <h3><u>{{name}} Here Are Your Stats:</u></h3>
 <h4>Lv{{level}} with {{xp}} EXP | {{gold}} Gold</h4>
 <h4>{{classId|capfirst}} Lv{{classLevel}} with {{classEXP}} EXP</h4>

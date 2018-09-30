@@ -339,9 +339,9 @@ def statsget(request):
     if challengesLeft == 3 or challengesLeft > 3:
         challengesLeft = 3
         timeUntilNextChallengeInMinutes= 0
-    # if battlesLeft == 5 or battlesLeft > 5:          ## If battle was 6:29pm shows -52min
-    #     battlesLeft= 5
-    #     timeUntilNextBattleInMinutes = 0
+    if battlesLeft == 5 or battlesLeft > 5:          ## If battle was 6:29pm shows -52min
+        battlesLeft= 5
+        timeUntilNextBattleInMinutes = 0
     print (mytime)
     print(battletime, challengetime)
     return render(request,'grumbo/check.html',context={ "values":values,

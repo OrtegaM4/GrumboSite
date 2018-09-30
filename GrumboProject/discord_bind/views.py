@@ -185,12 +185,12 @@ def get_equip(request):
     r = requests.get('http://35.182.223.175:5000/api/equips').json()
     filterequip = r
 
-    equiplist  = json.loads(r.read())
+    equiplist  = r
 
     d= dict()
 
     for i in equiplist:
-        d[equiplist.classId].append(i)
+        d[equiplist{'classId'}].append(i)
 
 
 # "name": "Rusty Grumblade",

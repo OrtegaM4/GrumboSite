@@ -212,7 +212,7 @@ def get_equip(request):
 #         "price": 420,
 
     print(r)
-    return render(request,'grumbo/item.html',context={"filterequip":filterequip,"k":k,"v":v})
+    return render(request,'grumbo/item.html',context={"filterequip":filterequip,"k":k,"d":d})
 
 ## Opening Remote File
 # from StringIO import StringIO

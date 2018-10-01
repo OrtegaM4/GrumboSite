@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 {% extends "grumbo/base.html"%}
 {% block content %}
-<!-- <meta http-equiv="refresh" content="60"> -->
+
 {% if user.is_authenticated %}
- <meta http-equiv="REFRESH" content="60;url={%url 'discord_bind:statsget'%}">
+  {% if name is None %}
+  <meta http-equiv="REFRESH" content="0;url={%url 'discord_bind:statsget'%}">
+  {%else%}
+  <meta http-equiv="REFRESH" content="60;url={%url 'discord_bind:statsget'%}">
+  {% endif %}
 {%else%}
-<h2>You are not Authorized To See This Page!</h2>
-<h2>Please Login To Gain Access.</h2>
+  <h2>You are not Authorized To See This Page!</h2>
+  <h2>Please Login To Gain Access.</h2>
 {% endif %}
+
 <head>
   {% load staticfiles %}
 </head>

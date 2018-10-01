@@ -33,7 +33,9 @@ body{
 .container h3  {
   color:white;
 }
-
+.container .jumbotron h2{
+  color:black;
+}
 .container .jumbotron h3{
   color:black;
 }

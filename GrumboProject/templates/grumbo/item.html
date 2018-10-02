@@ -15,14 +15,17 @@
 {% endif %}
 
 {% for class,values in hola.items %}
-<h2><u>{{class.capitalize}}</u></h2>
-
+<div class="classtitle">
+<h1><u>{{class.capitalize}} Equipment</u></h1>
+</div>
 {%for each_item in values %}
+<div class="jumbotron">
 <h4>{{each_item.name}} | Lv Req:{{each_item.level}} | Command:{{each_item.id}}</h4>
 <h4>{{each_item.description}}</h4>
 <h4>Active: {{each_item.active.capitalize}}</h4>
 <h4>Value: {{each_item.value}} gold</h4>
 <h7> . </h7>
+</div>
 
 {% endfor %}
 {% endfor %}

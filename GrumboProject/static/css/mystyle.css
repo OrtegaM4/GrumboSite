@@ -23,7 +23,7 @@ body{
   font-size:
 }
 div.jumbotron{
-background-color:#D3D3D3 !important;
+background-color:transparent !important;
 }
 .container .tokenform h2{
   color:white;

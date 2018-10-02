@@ -32,6 +32,10 @@ body{
   text-align: center;
 }
 /* Jumbotron Info */
+div.container div.jumbotron span.statsitems{
+  font-size: 20%:
+}
+
 div.jumbotron{
 background-color:#D3D3D3 !important;
 }

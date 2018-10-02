@@ -61,12 +61,20 @@
   <h3><u>Your Battle Record:</u></h3>
   <h4>Wins {{wins}}  | Losses {{losses}}  | Win {{winrate}}%</h4>
   <h4>You have {{battlesLeft}}/5 left</h4>
+  {%if battlesLeft == 5%}
+  <h4>You are at Max Battle Stocks!</h4>
+  {%else%}
   <h4>You will gain another battle chance in {{timeUntilNextBattleInMinutes}} minutes</h4>
+  {%endif%}
 
   <h3><u>Your Challenge Record:</u></h3>
   <h4>Wins {{cwins}} | Losses {{closses}} | Win {{cwinrate}}%</h4>
   <h4>You have {{challengesLeft}}/3 left</h4>
+  {%if challengesLeft == 3%}
+  <h4>You are at Max Challenge Stocks!</h4>
+  {%else%}
   <h4>You will gain another challenge chance in {{timeUntilNextChallengeInMinutes}} minutes</h4>
+  {%endif%}
 </div>
 
 <div class="jumbotron">
@@ -74,9 +82,9 @@
 <!-- <h4>{{item_dict}}</h4> -->
 {% for item,number in item_dict.items%}
 {% if forloop.last %}
-<span class='statsitems'>{{item.capitalize}}:({{number}})</span>
+<span class='statsitems' ><font size="4.5">{{item.capitalize}}:({{number}})</font> <br></span>
 {%else%}
-<span class='statsitems'>{{item.capitalize}}:({{number}}), <br></span>
+<span class='statsitems' ><font size="4.5">{{item.capitalize}}:({{number}})</font> <br></span>
 {%endif%}
 {%endfor%}
 </div>

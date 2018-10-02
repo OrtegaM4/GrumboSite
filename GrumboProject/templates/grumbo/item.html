@@ -6,7 +6,7 @@
   {% if hola is None %}
   <meta http-equiv="REFRESH" content="0;url={%url 'discord_bind:equipget'%}">
   {%else%}
-  <meta http-equiv="REFRESH" content="60;url={%url 'discord_bind:equipget'%}">
+  <meta http-equiv="REFRESH" content="6000;url={%url 'discord_bind:equipget'%}">
   {% endif %}
 {%else%}
 
@@ -20,11 +20,25 @@
 </div>
 {%for each_item in values %}
 <div class="jumbotron">
+  <!-- <div class="dropdown">
+    <button onclick="=" name="button"></button> -->
+<!-- <h4>{{each_item}}</h4> -->
 <h4>{{each_item.name}} | Lv Req:{{each_item.level}} | Command:{{each_item.id}}</h4>
-<h4>{{each_item.description}}</h4>
+<h4>Description: {{each_item.description}}</h4>
+{%if each_item.active == None %}
+<h4></h4>
+{%else%}
 <h4>Active: {{each_item.active.capitalize}}</h4>
-<h4>Value: {{each_item.value}} gold</h4>
+{%endif%}
+<h4>Type: {{each_item.type.capitalize}}</h4>
+{%if each_item.price == 0%}
+<h4></h4>
+{%else%}
+<h4>Price: {{each_item.price}} gold</h4>
+{%endif%}
+<h4>Sell: {{each_item.value}} gold</h4>
 </div>
+
 
 {% endfor %}
 {% endfor %}

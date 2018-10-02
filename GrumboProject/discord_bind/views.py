@@ -218,12 +218,8 @@ def get_equip(request):
 
 
     hola=my_dict
-    warname=my_dict['warrior'][0]['name']
-    wardata=my_dict['warrior'][0]
     # test.pop('stock','effect')
-    print(warname)
-    print(wardata)
-    return render(request,'grumbo/item.html',context={"hola":hola,"wardata":wardata})
+    return render(request,'grumbo/item.html',context={"hola":hola})
 
 
 ##Gets Discord User Stats From MongoDB
@@ -284,7 +280,11 @@ def statsget(request):
     xp= values['experience']
     gold= values['gold']
     items=values['items']
-    items= ', '.join(items)
+
+    item_dict = dict()
+    for each_item in items:
+        item_dict[each_item.replace('_', ' ')] = item_dict.get(each_item, 0) + 1
+    print(item_dict)
 ##ClassInfo:
 ##Actives:
     prebattle=values['prebattle']
@@ -437,7 +437,7 @@ def statsget(request):
                                                         "prebattle":prebattle,
                                                         "preresults":preresults,
                                                         "postresults":postresults,
-                                                        "items":items,
+                                                        "item_dict":item_dict,
                                                         "timeUntilNextBattleInMinutes":timeUntilNextBattleInMinutes,
                                                         "timeUntilNextChallengeInMinutes":timeUntilNextChallengeInMinutes,
                                                         "classhours":classhours,

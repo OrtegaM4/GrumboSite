@@ -35,7 +35,7 @@ body{
 div.jumbotron{
 background-color:#D3D3D3 !important;
 }
- div.jumbotron h1{
+ div.jumbotron h1 h2{
   color:black;
   text-align: center;
 }

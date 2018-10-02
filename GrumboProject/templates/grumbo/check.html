@@ -41,7 +41,7 @@
 <h4>You can class change again in {{classhours}} hours {{classminutes}} minutes</h4>
 {%endif%}
 
-{% if bosshours and bossminutes == 0 %}
+{%if bosshours == 0 and bossminutes == 0 %}
 <h4>You can boss now!</h4>
 {%else%}
 <h4>You can boss again in {{bosshours}} hours {{bossminutes}} minutes</h4>

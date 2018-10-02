@@ -288,11 +288,11 @@ def statsget(request):
 ##ClassInfo:
 ##Actives:
     prebattle=values['prebattle']
-    prebattle= ', '.join(prebattle)
+    prebattle= ', '.join(prebattle).replace('_', ' ')
     preresults=values['preresults']
-    preresults= ', '.join(preresults)
+    preresults= ', '.join(preresults).replace('_', ' ')
     postresults=values['postresults']
-    postresults= ', '.join(postresults)
+    postresults= ', '.join(postresults).replace('_', ' ')
 ##Class Values:
     classId  =  values['classId']
     classLevel= values['classLevel']
@@ -307,10 +307,10 @@ def statsget(request):
     spd=values['spd']
     luk=values['luk']
     ##Equipment:
-    head=values['head']
-    armour=values['armor']
-    bottom=values['bottom']
-    weapon=values['weapon']
+    head=values['head'].replace('_', ' ')
+    armour=values['armor'].replace('_', ' ')
+    bottom=values['bottom'].replace('_', ' ')
+    weapon=values['weapon'].replace('_', ' ')
 ##Battle Values:
     wins=values['wins']
     losses=values['losses']

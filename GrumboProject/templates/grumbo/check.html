@@ -26,13 +26,13 @@
 <h4 class='secondrow'> <img id="pow"src='{% static "images/pow.png" %}'>POW {{pow}} |<img id="wis" src='{% static "images/wis.png" %}'>WIS {{wis}} |<img id="def"src='{% static "images/def.png" %}'> DEF {{df}}</h4>
 <h4 class='thirdrow'> <img id="res"src='{% static "images/res.png" %}'>RES {{res}} |<img id="spd"src='{% static "images/spd.png" %}'> SPD {{spd}} |<img id="luk"src='{% static "images/luk.png" %}'> LUK {{luk}}</h4>
 <h3><u>Your Equipment</u></h3>
-<h4>Head: {{head|capfirst}}</h4>
-<h4>Armour: {{armour|capfirst}}</h4>
-<h4>Bottoms: {{bottom|capfirst}}</h4>
-<h4>Weapon: {{weapon|capfirst}}</h4>
+<h4>Head: {{head.title}}</h4>
+<h4>Armour: {{armour.title}}</h4>
+<h4>Bottoms: {{bottom.title}}</h4>
+<h4>Weapon: {{weapon.title}}</h4>
 <br>
 <h3><u>Your Actives:</u></h3>
-<h4>{{prebattle}},{{preresults}}, {{postresults}}</h4>
+<h4>{{prebattle.title}}, {{preresults.title}}, {{postresults.title}}</h4>
 
 <br>
 {%if classhours == 0 and classminutes == 0 %}
@@ -50,7 +50,7 @@
 <div class="jumbotron">
 
 <h3><u>Your Class Info</u>:</h3>
-<h4>{{myclassone.classId.capitalize}} Level: {{myclassone.classLevel}} | Class Exp: {{myclassone.classExp}} </h4>
+<h4>{{myclassone.classId.title}} Level: {{myclassone.classLevel}} | Class Exp: {{myclassone.classExp}} </h4>
 <h4>{{myclasstwo.classId.capitalize}} Level: {{myclasstwo.classLevel}} | Class Exp: {{myclasstwo.classExp}} </h4>
 <h4>{{myclassthree.classId.capitalize}} Level: {{myclassthree.classLevel}} | Class Exp: {{myclassthree.classExp}} </h4>
 <h4>{{myclassfour.classId.capitalize}} Level: {{myclassfour.classLevel}} | Class Exp: {{myclassfour.classExp}} </h4>
@@ -82,9 +82,9 @@
 <!-- <h4>{{item_dict}}</h4> -->
 {% for item,number in item_dict.items%}
 {% if forloop.last %}
-<span class='statsitems' ><font size="4.5">{{item.capitalize}}:({{number}})</font> <br></span>
+<span class='statsitems' ><font size="4.5">{{item.capitalize}}: ({{number}})</font> <br></span>
 {%else%}
-<span class='statsitems' ><font size="4.5">{{item.capitalize}}:({{number}})</font> <br></span>
+<span class='statsitems' ><font size="4.5">{{item.capitalize}}: ({{number}})</font> <br></span>
 {%endif%}
 {%endfor%}
 </div>

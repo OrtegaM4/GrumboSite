@@ -223,7 +223,7 @@ def get_equip(request):
     # test.pop('stock','effect')
     print(warname)
     print(wardata)
-    return render(request,'grumbo/item.html',context={"hola":hola})
+    return render(request,'grumbo/item.html',context={"hola":hola,"wardata":wardata})
 
 
 ##Gets Discord User Stats From MongoDB
@@ -407,8 +407,6 @@ def statsget(request):
     if battlesLeft == 5 or battlesLeft > 5:          ## If battle was 6:29pm shows -52min
         battlesLeft= 5
         timeUntilNextBattleInMinutes = 0
-    # print (mytime)
-    # print(battletime, challengetime)
     return render(request,'grumbo/check.html',context={ "values":values,
                                                         "name":name,
                                                         "level":level,

@@ -2,25 +2,29 @@
 {% extends "grumbo/base.html"%}
 {% block content %}
 
-<!-- <meta http-equiv="REFRESH" content="60;url={%url 'discord_bind:equipget'%}"> -->
-<h3>This page is under construction!</h3>
+{% if user.is_authenticated %}
+  {% if hola is None %}
+  <meta http-equiv="REFRESH" content="0;url={%url 'discord_bind:equipget'%}">
+  {%else%}
+  <meta http-equiv="REFRESH" content="60;url={%url 'discord_bind:equipget'%}">
+  {% endif %}
+{%else%}
 
+<h2>You are not Authorized To See This Page!</h2>
+<h2>Please Login To Gain Access.</h2>
+{% endif %}
 
-<button type="button" name="button"><a href="{%url 'discord_bind:itemget'%}">All Items:</a></button>
-
-<h3>Your Items are : {{filteritem}}</h3>
 {% for class,values in hola.items %}
-
-
-<h2>{{class.capitalize}}</h2>
+<h2><u>{{class.capitalize}}</u></h2>
 
 {%for each_item in values %}
-<h1>{{each_item.name}}</h1>
-<h1>{{each_item.pow}}</h1>
-<h2></h2>
-{% endfor %}
+<h4>{{each_item.name}} | Lv Req:{{each_item.level}} | Command:{{each_item.id}}</h4>
+<h4>{{each_item.description}}</h4>
+<h4>Active: {{each_item.active.capitalize}}</h4>
+<h4>Value: {{each_item.value}} gold</h4>
+<h7> . </h7>
 
 {% endfor %}
-<button type="button" name="button"><a href="{%url 'discord_bind:equipget'%}">All Equips:</a></button>
-<h3>Your Equips are:</h3>
+{% endfor %}
+
 {% endblock %}

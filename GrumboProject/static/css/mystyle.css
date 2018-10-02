@@ -37,6 +37,7 @@ background-color:#D3D3D3 !important;
 }
 .container .jumbotron h1{
   color:black;
+  text-align: center;
 }
 .container .jumbotron h2{
   color:black;

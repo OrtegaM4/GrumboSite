@@ -35,10 +35,15 @@ body{
 div.jumbotron{
 background-color:#D3D3D3 !important;
 }
- div.jumbotron h1 h2{
+ div.jumbotron h1 {
   color:black;
   text-align: center;
 }
+div.jumbotron h2 {
+ color:black;
+ text-align: center;
+}
+
 .container .jumbotron h2{
   color:black;
 }

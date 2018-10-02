@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 import os
-import urllib3
+import urllib
 import http.client
 import urllib.request
 from django.shortcuts import redirect, render
@@ -39,6 +39,7 @@ AUTHZ_PATH = '/oauth2/authorize'
 TOKEN_PATH = '/oauth2/token'
 AUTHORIZATION_BASE_URL = BASE_URI + '/oauth2/authorize'
 TOKEN_URL = BASE_URI + '/oauth2/token'
+
 
 # OAuth2 application credentials
 CLIENT_ID = '489248576434601995'
@@ -113,8 +114,8 @@ def token_assign(request):
     query_def= parse.parse_qs(url)
     global realtoken
     realtoken=query_def['mytextbox'][0]
-    print(url)
-    print(realtoken)
+    # print(url)
+    # print(realtoken)
     return render(request,'grumbo/stats.html',context={'realtoken':realtoken})
 
 
@@ -154,20 +155,20 @@ def get_discord(request):
          del request.session['discord_bind_oauth_state']
          return HttpResponseForbidden()
     oauth = oauth_session(request, state=state)
-    print(data)
+    # print(data)
     data=''
     return render(request,'grumbo/stats.html',context={'data':data,'uid':uid})
     del request.session['discord_bind_oauth_state']
     del request.session['discord_bind_return_uri']
-    print(data)
-    return data
+    # print(data)
+    # return data
     return redirect(MYURL+'grumbo/stats/')
 
 ##Mongo DB Connection
 client = MongoClient('mongodb://35.182.223.175:27017/grumbobattlebot')
 db = client.grumbobattlebot
-
 #Collections
+myclass=db.classes
 collection=db.characters
 shop=db.shop_rotation
 shopequip=db.shop_equip
@@ -188,37 +189,41 @@ def get_item(request):
 
 def get_equip(request):
     r = requests.get('http://35.182.223.175:5000/api/equips').json()
-    filterequip = r
-
     equiplist  = r
+    my_dict= dict()
+    NO_CLASS = 'general'
+    # naw=equiplist
+    for k,v in equiplist.items():
+        if v['classId']:
+            # If this class already exists in the dictionary
+            if v['classId'] in my_dict:
+                item_class_list = my_dict[v['classId']]
+                item_class_list.append(v)
+                my_dict[v['classId']] = item_class_list
+            # This item is not in the dictionary
+            else:
+                item_class_list = list()
+                item_class_list.append(v)
+                my_dict[v['classId']] = item_class_list
+        else:
+            # If a general no class set is already in the dictionary
+            if NO_CLASS in my_dict:
+                item_class_list = my_dict[NO_CLASS]
+                item_class_list.append(v)
+                my_dict[NO_CLASS] = item_class_list
+            else:
+                item_class_list = list()
+                item_class_list.append(v)
+                my_dict[NO_CLASS] = item_class_list
 
-    # d= dict()
-    #
-    # for k,v in equiplist.items():
-    #     if v == None:
-    #         pass
-    #     else:
-    #         d[v['classId']] = d.get(v['classId'],[]).append(k)
 
-
-# "name": "Rusty Grumblade",
-# 		"command": "!grumbo equip rusty_grumblade",
-# 		"type": "weapon",
-#     "classId": "warrior",
-#     "level": 1,
-#     "pow": 8,
-#     "wis": 0,
-#     "def": 0,
-#     "res": 0,
-#     "spd": 0,
-#     "luk": 0,
-#     "active": null,
-# 		"description"
-#         "price": 420,
-
-    print(r)
-    return render(request,'grumbo/item.html',context={"filterequip":filterequip})
-
+    hola=my_dict
+    warname=my_dict['warrior'][0]['name']
+    wardata=my_dict['warrior'][0]
+    # test.pop('stock','effect')
+    print(warname)
+    print(wardata)
+    return render(request,'grumbo/item.html',context={"hola":hola})
 
 
 ##Gets Discord User Stats From MongoDB
@@ -232,11 +237,47 @@ def statsget(request):
     SplitString=DiscordUserString.split(".")
     DiscordID = SplitString[0]
     DiscordName= SplitString[1]
+    ## Search For Discord ID
     myquery= {"_id":DiscordID}
+
+    ##Class Section
+    mycquery={"character":DiscordID}
+    myclasses=myclass.find(mycquery)
+    print(myclasses.count())
+    resultclass= []
+    for classes in myclasses:
+         resultclass.append(classes)
+    abc=resultclass
+    cdict=dict()
+    myclassone= ''
+    myclasstwo= ''
+    myclassthree= ''
+    myclassfour= ''
+    myclassfive= ''
+    myclasssix= ''
+    ## Check if you have classes
+    if len(abc) > 0  :
+        myclassone= abc[0]
+        myclassone.pop('_id', None)
+        myclassone.pop('character', None)
+    if len(abc) > 1  : myclasstwo= abc[1]
+    if len(abc) > 2 : myclassthree= abc[2]
+    if len(abc) > 3  : myclassfour= abc[3]
+    if len(abc) > 4  : myclassfive= abc[4]
+    if len(abc) > 5   : myclasssix= abc[5]
+
+
+    # myclassone.pop('_id', None)
+    # myclassone.pop('character', None)
+    print(abc)
+    print(myclassone)
+
     mychara=collection.find(myquery)
     for values in mychara:
-        print(values)
+        print('')
 
+    # print(cvalues)
+    # print(abc)
 ##Query Values:
     name= DiscordName
     level= values['level']
@@ -244,6 +285,7 @@ def statsget(request):
     gold= values['gold']
     items=values['items']
     items= ', '.join(items)
+##ClassInfo:
 ##Actives:
     prebattle=values['prebattle']
     prebattle= ', '.join(prebattle)
@@ -288,7 +330,7 @@ def statsget(request):
     mytime=time.time() *1000
     timeUntilNextBattleInMinutes=math.ceil((battletime+waitTime-mytime)/60000)
     timeUntilNextChallengeInMinutes=math.ceil((challengetime+waitTime-mytime)/60000)
-    spdfix= spd - 10
+    spdfix= (spd-10)
     spdfix2= spdfix *2
     spdfix3= spdfix *3
     spdfix4= spdfix*4
@@ -335,7 +377,7 @@ def statsget(request):
     if timeUntilNextBattleInMinutes < -180 + spdfix3 and timeUntilNextBattleInMinutes > -240 + spdfix4:
           battlesLeft=battlesLeft+4
           timefix= timeUntilNextBattleInMinutes
-          timeUntilNextBattleInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime)/60000))
+          timeUntilNextBattleInMinutes= math.ceil((timeUntilNextBattleInMinutes - timefix) + (timefix+(waitTime*4)/60000))
 
     elif timeUntilNextBattleInMinutes  < -240 + spdfix4:
           battlesLeft=0
@@ -366,8 +408,8 @@ def statsget(request):
     if battlesLeft == 5 or battlesLeft > 5:          ## If battle was 6:29pm shows -52min
         battlesLeft= 5
         timeUntilNextBattleInMinutes = 0
-    print (mytime)
-    print(battletime, challengetime)
+    # print (mytime)
+    # print(battletime, challengetime)
     return render(request,'grumbo/check.html',context={ "values":values,
                                                         "name":name,
                                                         "level":level,
@@ -404,7 +446,15 @@ def statsget(request):
                                                         "classhours":classhours,
                                                         "classminutes":classminutes,
                                                         "bosshours":bosshours,
-                                                        "bossminutes":bossminutes
+                                                        "bossminutes":bossminutes,
+                                                        "abc":abc,
+                                                        "myclassone":myclassone,
+                                                        "myclasstwo":myclasstwo,
+                                                        "myclassthree":myclassthree,
+                                                        "myclassfour":myclassfour,
+                                                        "myclassfive":myclassfive,
+                                                        "myclasssix":myclasssix
+
 
 
                                                         # "shoprot":shoprot

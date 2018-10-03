@@ -283,7 +283,7 @@ def statsget(request):
 
     item_dict = dict()
     for each_item in items:
-        item_dict[each_item.replace('_', ' ')] = item_dict.get(each_item, 0) + 1
+        item_dict[each_item.replace('_', ' ')] = item_dict.get(each_item.replace('_', ' '), 0) + 1
     print(item_dict)
 ##ClassInfo:
 ##Actives:
@@ -438,6 +438,7 @@ def statsget(request):
                                                         "preresults":preresults,
                                                         "postresults":postresults,
                                                         "item_dict":item_dict,
+                                                        # "items":items,
                                                         "timeUntilNextBattleInMinutes":timeUntilNextBattleInMinutes,
                                                         "timeUntilNextChallengeInMinutes":timeUntilNextChallengeInMinutes,
                                                         "classhours":classhours,

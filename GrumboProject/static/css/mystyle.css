@@ -12,7 +12,8 @@ h4{
   color:white;
 }
 body{
-  background-color: #292929
+  background-color: #292929;
+  font-family: 'Nunito', sans-serif;
 }
 
 .container .tokenform h2{
@@ -35,9 +36,10 @@ body{
 div.container div.jumbotron span.statsitems{
   font-size: 20%:
 }
-
 div.jumbotron{
 background-color:#D3D3D3 !important;
+font-family: 'Nunito', sans-serif;
+
 }
  div.jumbotron h1 {
   color:black;
@@ -81,18 +83,30 @@ span.title{
     font-size: 20px;
     display: block;
     border-radius: 3px;
-
+}
+/*Bosses Titles*/
+.bossname1{
+  text-align: center;
+  cursor: pointer;
+}
+.titlename1{
+  cursor: pointer;
 }
 /* Icons */
 h4.firstrow  {
   margin-bottom: -6%;
+  font-size: large;
 }
 h4.secondrow  {
   margin-bottom: -6%;
+  font-size: large;
+
 }
 h4.thirdrow  {
   border-bottom: -15%;
   margin-bottom: -2%;
+  font-size: large;
+
 }
 /* Stats Icons */
 #hp{

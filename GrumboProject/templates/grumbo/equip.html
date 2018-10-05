@@ -15,28 +15,28 @@
 {% endif %}
 
 {% for class,values in hola.items %}
-<div class="classtitle">
+
 <h1><u>{{class.capitalize}} Equipment</u></h1>
-</div>
+
 {%for each_item in values %}
-<div class="jumbotron">
-  <!-- <div class="dropdown">
-    <button onclick="=" name="button"></button> -->
-<!-- <h4>{{each_item}}</h4> -->
-<h4>{{each_item.name}} | Lv Req:{{each_item.level}} | Command:{{each_item.id}}</h4>
-<h4>Description: {{each_item.description}}</h4>
+  <div class="jumbotron">
+    <h4>{{each_item.name}} | Lv Req:{{each_item.level}} | Command:{{each_item.id}}</h4>
+    <h4>Description: {{each_item.description}}</h4>
 {%if each_item.active == None %}
-<h4></h4>
+  <h4></h4>
 {%else%}
-<h4>Active: {{each_item.active.title}}</h4>
+
+
+
+  <h4>Active: {{each_item.active.title}}</h4>
 {%endif%}
-<h4>Type: {{each_item.type.title}}</h4>
+  <h4>Type: {{each_item.type.title}}</h4>
 {%if each_item.price == 0%}
-<h4></h4>
+  <h4></h4>
 {%else%}
-<h4>Price: {{each_item.price}} gold</h4>
+  <h4>Price: {{each_item.price}} gold</h4>
 {%endif%}
-<h4>Sell: {{each_item.value}} gold</h4>
+  <h4>Sell: {{each_item.value}} gold</h4>
 </div>
 
 

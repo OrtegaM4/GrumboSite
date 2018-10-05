@@ -6,7 +6,11 @@
     <meta charset="utf-8">
     <title> Grumbo Battle Bot! </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static "css/mystyle.css" %}"
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{% static "css/mystyle.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   </head>
   <body>
 <nav id=mainnav class = 'navbar navbar-default  navbar-static-top'>
@@ -18,7 +22,7 @@
         <li><a class="navbar-link" href="{% url 'commands'%}">Commands</a></li>
         <li><a class="navbar-link" href="{% url 'classes'%}">Classes</a></li>
         <li><a class="navbar-link" href="{% url 'check'%}">Stats</a></li>
-        <li><a class="navbar-link" href="{% url 'item'%}">Equips</a></li>
+        <li><a class="navbar-link" href="{% url 'equip'%}">Equips</a></li>
         <li><a class="navbar-link" href="{% url 'boss'%}">Bosses</a></li>
         <li><a class="navbar-link" href="{% url 'about'%}">About</a></li>
         <li><a class=welcomename>Welcome {{user.username}}</a></li>
@@ -29,7 +33,7 @@
         <li><a class="navbar-link" href="{% url 'commands'%}">Commands</a></li>
         <li><a class="navbar-link" href="{% url 'classes'%}">Classes</a></li>
         <li><a class="navbar-link" href="{% url 'boss'%}">Bosses</a></li>
-        <li><a class="navbar-link" href="{% url 'item'%}">Equips</a></li>
+        <li><a class="navbar-link" href="{% url 'equip'%}">Equips</a></li>
         <li><a class="navbar-link" href="https://discordapp.com/oauth2/authorize?client_id=485285356598591509&scope=bot">Add To Server</a></li>
         <li><a class="navbar-link" href="{% url 'about'%}">About</a></li>
         <li><a class="navbar-link" href="{% url 'login'%}">Login</a></li>

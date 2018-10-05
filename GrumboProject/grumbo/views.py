@@ -29,8 +29,8 @@ class BossView(TemplateView):
 class ThanksPage(TemplateView):
     template_name= 'accounts/thanks.html'
 
-class ItemView(TemplateView):
-    template_name= 'grumbo/item.html'
+class EquipView(TemplateView):
+    template_name= 'grumbo/equip.html'
 
 
 

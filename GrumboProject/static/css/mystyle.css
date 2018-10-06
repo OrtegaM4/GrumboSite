@@ -60,6 +60,10 @@ font-family: 'Nunito', sans-serif;
 #mainnav li a {
   color: white;
 }
+#mainnav li a:hover {
+  color: grey;
+}
+
 span  {
 }
 span.title{

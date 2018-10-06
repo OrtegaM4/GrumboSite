@@ -216,9 +216,9 @@ def get_equip(request):
                 item_class_list.append(v)
                 my_dict[NO_CLASS] = item_class_list
 
-
+    test=0
     hola=my_dict
-    return render(request,'grumbo/equip.html',context={"hola":hola})
+    return render(request,'grumbo/equip.html',context={"hola":hola,"test":test})
 
 
 ##Gets Discord User Stats From MongoDB

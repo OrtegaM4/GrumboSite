@@ -98,9 +98,9 @@
       <h3 class=equipitems><u>Your Equips:</u></h3>
       {% for item,number in equip_dict.items%}
         {% if forloop.last %}
-          <span class='equipitems' ><font size="4.5">{{item.capitalize}}</font> <br></span>
+          <span class='equipitems' ><font size="4.5">{{item.title}}</font> <br></span>
         {%else%}
-          <span class='equipitems' ><font size="4.5">{{item.capitalize}}</font> <br></span>
+          <span class='equipitems' ><font size="4.5">{{item.title}}</font> <br></span>
         {%endif%}
       {%endfor%}
     </div>

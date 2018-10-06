@@ -1,7 +1,6 @@
 from django.urls import path
 from . import views
-from grumbo.views import (IndexView, GuideView, CommandsView, ClassesView,
-StatsView, AboutView, BossView, CheckView, EquipView)
+from grumbo.views import *
 
 
 urlpatterns= [

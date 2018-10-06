@@ -17,37 +17,56 @@
   {% load staticfiles %}
 </head>
 <div class="jumbotron">
-
-<h3><u>{{name}} Here Are Your Stats:</u></h3>
-<h4>Lv{{level}} with {{xp}} EXP | {{gold}} Gold</h4>
-<h4>{{classId|capfirst}} Lv{{classLevel}} with {{classEXP}} EXP</h4>
-
-<h4 class='firstrow'> <img id="hp"src='{% static "images/hp.png" %}'>HP {{hp}}/100</h4>
-<h4 class='secondrow'> <img id="pow"src='{% static "images/pow.png" %}'>POW {{pow}} |<img id="wis" src='{% static "images/wis.png" %}'>WIS {{wis}} |<img id="def"src='{% static "images/def.png" %}'> DEF {{df}}</h4>
-<h4 class='thirdrow'> <img id="res"src='{% static "images/res.png" %}'>RES {{res}} |<img id="spd"src='{% static "images/spd.png" %}'> SPD {{spd}} |<img id="luk"src='{% static "images/luk.png" %}'> LUK {{luk}}</h4>
+  <h3><u>{{name}} Here Are Your Stats:</u></h3>
+  <h4>Lv{{level}} with {{xp}} EXP | {{gold}} Gold</h4>
+  <h4>{{classId|capfirst}} Lv{{classLevel}} with {{classEXP}} EXP</h4>
+  <h4 class='firstrow'> <img id="hp"src='{% static "images/hp.png" %}'>HP {{hp}}/100</h4>
+  <h4 class='secondrow'> <img id="pow"src='{% static "images/pow.png" %}'>POW {{pow}} |<img id="wis" src='{% static "images/wis.png" %}'>WIS {{wis}} |<img id="def"src='{% static "images/def.png" %}'> DEF {{df}}</h4>
+  <h4 class='thirdrow'> <img id="res"src='{% static "images/res.png" %}'>RES {{res}} |<img id="spd"src='{% static "images/spd.png" %}'> SPD {{spd}} |<img id="luk"src='{% static "images/luk.png" %}'> LUK {{luk}}</h4>
 <h3><u>Your Equipment</u></h3>
     <h4>Head:   {{head.title}}</h4>
     <h4>Armour: {{armour.title}}</h4>
     <h4>Bottoms:{{bottom.title}}</h4>
     <h4>Weapon: {{weapon.title}}</h4>
 
-<br>
 <h3><u>Your Actives:</u></h3>
 <h4>{{prebattle.title}}, {{preresults.title}}, {{postresults.title}}</h4>
 
 <br>
 {%if classhours == 0 and classminutes == 0 %}
-<h4>You can class change now!</h4>
+  <h4>You can class change now!</h4>
 {%else%}
-<h4>You can class change again in {{classhours}} hours {{classminutes}} minutes</h4>
+  <h4>You can class change again in {{classhours}} hours {{classminutes}} minutes</h4>
 {%endif%}
 
 {%if bosshours == 0 and bossminutes == 0 %}
-<h4>You can boss now!</h4>
+  <h4>You can boss now!</h4>
 {%else%}
-<h4>You can boss again in {{bosshours}} hours {{bossminutes}} minutes</h4>
+  <h4>You can boss again in {{bosshours}} hours {{bossminutes}} minutes</h4>
 {%endif%}
 </div>
+<div class="jumbotron">
+  <h3 class='bossname1'data-toggle="collapse" data-target="#combatinfo"><u>Your Combat Info</u></h3>
+    <div id="combatinfo" class="collapse in">
+      <h3><u>Your Battle Record:</u></h3>
+      <h4>Wins {{wins}}  | Losses {{losses}}  | Win {{winrate}}%</h4>
+      <h4>You have {{battlesLeft}}/5 left</h4>
+      {%if battlesLeft == 5%}
+        <h4>You are at Max Battle Stocks!</h4>
+      {%else%}
+        <h4>You will gain another battle chance in {{timeUntilNextBattleInMinutes}} minutes</h4>
+      {%endif%}
+        <h3><u>Your Challenge Record:</u></h3>
+        <h4>Wins {{cwins}} | Losses {{closses}} | Win {{cwinrate}}%</h4>
+        <h4>You have {{challengesLeft}}/3 left</h4>
+      {%if challengesLeft == 3%}
+        <h4>You are at Max Challenge Stocks!</h4>
+      {%else%}
+        <h4>You will gain another challenge chance in {{timeUntilNextChallengeInMinutes}} minutes</h4>
+      {%endif%}
+    </div>
+</div>
+
 <div class="jumbotron">
   <h3 class='bossname1'data-toggle="collapse" data-target="#classinfo"><u>Your Class Info</u></h3>
     <div id="classinfo" class="collapse">
@@ -59,28 +78,7 @@
       <h4>{{myclasssix.classId.capitalize}} Level: {{myclasssix.classLevel}} | Class Exp: {{myclasssix.classExp}} </h4>
 </div>
 </div>
-<div class="jumbotron">
-  <h3 class='bossname1'data-toggle="collapse" data-target="#combatinfo"><u>Your Combat Info</u></h3>
-    <div id="combatinfo" class="collapse">
-      <h3><u>Your Battle Record:</u></h3>
-      <h4>Wins {{wins}}  | Losses {{losses}}  | Win {{winrate}}%</h4>
-      <h4>You have {{battlesLeft}}/5 left</h4>
-      {%if battlesLeft == 5%}
-      <h4>You are at Max Battle Stocks!</h4>
-      {%else%}
-      <h4>You will gain another battle chance in {{timeUntilNextBattleInMinutes}} minutes</h4>
-      {%endif%}
 
-      <h3><u>Your Challenge Record:</u></h3>
-      <h4>Wins {{cwins}} | Losses {{closses}} | Win {{cwinrate}}%</h4>
-      <h4>You have {{challengesLeft}}/3 left</h4>
-      {%if challengesLeft == 3%}
-      <h4>You are at Max Challenge Stocks!</h4>
-      {%else%}
-      <h4>You will gain another challenge chance in {{timeUntilNextChallengeInMinutes}} minutes</h4>
-      {%endif%}
-    </div>
-</div>
 
 <div class="jumbotron">
   <h3 class='bossname1'data-toggle="collapse" data-target="#inventoryinfo"><u>Your Inventory</u></h3>
@@ -98,7 +96,7 @@
       <h3 class=equipitems><u>Your Equips:</u></h3>
       {% for item,number in equip_dict.items%}
         {% if forloop.last %}
-          <span class='equipitems' ><font size="4.5">{{item.title}}</font> <br></span>
+          <span class='equipitems' ><font size="4.5">{{item.title}}|{{item.type}}</font> <br></span>
         {%else%}
           <span class='equipitems' ><font size="4.5">{{item.title}}</font> <br></span>
         {%endif%}

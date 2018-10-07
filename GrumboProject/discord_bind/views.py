@@ -174,13 +174,6 @@ shop=db.shop_rotation
 shopequip=db.shop_equip
 shopspecial=db.shop_special
 
-# def shopget(request):
-#     myshop=shop.find()
-#     for shopvalues in myshop:
-#         print(shopvalues)
-#     shoprot=shopvalues
-#     return render(request,'grumbo/check.html',context={ "values":values,
-
 def get_item(request):
     r = requests.get('http://35.182.223.175:5000/api/classes').json()
     info_list = r

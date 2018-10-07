@@ -12,4 +12,6 @@ urlpatterns= [
     path('boss/',BossView.as_view(),name='boss'),
     path('check/',CheckView.as_view(),name='check'),
     path('equip/',EquipView.as_view(),name='equip'),
+    path('shop/', ShopView.as_view(), name='shop')
+
 ]

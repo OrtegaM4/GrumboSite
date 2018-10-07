@@ -17,5 +17,4 @@ urlpatterns = [
     path('statsget',views.statsget, name='statsget'),
     path('it',views.get_item, name='itemget'),
     path('ie',views.get_equip, name='equipget')
-
 ]

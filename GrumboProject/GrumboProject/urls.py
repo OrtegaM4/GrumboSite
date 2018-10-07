@@ -29,5 +29,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('thanks/',ThanksPage.as_view(), name='thanks')
 
-
 ]

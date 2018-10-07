@@ -1,7 +1,6 @@
 from django.urls import path
 from . import views
-from grumbo.views import (IndexView, GuideView, CommandsView, ClassesView,
-StatsView, AboutView, BossView, CheckView, EquipView)
+from grumbo.views import *
 
 
 urlpatterns= [
@@ -13,4 +12,6 @@ urlpatterns= [
     path('boss/',BossView.as_view(),name='boss'),
     path('check/',CheckView.as_view(),name='check'),
     path('equip/',EquipView.as_view(),name='equip'),
+    path('shop/', ShopView.as_view(), name='shop')
+
 ]

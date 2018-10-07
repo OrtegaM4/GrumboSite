@@ -1,6 +1,13 @@
 
 {% extends "grumbo/base.html"%}
 {% block content %}
+
+  {% if theclass is None %}
+    <meta http-equiv="REFRESH" content="0;url={%url 'discord_bind:itemget'%}">
+  {%else%}
+    <meta http-equiv="REFRESH" content="6000;url={%url 'discord_bind:itemget'%}">
+  {% endif %}
+
 <body>
   <div class="container">
     <div class="jumbotron">
@@ -12,7 +19,40 @@
       <h4>You can only class change once every 12 hours</h4>
 <br></br>
 </div>
-  <div class="jumbotron">
+{% for class,values in theclass.items %}
+
+<h2 class="bossname1" data-toggle="collapse" data-target=#{{class}}><u>{{class.capitalize}} </u></h2>
+<div id={{class}} class="collapse">
+  {%for each_item in values %}
+    <div class="jumbotron">
+          <h4>{{each_item.description}}</h4>
+
+        <h4>POW: {{each_item.pow}} | WIS: {{each_item.wis}}</h4>
+        <h4>DEF: {{each_item.def}} | RES: {{each_item.res}}</h4>
+        <h4>SPD: {{each_item.spd}} | LUK: {{each_item.luk}}</h4>
+
+      <h4>Max Level: {{each_item.perks|length}}</h4>
+
+      {%for levels in each_item.perks%}
+      <h4> Lv:{{forloop.counter}} {{levels}}</h4>
+        <!-- <h4>Lv1:{{loop.index}} {{each_item.perks|slice:":1"|join:" "}}</h4>
+        <h4>Lv2:{{each_item.perks|slice:"1:2"|join:" "}}</h4>
+        <h4>Lv3:{{each_item.perks|slice:"2:3"|join:" "}}</h4>
+        <h4>Lv4:{{each_item.perks|slice:"3:4"|join:" "}}</h4>
+        <h4>Lv5:{{each_item.perks|slice:"4:5"|join:" "}}</h4>
+      {%if each_item.perks|slice:"5:6"|join:" " == " " %}
+        <h4></h4>
+      {%else%}
+        <h4>Lv6:{{each_item.perks|slice:"5:6"|join:" "}}</h4>
+      {%endif%} -->
+      {%endfor%}
+      </div>
+{% endfor %}
+</div>
+{% endfor %}
+
+
+  <!-- <div class="jumbotron">
     <h2 class="bossname1" data-toggle="collapse" data-target="#adventurer1"><u>Adventurer</u></h2>
       <div id="adventurer1" class="collapse">
         <h3>Your typical Grumbo Adventurer. Specializes in nothing. <br></br>However, you can gain a permanent +2 boost to POW/WIS/DEF and +1 to RES/SPD/LUK every other class level!</h3>
@@ -32,8 +72,8 @@
         <h3>Grab Bag: 66% chance to increase experience gained by 10 or gold gained by 25</h3>
     </div>
 <br></br>
-</div>
-<div class="jumbotron">
+</div> -->
+<!-- <div class="jumbotron">
   <h2 class="bossname1" data-toggle="collapse" data-target="#warrior1"><u>Warrior</u></h2>
     <div id="warrior1" class="collapse">
       <h3>Warrior packs a powerful punch but isn't the smartest about it. <br></br>Gain a permanent +2 boost to POW every class level.</h3>
@@ -51,9 +91,9 @@
       <h3>Lifesteal: 75% chance to reduce damage received by 2% of POW.</h3>
       <h3>Revenge: Higher chance of activation the lower the HP you are. Increases chance of victory by POW/12. Against bosses, deal extra damage equal to POW/5.</h3>
 </div>
-</div>
+</div> -->
 <br></br>
-<div class="jumbotron">
+<!-- <div class="jumbotron">
   <h2 class="bossname1" data-toggle="collapse" data-target="#rogue1"><u>Rogue</u></h2>
     <div id="rogue1" class="collapse">
       <h3>The quick and slippery rogue</h3>
@@ -71,10 +111,10 @@
       <h3>Second Chance: When you lose, 4% chance to win instead.</h3>
       <h3>Quick Step: SPD% chance to increase chance of victory by 4%.</h3>
       <h3>Power of Wealth: (LUK * 0.8)% chance of increasing chance of victory by amount of gold held divided by 1500 and damage dealt by amount of gold held divided by 150.</h3>
-    </div>
+    </div> -->
 </div>
 <br></br>
-<div class="jumbotron">
+<!-- <div class="jumbotron">
   <h2 class="bossname1" data-toggle="collapse" data-target="#rogue1"><u>Magician</u></h2>
     <div id="magician1" class="collapse">
       <h3>The Magician is pretty good at card tricks</h3>
@@ -94,9 +134,9 @@
       <h3>Explosion: 15% chance to increase damage by WIS/2. No effect in regular battles.</h3>
       <h3>Barrier: RES% chance to reduce damage received by WIS/12.</h3>
     </div>
-</div>
+</div> -->
 <br></br>
-<div class="jumbotron">
+<!-- <div class="jumbotron">
   <h2 class="bossname1" data-toggle="collapse" data-target="#cleric1"><u>Cleric</u></h2>
     <div id="cleric1" class="collapse">
       <h3>The highly resistant Cleric. Gain a permanent +1 boost to RES every class level.</h3>
@@ -115,9 +155,9 @@
       <h3>Miracle: (RES * 1.5)% chance to reduce damage received by 7. If you were to take damage that would reduce your HP to 0, (RES * 1.5)% chance to reduce your HP to 1 instead. The revive effect will not activate multiple times in a boss battle.</h3>
       <h3>Holy: RES/1.5 % chance to increase chance of victory by WIS/12 and damage by WIS/8.</h3>
     </div>
-</div>
+</div> -->
 <br></br>
-<div class="jumbotron">
+<!-- <div class="jumbotron">
   <h2 class="bossname1" data-toggle="collapse" data-target="#knight1"><u>Knight</u></h2>
     <div id="knight1" class="collapse">
       <h3>The Knight is a sturdy fellow. Gain a permanent +2 boost to DEF every class level.</h3>
@@ -136,7 +176,7 @@
       <h3>Recoil: POW/10 % chance to increase chance of victory by the difference between your WIS and DEF divided by 3 and increases damage dealt against bosses by that same difference divided by 2.</h3>
       <h3>Stand Your Ground: DEF/8 % chance to outright win against Grumbos who are lower level than you. Against bosses, DEF/8 % chance to reduce damage received by 7.</h3>
   </div>
-</div>
+</div> -->
     </div>
   </div>
   {% endblock %}

@@ -175,17 +175,45 @@ shopequip=db.shop_equip
 shopspecial=db.shop_special
 
 def get_item(request):
-    r = requests.get('http://35.182.223.175:5000/api/items').json()
-    filteritem = r
+    r = requests.get('http://35.182.223.175:5000/api/classes').json()
+    info_list = r
+    my_dict= dict()
     print(r)
-    return render(request,'grumbo/item.html',context={"filteritem":filteritem})
+    for k,v in info_list.items():
+        if v['classId']:
+            # If this info already exists in the dictionary
+            if v['classId'] in my_dict:
+                item_info_list = my_dict[v['classId']]
+                item_info_list.append(v)
+                my_dict[v['classId']] = item_info_list
+            # This item is not in the dictionary
+            else:
+                item_info_list = list()
+                item_info_list.append(v)
+                my_dict[v['classId']] = item_info_list
+        else:
+            # If a general no info set is already in the dictionary
+            if NO_CLASS in my_dict:
+                item_info_list = my_dict[NO_CLASS]
+                item_info_list.append(v)
+                my_dict[NO_CLASS] = item_info_list
+            else:
+                item_info_list = list()
+                item_info_list.append(v)
+                my_dict[NO_CLASS] = item_info_list
+    theclass=my_dict
+    # for k,v in theclass.items():
+    #     perks=v['perks'].split(',')
+    #     print(perks)
+    # print(theclass)
+    print(r)
+    return render(request,'grumbo/classes.html',context={"theclass":theclass})
 
 def get_equip(request):
     r = requests.get('http://35.182.223.175:5000/api/equips').json()
     equiplist  = r
     my_dict= dict()
     NO_CLASS = 'general'
-    # naw=equiplist
     for k,v in equiplist.items():
         if v['classId']:
             # If this class already exists in the dictionary
@@ -209,9 +237,8 @@ def get_equip(request):
                 item_class_list.append(v)
                 my_dict[NO_CLASS] = item_class_list
 
-    test=0
     hola=my_dict
-    return render(request,'grumbo/equip.html',context={"hola":hola,"test":test})
+    return render(request,'grumbo/equip.html',context={"hola":hola})
 
 
 ##Gets Discord User Stats From MongoDB

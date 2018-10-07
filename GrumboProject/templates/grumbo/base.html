@@ -12,12 +12,13 @@
     <link rel="stylesheet" href="{% static "css/mystyle.css" %}">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   </head>
-  <body>
+
+<body>
 <nav id=mainnav class = 'navbar navbar-default  navbar-static-top'>
   <div class="container">
     <ul class="nav navbar-nav">
       {% if user.is_authenticated %}
-        <li><a class="navbar-brand" href="{% url 'home' %}"><!--<img id="GrumBot"src='{% static "images/GrumbattleBot.png" %}'>-->Home</a></li>
+        <li><a class="navbar-brand" href="{% url 'home' %}">Welcome {{user.username.title}}</a></li>
         <li><a class="navbar-link" href="{% url 'guide' %}">Guide</a></li>
         <li><a class="navbar-link" href="{% url 'commands'%}">Commands</a></li>
         <li><a class="navbar-link" href="{% url 'classes'%}">Classes</a></li>
@@ -26,7 +27,6 @@
         <li><a class="navbar-link" href="{% url 'boss'%}">Bosses</a></li>
         <li><a class="navbar-link" href="{% url 'shop'%}">Shop</a></li>
         <li><a class="navbar-link" href="{% url 'about'%}">About</a></li>
-        <li><a class=welcomename>Welcome {{user.username}}</a></li>
         <li><a href="{% url 'accounts:logout' %}" class="btn btn-simple">Log out</a></li>
       {% else %}
         <li><a class="navbar-brand" href="{% url 'home' %}"><!--<img id="GrumBot"src='{% static "images/GrumbattleBot.png" %}'>-->Home</a></li>

@@ -2,49 +2,52 @@
 {% extends "grumbo/base.html"%}
 {% block content %}
 
-<h2 class="bossname1"  data-toggle="collapse" data-target=#special_items_shop><u>SPECIAL ITEMS SHOP</u></h2>
-<div id="special_items_shop"class="jumbotron collapse">
-<div class="row">
-  {% for i, v in special_items_shop.items %}
+<h2 class="bossname1" data-target=#standard_shop><u>STANDARD SHOP</u></h2>
+<div id="standard_shop"class="jumbotron row">
   <div class="col-md-3">
+    <h4><b>Battle Ticket</b> [unlimited]</h4>
+    <h4>({{standard_shop.0}})</h4>
+    <h4>500 gold</h4>
+  </div>
+  <div class="col-md-3">
+    <h4><b>Challenge Ticket</b> [unlimited]</h4>
+    <h4>({{standard_shop.1}})</h4>
+    <h4>500 gold</h4>
+  </div>
+  <div class="col-md-3">
+    <h4><b>Medicine</b> [unlimited]</h4>
+    <h4>({{standard_shop.2}})</h4>
+    <h4>70 gold</h4>
+  </div>
+  <div class="col-md-3">
+    <h4><b><b>Antidote</b> [unlimited]</h4>
+    <h4>({{standard_shop.3}})</h4>
+    <h4>110 gold</h4>
+  </div>
+</div>
+
+<h2 class="bossname1" data-target=#rotating_items_shop><u>ROTATING ITEMS SHOP</u></h2>
+<div id="rotating_items_shop"class="jumbotron row">
+  {% for v in rotating_items_shop %}
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
   <h4><b>{{v.name}}</b> [{{v.stock}}]</h4>
   <h4>({{v.id}})</h4>
   <h4>{{v.price}} gold</h4>
   </div>
-      {% if forloop.counter|divisibleby:4 and not forloop.last %}
-      </div><div class="row">
-      {% endif %}
   {% endfor %}
 </div>
-</div>
 
-<h2 class="bossname1"  data-toggle="collapse" data-target=#rotating_items_shop><u>ROTATING ITEMS SHOP</u></h2>
-<div id="rotating_items_shop"class="jumbotron collapse">
+<h2 class="bossname1" data-target=#special_items_shop><u>SPECIAL ITEMS SHOP</u></h2>
+<div id="special_items_shop"class="jumbotron row">
 <div class="row">
-  {% for i, v in rotating_items_shop.items %}
-  <div class="col-md-3">
+  {% for v in special_items_shop %}
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
   <h4><b>{{v.name}}</b> [{{v.stock}}]</h4>
   <h4>({{v.id}})</h4>
   <h4>{{v.price}} gold</h4>
   </div>
-
-      {% if forloop.counter|divisibleby:4 and not forloop.last %}
-      </div><div class="row">
-      {% endif %}
-
   {% endfor %}
-
 </div>
-</div>
-
-<h2 class="bossname1"  data-toggle="collapse" data-target=#standard_shop><u>STANDARD SHOP</u></h2>
-<div id="standard_shop"class="jumbotron collapse">
-  <div class="row">
-    <h4 class="col-md-3">{{standard_shop.0}} [unlimited]</br> 500 gold</h4>
-    <h4 class="col-md-3">{{standard_shop.1}} [unlimited]</br> 500 gold</h4>
-    <h4 class="col-md-3">{{standard_shop.2}} [unlimited]</br> 70 gold</h4>
-    <h4 class="col-md-3">{{standard_shop.3}} [unlimited]</br> 110 gold</h4>
-  </div>
 </div>
 
 {% endblock %}

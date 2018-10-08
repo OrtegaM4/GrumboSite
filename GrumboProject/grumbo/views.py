@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import (View, TemplateView,)
 import json
 import requests
+from pymongo import MongoClient
 # Create your views here.
 
 class IndexView(TemplateView):
@@ -38,11 +39,29 @@ class ShopView(TemplateView):
     template_name = 'grumbo/shop.html'
 
     def get(self, request, *args, **kwargs):
-        standard_shop = requests.get('http://35.182.223.175:5000/api/shop_standard').json()
-        special_items_shop = requests.get('http://35.182.223.175:5000/api/special_items_list').json()
-        rotating_items_shop = requests.get('http://35.182.223.175:5000/api/rotation_items_list').json()
-        return render(request, self.template_name, {"standard_shop":standard_shop,"special_items_shop":special_items_shop,"rotating_items_shop":rotating_items_shop})
+        client = MongoClient('mongodb://35.182.223.175:27017/grumbobattlebot')
+        db = client.grumbobattlebot
 
+        rotating_shop = db.shop_rotation.find()
+        rotating_items_shop = []
+        try:
+            while(True):
+                record = rotating_shop.next()
+                rotating_items_shop.append(record)
+        except StopIteration:
+            print("Empty cursor!")
+
+        special_shop = db.shop_special.find()
+        special_items_shop = []
+        try:
+            while(True):
+                record = special_shop.next()
+                special_items_shop.append(record)
+        except StopIteration:
+            print("Empty cursor!")
+
+        standard_shop = requests.get('http://35.182.223.175:5000/api/shop_standard').json()
+        return render(request, self.template_name, {"standard_shop":standard_shop,"special_items_shop":special_items_shop,"rotating_items_shop":rotating_items_shop})
 
 def btnprint():
     print(db.characters_collection.count())

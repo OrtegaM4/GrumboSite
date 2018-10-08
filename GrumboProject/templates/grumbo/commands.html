@@ -1,78 +1,17 @@
 <!DOCTYPE html>
 {% extends "grumbo/base.html"%}
 {% block content %}
-<body>
+{% if help is None %}
+<meta http-equiv="REFRESH" content="0;url={%url 'discord_bind:helpget'%}">
+{%else%}
+<meta http-equiv="REFRESH" content="6000000;url={%url 'discord_bind:helpget'%}">
+{%endif%}
   <div class="container">
     <div class="jumbotron">
-      <h1>Grumbo Commands Help</h1>
-      <h3>[ ]: the input in square brackets are optional</h3>
-      <h3>< >: the input must be the type in the arrow brackets</h3>
-      <h3>/ : the input must be one of these inputs</h3>
-      <h3>-d : optionally display to the server channel for commands that normally message by DM</h3>
-      <h4> < active_command> is always the name of the active in lowercase with the spaces replaced with underscores.</h4>
-      <h4>E.g. Battle Potion = battle_potion</h4>
-
-    </div>
-  </div>
-  <div class="container">
-    <div class="jumbotron">
-      <div class= 'commandscss'>
       <h1>Commands</h1>
-<br></br>
-      <h2><u>Information</u>:</h2>
-      <h3>!grumbo help -d  |  Show this help menu</h3>
-      <h3>!grumbo guide -d  |  Show guide about game mechanics like battles, experience and gold scaling, etc.</h3>
-      <h3>!grumbo patchnotes -d  |  Show the recent patch notes</h3>
-<br></br>
-      <h2><u>Character</u>:</h2>
-      <h3>!grumbo stats -d  |  See your grumbo stats (POW, WIS, DEF, etc.), progression (level, exp, gold, etc.), equips and how many battles/challenges you have left.</h3>
-      <h3>!grumbo leaderboards -d  |  See the stats of players on the server. Sorted by level, then experience.</h3>
-      <h3>!grumbo actives -d  |  See your list of current active effects.</h3>
-      <h3>!grumbo actives info < active_command> -d  |  See the info of a particular active effect.</h3>
-      <br></br>
-
-      <h2><u>Class</u>:</h2>
-      <h3>!grumbo class -d  |  See your class progression for all classes</h3>
-      <h3>!grumbo class info < class_command>  |  See the info of a particular class</h3>
-      <h3>!grumbo class change < class_command>  |  Change class to the given class.</h3>
-      <br></br>
-
-      <h2><u>Battle</u>:</h2>
-      <h3>!grumbo battle level < number>  |  Battle a level < number> Grumbo. The higher the level compared to yours, the lower the chance of victory (but more experience!).</h3>
-      <h3>!grumbo enemy < grumbo_name>  |  See the info of a particular grumbo.</h3>
-      <h4>< grumbo_name> is always the name of the grumbo in lowercase with the spaces replaced with underscores. (E.g. Toxic Grumbo = toxic_grumbo)</h4>
-      <br></br>
-
-      <h2><u>Challenge</u>:</h2>
-      <h3>!grumbo challenge @mention < number> exp/gold  |  Challenge another user by mentionning them with @ and putting < number> experience/gold on the line!</h3>
-      <h4>Example: !grumbo challenge @ScumLord 25 gold</h4>
-      <h3>!grumbo challenge accept < number> exp/gold  |  If you've been challenged, accept with this command. < number> and exp/gold must match the challenge.</h3>
-      <br></br>
-
-      <h2><u>Items</u>:</h2>
-      <h3>!grumbo items -d  |  See your current list of items.</h3>
-      <h3>!grumbo items use < item_command> [amount]  |  Use an item [amount] times. Once if [amount] not specified.</h3>
-      <h3>!grumbo items info < item_command> -d  |  See the info of a particular item.</h3>
-      <h4>< item_command> is always the name of the item in lowercase with the spaces replaced with underscores. </h4>
-      <h4>E.g. Charm of Wumbo = charm_of_wumbo</h4>
-      <br></br>
-
-      <h2><u>Equips</u>:</h2>
-      <h3>!grumbo equip -d  |  See your current list of equips.</h3>
-      <h3>!grumbo equip info < equip_command> -d  |  See the info of a particular equip.</h3>
-      <h3>!grumbo equip < equip_command>  |  Equip. Will unequip equip if you already have an equip of that type on.</h3>
-      <h3>!grumbo unequip < equip_command>  |  Unequip. Removes equip active affects as well.</h3>
-      <h4>< equip_command> is always the name of the equip in lowercase with the spaces replaced with underscores. </h4>
-      <h4>E.g. Pan Lid = pan_lid | !grumbo equip pan_lid</h4>
-      <br></br>
-
-      <h2><u>Shop</u>:</h2>
-      <h3>!grumbo shop -d  |  Display the shop.</h3>
-      <h3>!grumbo shop buy < shop_item_command> [amount]  |  Buy the specified item [amount] times if possible.</h3>
-      <h3>!grumbo shop sell < shop_item_command> [amount]  |  Sell a specified item [amount] times if possible.</h3>
-      </div>
+      <h2>{{help|linebreaks}}</h2>
+      <h2>{{helptwo|linebreaks}}</h2>
     </div>
   </div>
-</body>
-</html>
+
 {% endblock %}

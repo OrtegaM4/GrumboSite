@@ -168,6 +168,7 @@ def get_discord(request):
 client = MongoClient('mongodb://35.182.223.175:27017/grumbobattlebot')
 db = client.grumbobattlebot
 #Collections
+
 myclass=db.classes
 collection=db.characters
 shop=db.shop_rotation
@@ -240,6 +241,42 @@ def get_equip(request):
     hola=my_dict
     return render(request,'grumbo/equip.html',context={"hola":hola})
 
+def get_patchnotes(request):
+    r = requests.get('http://35.182.223.175:5000/api/help/patchnotes').json()
+    patchone= r
+    patch=''.join(patchone)
+    return render(request,'grumbo/index.html',context={"patch":patch})
+
+def get_help(request):
+    r = requests.get('http://35.182.223.175:5000/api/help/help').json()
+    rtwo = requests.get('http://35.182.223.175:5000/api/help/help2').json()
+    help=''.join(r)
+    helptwo=''.join(rtwo)
+    return render(request,'grumbo/commands.html',context={"help":help,"helptwo":helptwo})
+def get_guide(request):
+    r = requests.get('http://35.182.223.175:5000/api/help/guide').json()
+    rtwo = requests.get('http://35.182.223.175:5000/api/help/guide2').json()
+    rthree = requests.get('http://35.182.223.175:5000/api/help/guide3').json()
+    rfour = requests.get('http://35.182.223.175:5000/api/help/guide4').json()
+    rfive = requests.get('http://35.182.223.175:5000/api/help/guide5').json()
+    # rsix = requests.get('http://35.182.223.175:5000/api/help/guide6').json()
+
+    ##Removes |
+    guide=r.split('|')
+    guidetwo=rtwo.split('|')
+    guidethree=rthree.split('|')
+    guidefour=rfour.split('|')
+    guidefive=rfive.split('|')
+    # guidesix=rsix.split('|')
+
+    guide=''.join(guide)
+    guidetwo=''.join(guidetwo)
+    guidethree=''.join(guidethree)
+    guidefour=''.join(guidefour)
+    guidefive=''.join(guidefive)
+    # guidesix=''.join(rsix)
+    return render(request,'grumbo/guide.html',context={"guide":guide,"guidetwo":guidetwo,
+    "guidethree":guidethree,"guidefour":guidefour,"guidefive":guidefive,})
 
 ##Gets Discord User Stats From MongoDB
 @login_required

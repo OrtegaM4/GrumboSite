@@ -2,8 +2,13 @@
 {% extends "grumbo/base.html"%}
 {% block content %}
 
+  {% if patch is None %}
+  <meta http-equiv="REFRESH" content="0;url={%url 'discord_bind:patchget'%}">
+  {%else%}
+  <meta http-equiv="REFRESH" content="600000;url={%url 'discord_bind:patchget'%}">
+  {%endif%}
 
-<body>
+
   <div class="container">
     <div class="jumbotron">
       <h1>Welcome To Grumbo Battle Bot!</h1>
@@ -12,8 +17,10 @@
       <br></br>
       <h2>To add GrumboBot to your server click on the "Add to Server" tab.</h1> <br></br>
       <h2>All other info please select the corresponding tab above.</h1>
-      <!-- <h2>{{ inject.me }}</h3> -->
+    </div>
+    <div class="jumbotron">
+      <h2>{{patch|linebreaks}}</h2>
     </div>
   </div>
-<iframe src="https://discordapp.com/widget?id=455501253653561366&theme=dark" width="1149" height="600" allowtransparency="true" frameborder="0"></iframe></html>
+<!-- <iframe src="https://discordapp.com/widget?id=455501253653561366&theme=dark" width="1149" height="600" allowtransparency="true" frameborder="0"></iframe></html> -->
 {% endblock %}

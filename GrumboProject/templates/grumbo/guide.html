@@ -1,72 +1,26 @@
 <!DOCTYPE html>
 {% extends "grumbo/base.html"%}
 {% block content %}
-<body>
+{% if guide is None %}
+<meta http-equiv="REFRESH" content="0;url={%url 'discord_bind:guideget'%}">
+{%else%}
+<meta http-equiv="REFRESH" content="6000000;url={%url 'discord_bind:guideget'%}">
+{%endif%}
   <div class="container">
     <div class="jumbotron">
-      <h1>  Grumbo Guide</h1>
-    </div>
+      <h1>Grumbo Guide</h1>
+      <h2>{{guide|cut:"GRUMBO BATTLE BOT GUIDE"|linebreaks}}</h2>
+      <br>
+      <h2>{{guidetwo|linebreaks}}</h2>
+      <br>
+      <h2>{{guidethree|linebreaks}}</h2>
+      <br>
+      <h2>{{guidefour|linebreaks}}</h2>
+      <br>
+      <h2>{{guidefive|linebreaks}}</h2>
+      <br>
+      <h2>{{guidesix|linebreaks}}</h2>
   </div>
-  <br></br>
-  <div class="container">
-    <div class="jumbotron">
-    <h2><u>Battles</u>:</h2>
-    <h3>You can battle any Grumbo whose level is up to 20 levels higher than you. The experience, gold and chance of victory are based on the level difference between your current level and the Grumbo level. Chance of victory is further swayed based on character and Grumbo stats.<br></br> As the level of the Grumbo increases, grumbo stats and experience increases, but gold and chance of victory decrease. Experience is also decreased independently based on how high your level is. The min victory chance is 5% and the max is 95%. While you get more gold the lower the level of the Grumbo, you will only get 10 gold if you fight a Grumbo who is over 20 levels lower than you.<br> </br> Actives take effect in battle but watch out, different kinds of Grumbos can appear with their own kind of active effects! You will take damage (lose HP) after every battle. If you win, you will lose 3 HP (before factoring in actives). If you lose, you will lose HP proporionate to the difference between the enemy POW and your DEF.
-<br></br>Battle attempts recover 1 stock every hour (reduced by SPD) to a maximum of 5.</h3>
-  </div>
-  <br>
-  <div class="jumbotron">
-    <h2><u>Challenges</u>:</h2>
-    <h3>Challenge users to a wager.<br></br>Exp challenge: The loser will always lose the wager they bet, but the winner will win a wager based on the chance of victory which is influenced by level difference. The lower the chance, the higher the wager multiplier.<br></br> </h3>
-    <h3>Gold challenge: The chance of winning is always a 50/50. You always win/lose exactly what was wagered.<br></br>Challenge attempts recover 1 stock every hour (reduced by SPD) up to a maximum of 3.</h3>
-  </div>
+</div>
 
-  <div class="jumbotron">
-    <h2><u>Items</u>:</h2>
-    <h3>Items have different kinds of effects when used, from doing an immediate action like replenishing a battle stock or making you slightly stronger in your next battle.<br></br>Use the item commands to use and check the details of all your items. Every item has a carry limit, meaning you can only carry a certain amount of that item before you can't carry anymore. </h3>
-    <h3>This limit can even be 1. Some items are not consumed even after use.</h3>
-  </div>
-
-  <div class="jumbotron">
-    <h2><u>Equips</u>:</h2>
-    <h3>Equip items on your head, armor, bottom and weapon to make your character stronger (or weaker in some cases)</h3>
-    <h3>Equips can have a level and class restriction, Equips can affect stats and can have active effects that are active indefinitely until you unequip it.</h3>
-
-    <h3>You can only equip one head/armor/bottom/weapon at a time and you can't have duplicate equips.</h3>
-  </div>
-  <div class="jumbotron">
-    <h2><u>Active Effects</u>:</h2>
-    <h3>Currently, active effects are effects that take place during battle. They might increase the chance of victory or decrease it. Active effects can be helpful or troublesome. <br></br>Active effects can have a duration or remain indefinitely. An active effect has a max turn limit of 10 turns. Grumbos can also have active effects that change the outcome of the battle.</h3>
-    <h4>!grumbo actives info < active_command> -d | See the info of a particular active effect.</h4>
-  </div>
-
-    <div class="jumbotron">
-      <h2><u>Character Stats</u>:</h2>
-      <br></br>
-      <h3><strong>HP</strong>: Max HP of 100. +5% battle chance boost at 100 HP. Chance decreases when below 45 HP, going down to -50% when at 0 HP.</h3>
-      <h3><strong>POW</strong>: Power. Affects battle chance. Chance is proportionate to enemy POW difference.</h3>
-      <h3><strong>WIS</strong>: Wisdom. Affects battle chance, but slightly less than POW. Chance is proportionate to enemy WIS difference.</h3>
-      <h3><strong>DEF</strong>: Defense. Lowers damage taken after a battle. Damage taken is proportionate to the difference between enemy POW and character DEF.</h3>
-      <h3><strong>RES</strong>: Resistance. % chance of avoiding negative enemy active effects.</h3>
-      <h3><strong>SPD</strong>: Speed. Each speed point above or below 10 increases or decreases the battle/challenge wait time by 1 minute.</h3>
-      <h3><strong>LUK</strong>: Luck. % extra gold gained in battle.</h3>
-      <br> </br>
-      <h4>Your character can also be affected by active effects through items, battle, etc. which affect the outcomes of battles, some being based on the stats above.</h4>
-      <br></br>
-    </div>
-
-
-    <div class="jumbotron">
-      <h2><u>Bosses</u>:</h2>
-      <h3>You can begin to battle bosses when you meet the level requirements necessary for fighting a particular boss. <br></br>Bosses require 3 battle stock. Boss fights occur over several phases (similar to battles) where you have a chance of phase victory. You and the boss deal damage to one another at the end of the phase based on many conditions, primarily your higher stat between POW and WIS. <br></br>Your damage dealt is significantly reduced when you lose the phase. Damage dealt and damage received can also be heavily dependent on what actives you or the boss have. Beware of special boss actives! When either the HP of yourself or the boss drops to 0, the boss fight ends. <br></br>If you reached 0 HP first (or at the same time as the boss), you lose and don't receive any rewards. If you defeat the boss first, you have a chance at receiving loot, always receiving the first time drop if it's the first time you beat the boss (or if you sold/lost the first time drop) and possibly more based on your luck. <br></br>Bosses have an array of items for loot but it's also possible for a loot attempt to come up with nothing. The higher the luck, the more chances at loot attempts you get (but not the chance of receiving better loot)! Defeating bosses does not reward any experience, gold or class experience, so choose wisely whether you want to try your chance at boss loot or fight regular battles. The first time drop and other boss information can be seen using the '!grumbo boss info <boss_command>' command. </h3>
-    <br></br>
-    </div>
-
-
-  </body>
-  </html>
-
-  </div>
-</body>
-</html>
 {% endblock %}

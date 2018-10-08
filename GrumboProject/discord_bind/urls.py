@@ -16,5 +16,9 @@ urlpatterns = [
     path('tk',views.get_discord, name='get_discord'),
     path('statsget',views.statsget, name='statsget'),
     path('it',views.get_item, name='itemget'),
-    path('ie',views.get_equip, name='equipget')
+    path('ie',views.get_equip, name='equipget'),
+    path('patchnotes',views.get_patchnotes, name='patchget'),
+    path('help',views.get_help, name='helpget'),
+    path('guide',views.get_guide, name='guideget'),
+
 ]

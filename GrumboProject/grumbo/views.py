@@ -60,8 +60,17 @@ class ShopView(TemplateView):
         except StopIteration:
             print("Empty cursor!")
 
+        equips = db.shop_equip.find()
+        equips_shop = []
+        try:
+            while(True):
+                record = equips.next()
+                equips_shop.append(record)
+        except StopIteration:
+            print("Empty cursor!")
+
         standard_shop = requests.get('http://35.182.223.175:5000/api/shop_standard').json()
-        return render(request, self.template_name, {"standard_shop":standard_shop,"special_items_shop":special_items_shop,"rotating_items_shop":rotating_items_shop})
+        return render(request, self.template_name, {"standard_shop":standard_shop,"special_items_shop":special_items_shop,"rotating_items_shop":rotating_items_shop,"equips_shop":equips_shop})
 
 def btnprint():
     print(db.characters_collection.count())
